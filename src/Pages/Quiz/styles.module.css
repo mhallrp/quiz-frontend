@@ -1,0 +1,31 @@
+
+.quizMain{
+    display: flex;
+    flex-direction: column;
+}
+
+.answerCards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;   
+    margin-top: 100px;
+}
+
+.questionTitle{
+    width: 100%;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.dog{
+margin:auto;
+    width: 25%;
+}

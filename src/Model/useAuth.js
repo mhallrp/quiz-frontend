@@ -2,7 +2,7 @@ const useAuth = () => {
 
     const login = async (username, password) => {
         try {
-            const response = await fetch('https://localhost:3001/user/login', {
+            const response = await fetch('http://localhost:3001/user/login', {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -24,7 +24,7 @@ const useAuth = () => {
     
     const register = async (username, password) => {
         try {
-            const response = await fetch('https://localhost:3001/user/register', {
+            const response = await fetch('http://localhost:3001/user/register', {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -42,7 +42,7 @@ const useAuth = () => {
 
 const logout = async () => {
     try {
-        const response = await fetch('https://localhost:3001/user/logout', {
+        const response = await fetch('http://localhost:3001/user/logout', {
             method: 'GET',
             credentials: 'include',
             headers: {

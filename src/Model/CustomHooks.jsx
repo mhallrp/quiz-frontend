@@ -5,7 +5,7 @@ export const useTriviaQuestions = (categoryId) => {
     const [apiStatus, setApiStatus] = useState(null);
     const fetchQuestions = async () => {
         try {
-            const url = `https://localhost:3001/quiz/trivia?category=${categoryId}`;
+            const url = `http://localhost:3001/quiz/trivia?category=${categoryId}`;
             const response = await fetch(url,{ credentials: 'include' });
             const data = await response.json();
             setApiStatus(response.status);
@@ -25,7 +25,7 @@ export const useQuizCategories = () => {
     useEffect(() => {
         const initializeCategories = async () => {
             try {
-                const response = await fetch('https://localhost:3001/quiz/categories',{ credentials: 'include' });
+                const response = await fetch('http://localhost:3001/quiz/categories',{ credentials: 'include' });
                 const data = await response.json();
                 setCategories(data);
             } catch (error) {

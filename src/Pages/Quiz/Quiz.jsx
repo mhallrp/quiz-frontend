@@ -24,14 +24,14 @@ const Quiz = () => {
 
     const handleLogout = async () => {
         await logout();
-        navigate('/login');
+        navigate('/');
     };
 
     useEffect(() => {
         setScore(0)
         switch(apiStatus){
-            case 403:navigate('/login');
-            case 500:alert("Too many requests")
+            case 403:navigate('/');break
+            case 500:alert("Too many requests");break
             default:setRemainingQuestions(triviaQuestions);
         }
     }, [triviaQuestions, apiStatus, navigate]);

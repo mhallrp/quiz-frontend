@@ -5,9 +5,12 @@ export const useTriviaQuestions = (categoryId) => {
     const [apiStatus, setApiStatus] = useState(null);
     const fetchQuestions = async () => {
         try {
-            const url = `https://quiz-backend-production-ae82.up.railway.app/quiz/trivia?category=${categoryId}`;
+            const url = `https://request.matt-hall.dev/quiz/trivia?category=${categoryId}`;
             const response = await fetch(url,{ 
-                credentials: 'include' 
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
             });
             const data = await response.json();
             setApiStatus(response.status);
@@ -27,8 +30,11 @@ export const useQuizCategories = () => {
     useEffect(() => {
         const initializeCategories = async () => {
             try {
-                const response = await fetch(`https://quiz-backend-production-ae82.up.railway.app/quiz/categories`,{ 
-                    credentials: 'include' 
+                const response = await fetch(`https://request.matt-hall.dev/quiz/categories`,{ 
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
                 });
                 const data = await response.json();
                 setCategories(data);

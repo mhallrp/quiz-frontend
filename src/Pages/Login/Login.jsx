@@ -46,7 +46,7 @@ const Register = () => {
                 </div>
                 <button type="submit">Login</button>
             </form>
-{/* 
+
             <p>or...</p>
 
             <h2>Register</h2>
@@ -60,7 +60,7 @@ const Register = () => {
                     <input type="password" id="regPassword" value={regPassword} onChange={(e) => setRegPassword(e.target.value)}/>
                 </div>
                 <button type="submit">Register</button>
-            </form> */}
+            </form>
             </div>
         </div>
     );

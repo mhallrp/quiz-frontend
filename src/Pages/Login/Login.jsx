@@ -32,7 +32,7 @@ const Register = () => {
     
     return (
         <div>
-            <h2>Login</h2>
+            <h2>Loginnnn</h2>
             <form onSubmit={handleLogin}>
                 <div>
                     <label htmlFor="username">Username:</label>
@@ -57,7 +57,7 @@ const Register = () => {
 
             <p>or...</p>
 
-            <h2>Register</h2>
+            <h2>Registerrrrr</h2>
             <form onSubmit={handleRegister}>
                 <div>
                     <label htmlFor="regUsername">Username:</label>

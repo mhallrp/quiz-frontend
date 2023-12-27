@@ -1,0 +1,21 @@
+.mainSection{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(126deg, #F9ED32 4.79%, #D9BD32 54.4%);
+    backdrop-filter: blur(2px);
+}
+
+.loginSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 25px;
+    background-color: white;
+    padding: 25vh 20vw;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(1.5px);
+}

@@ -7,6 +7,7 @@ export const useTriviaQuestions = (categoryId) => {
         try {
             const url = `https://request.matt-hall.dev/quiz/trivia?category=${categoryId}`;
             const response = await fetch(url,{ 
+                method: 'POST',
                 credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
@@ -31,6 +32,7 @@ export const useQuizCategories = () => {
         const initializeCategories = async () => {
             try {
                 const response = await fetch(`https://request.matt-hall.dev/quiz/categories`,{ 
+                    method: 'POST',
                     credentials: 'include',
                     headers: {
                         'Content-Type': 'application/json',

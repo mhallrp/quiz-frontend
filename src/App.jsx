@@ -14,6 +14,7 @@ const App = () => {
             try {
                 const status = await sessionCheck();
                 if (status !== 200) {
+                    setIsLoading(false)
                     setIsLoggedIn(false);
                 } else {
                     setIsLoading(true)

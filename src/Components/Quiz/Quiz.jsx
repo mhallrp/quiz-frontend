@@ -32,7 +32,6 @@ export default function Quiz (props) {
             case 500:alert("Too many requests");break
             default:setRemainingQuestions(triviaQuestions);
         }
-        props.isLoading(false)
     }, [triviaQuestions, apiStatus]);
 
     useEffect(() =>{
@@ -99,6 +98,7 @@ export default function Quiz (props) {
                     </select>
                 )}  
                 <button onClick={ () => handleLogout() }>Logout</button>
+                { props.isLoading(false) }
                 </div>
             </>
             )}

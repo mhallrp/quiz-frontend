@@ -98,7 +98,6 @@ export default function Quiz (props) {
                     </select>
                 )}  
                 <button onClick={ () => handleLogout() }>Logout</button>
-                { props.isLoading(false) }
                 </div>
             </>
             )}

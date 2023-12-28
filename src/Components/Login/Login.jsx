@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import useAuth from '../../Model/useAuth';
 
-export default function Register () {
+export default function Register (props) {
     const [regUsername, setRegUsername] = useState('');
     const [regPassword, setRegPassword] = useState('');
     const [username, setUsername] = useState('');

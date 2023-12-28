@@ -27,7 +27,7 @@ const App = () => {
 
     return (
         <div className={ Styles.mainSection }>
-            <div className={ Styles.dataSection } style={ { opacity: isLoading ? 1 : 0} }>
+            <div className={ Styles.dataSection } style={ { opacity: isLoading ? 0 : 1} }>
                 { isLoggedIn ? <Quiz loggedIn={ setIsLoggedIn } /> : <Login loggedIn={ setIsLoggedIn } /> }
             </div>
         </div>

@@ -12,14 +12,12 @@ const App = () => {
         const checkSession = async () => {
             try {
                 const status = await sessionCheck();
-                console.log(status)
                 if (status !== 200) {
                     setIsLoggedIn(false);
                 } else {
                     setIsLoggedIn(true);
                 }
             } catch (error) {
-                console.error('Error checking session:', error);
                 setIsLoggedIn(false);
             }
         };
@@ -29,7 +27,7 @@ const App = () => {
     return (
         <div className={Styles.mainSection}>
             <div className={Styles.dataSection}>
-                { isLoggedIn ? <Quiz loggedIn={ setIsLoggedIn } /> : <Login /> }
+                { isLoggedIn ? <Quiz loggedIn={ setIsLoggedIn } /> : <Login loggedIn={ setIsLoggedIn } /> }
             </div>
         </div>
     );

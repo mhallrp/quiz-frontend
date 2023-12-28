@@ -13,7 +13,6 @@ const App = () => {
         const checkSession = async () => {
             try {
                 const status = await sessionCheck();
-                setIsLoading(false);
                 if (status !== 200) {
                     setIsLoggedIn(false);
                 } else {
@@ -29,7 +28,7 @@ const App = () => {
 
     return (
         <div className={ Styles.mainSection }>
-            <div className={ Styles.dataSection } style={{ opacity: isLoading ? 1 : 0}}>
+            <div className={ Styles.dataSection } style={ { opacity: isLoading ? 1 : 0} }>
                 { isLoggedIn ? <Quiz isLoading={ setIsLoading } loggedIn={ setIsLoggedIn } /> : <Login isLoading={ setIsLoading } loggedIn={ setIsLoggedIn } /> }
             </div>
         </div>

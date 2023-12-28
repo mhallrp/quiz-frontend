@@ -7,7 +7,6 @@ import useAuth from './Model/useAuth';
 const App = () => {
     const { sessionCheck } = useAuth();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         const checkSession = async () => {
@@ -16,7 +15,6 @@ const App = () => {
                 if (status !== 200) {
                     setIsLoggedIn(false);
                 } else {
-                    setIsLoading(true)
                     setIsLoggedIn(true);
                 }
             } catch (error) {
@@ -28,8 +26,8 @@ const App = () => {
 
     return (
         <div className={ Styles.mainSection }>
-            <div className={ Styles.dataSection } style={ { opacity: isLoading ? 0 : 1} }>
-                { isLoggedIn ? <Quiz isLoading={ setIsLoading } loggedIn={ setIsLoggedIn } /> : <Login isLoading={ setIsLoading }loggedIn={ setIsLoggedIn } /> }
+            <div className={ Styles.dataSection }>
+                { isLoggedIn ? <Quiz loggedIn={ setIsLoggedIn } /> : <Login loggedIn={ setIsLoggedIn } /> }
             </div>
         </div>
     );

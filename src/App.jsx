@@ -6,7 +6,7 @@ import useAuth from './Model/useAuth';
 
 const App = () => {
     const { sessionCheck } = useAuth();
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
         const checkSession = async () => {

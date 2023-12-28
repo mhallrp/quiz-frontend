@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useTriviaQuestions } from '../../Model/CustomHooks';
+// import { useTriviaQuestions } from '../../Model/CustomHooks';
 import AnswerCard from '../../Components/AnswerCard';
 import Styles from './styles.module.css'
 import { ShuffleArray, decodeHtmlEntities } from '../../Model/utils'
@@ -14,7 +14,7 @@ export default function Quiz (props) {
     const [selected, setSelected] = useState();
     const [correct, setCorrect] = useState();
     const [score, setScore] = useState(0)
-    const { questions: triviaQuestions, fetchQuestions } = useTriviaQuestions(selectedCategory);
+    // const { questions: triviaQuestions, fetchQuestions } = useTriviaQuestions(selectedCategory);
     const { logout } = useAuth();
 
     const handleLogout = async () => {
@@ -22,10 +22,10 @@ export default function Quiz (props) {
         props.loggedIn(false)
     };
 
-    useEffect(() => {
-        setScore(0)
-        setRemainingQuestions(triviaQuestions);
-    }, [triviaQuestions]);
+    // useEffect(() => {
+    //     setScore(0)
+    //     setRemainingQuestions(triviaQuestions);
+    // }, [triviaQuestions]);
 
     useEffect(() => {
         if (remainingQuestions.length > 0) {
@@ -43,14 +43,14 @@ export default function Quiz (props) {
         if ( remainingQuestions.length != 1 ){
         setRemainingQuestions(prevQuestions => prevQuestions.slice(1));
         } else {
-            const totalQuestions = triviaQuestions.length;
+            const totalQuestions = props.triviaQuestions.length;
             alert(`Your score is ${score}/${totalQuestions}`);
             resetQuiz();
         }
     };
     
     const resetQuiz = () => {
-        fetchQuestions()
+        props.fetchQuestions()
         setScore(0);
     };
 
@@ -67,7 +67,7 @@ export default function Quiz (props) {
         <>
             { currentQuestion && (
             <>
-                <h2 className={ Styles.questionTitle }>Q{Array.isArray(triviaQuestions) ? triviaQuestions.length - remainingQuestions.length + 1 : 0}: { currentQuestion && decodeHtmlEntities(currentQuestion.question) }</h2>
+                <h2 className={ Styles.questionTitle }>Q{Array.isArray(props.triviaQuestions) ? props.triviaQuestions.length - remainingQuestions.length + 1 : 0}: { currentQuestion && decodeHtmlEntities(currentQuestion.question) }</h2>
                 <div className={ Styles.answerCards }>
                     { answers.map((e, index) => 
                         <AnswerCard selected={ selected == index ? true : false } correct={ correct == index ? true : false } key={index}  text={decodeHtmlEntities(e)}  onClick={ () => { correct == null && selected != index ? setSelected(index) : correct == null && setSelected() }}/>
@@ -77,7 +77,7 @@ export default function Quiz (props) {
                 <div className={ Styles.buttons }>
                     <button disabled={ correct != null ? true : selected != null ? false : true} onClick={ () => checkAnswer() }>Check Answer</button>
                     <button disabled={ correct != null ? false : true } onClick={ handleNextQuestion }>Next Question</button>
-                    <p>Score { score }/{ Array.isArray(triviaQuestions) ? triviaQuestions.length : 0 }</p>
+                    <p>Score { score }/{ Array.isArray(props.triviaQuestions) ? props.triviaQuestions.length : 0 }</p>
                 {props.currentCategories && (
                     <select onChange={(e) => setSelectedCategory(e.target.value)}>
                         {

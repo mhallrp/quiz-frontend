@@ -2,21 +2,19 @@ import { useState, useEffect } from 'react';
 
 export const useTriviaQuestions = (categoryId) => {
     const [questions, setQuestions] = useState([]);
-    const [apiStatus, setApiStatus] = useState(null);
     const fetchQuestions = async () => {
         try {
             const response = await fetch(`https://request.matt-hall.dev/quiz/trivia?category=${categoryId}`);
             const data = await response.json();
-            setApiStatus(response.status);
             setQuestions(data);
         } catch (error) {
-            setApiStatus(500)
+            console.log("Handle error")
         }
     };
     useEffect(() => {
         fetchQuestions();
     }, [categoryId]);
-    return { questions, fetchQuestions, apiStatus };
+    return { questions, fetchQuestions };
 };
 
 export const useQuizCategories = () => {

@@ -14,7 +14,7 @@ export default function Quiz (props) {
     const [selected, setSelected] = useState();
     const [correct, setCorrect] = useState();
     const [score, setScore] = useState(0)
-    const { questions: triviaQuestions, fetchQuestions, apiStatus } = useTriviaQuestions(selectedCategory);
+    const { questions: triviaQuestions, fetchQuestions } = useTriviaQuestions(selectedCategory);
     const { logout } = useAuth();
 
     const handleLogout = async () => {
@@ -24,12 +24,8 @@ export default function Quiz (props) {
 
     useEffect(() => {
         setScore(0)
-        switch(apiStatus){
-            case 403:props.loggedIn(false);break
-            case 500:alert("Too many requests");break
-            default:setRemainingQuestions(triviaQuestions);
-        }
-    }, [triviaQuestions, apiStatus]);
+        setRemainingQuestions(triviaQuestions);
+    }, [triviaQuestions]);
 
     useEffect(() => {
         if (remainingQuestions.length > 0) {

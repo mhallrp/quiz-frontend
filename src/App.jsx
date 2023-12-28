@@ -14,10 +14,8 @@ const App = () => {
             try {
                 const status = await sessionCheck();
                 if (status !== 200) {
-                    setIsLoading(false)
                     setIsLoggedIn(false);
                 } else {
-                    setIsLoading(true)
                     setIsLoggedIn(true);
                 }
             } catch (error) {
@@ -30,16 +28,10 @@ const App = () => {
     return (
         <div className={ Styles.mainSection }>
             <div className={ Styles.dataSection } style={ { opacity: isLoading ? 1 : 0} }>
-                { isLoggedIn ? <Quiz isLoading={ setIsLoading } loggedIn={ setIsLoggedIn } /> : <Login isLoading={ setIsLoading } loggedIn={ setIsLoggedIn } /> }
+                { isLoggedIn ? <Quiz loggedIn={ setIsLoggedIn } /> : <Login loggedIn={ setIsLoggedIn } /> }
             </div>
         </div>
     );
 };
 
 export default App;
-
-// { isLoading
-//     ?
-//         <div className={ Styles.spinner }></div>
-//     :
-// }

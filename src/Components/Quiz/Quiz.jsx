@@ -21,7 +21,6 @@ export default function Quiz (props) {
 
     const handleLogout = async () => {
         await logout();
-        props.isLoading(false);
         props.loggedIn(false)
     };
 
@@ -32,7 +31,6 @@ export default function Quiz (props) {
             case 500:alert("Too many requests");break
             default:setRemainingQuestions(triviaQuestions);
         }
-        props.isLoading(false)
     }, [triviaQuestions, apiStatus]);
 
     useEffect(() =>{

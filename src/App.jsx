@@ -29,7 +29,7 @@ const App = () => {
     return (
         <div className={ Styles.mainSection }>
             <div className={ Styles.dataSection } style={ { opacity: isLoading ? 0 : 1} }>
-                { isLoggedIn ? <Quiz loggedIn={ setIsLoggedIn } /> : <Login isLoading={ setIsLoading }loggedIn={ setIsLoggedIn } /> }
+                { isLoggedIn ? <Quiz isLoading={ setIsLoading } loggedIn={ setIsLoggedIn } /> : <Login isLoading={ setIsLoading }loggedIn={ setIsLoggedIn } /> }
             </div>
         </div>
     );

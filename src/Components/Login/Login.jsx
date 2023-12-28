@@ -23,6 +23,7 @@ export default function Register () {
         event.preventDefault();
         const { data, error, status } = await login(username, password);
         if (status) {
+            console.log("success")
             // handle successful login
         } else {
             alert('Login failed: ' + error);

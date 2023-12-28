@@ -3,10 +3,14 @@ import Login from './Components/Login'
 import Quiz from './Components/Quiz'
 import { useState, useEffect } from 'react'
 import useAuth from './Model/useAuth';
+import { useTriviaQuestions, useQuizCategories } from '../../Model/CustomHooks';
 
 const App = () => {
+
     const { sessionCheck } = useAuth();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [currentCategories, setCurrentCategories] = useState(null);
+    const triviaCategories = useQuizCategories()
 
     useEffect(() => {
         const checkSession = async () => {
@@ -24,10 +28,14 @@ const App = () => {
         checkSession();
     }, [sessionCheck]);
 
+    useEffect(() =>{
+        setCurrentCategories(triviaCategories)
+    }, [triviaCategories])
+
     return (
         <div className={ Styles.mainSection }>
             <div className={ Styles.dataSection }>
-                { isLoggedIn ? <Quiz loggedIn={ setIsLoggedIn } /> : <Login loggedIn={ setIsLoggedIn } /> }
+                { isLoggedIn ? <Quiz loggedIn={ setIsLoggedIn } /> : <Login currentCategories={ currentCategories } loggedIn={ setIsLoggedIn } /> }
             </div>
         </div>
     );

@@ -8,7 +8,7 @@ import useAuth from '../../Model/useAuth'
 export default function Quiz (props) {
 
     const [currentQuestion, setCurrentQuestion] = useState(null);
-    const [currentCategories, setCurrentCategories] = useState(null);
+    // const [currentCategories, setCurrentCategories] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState('9')
     const [remainingQuestions, setRemainingQuestions] = useState([]);
     const [answers, setAnswers] = useState([])
@@ -16,7 +16,7 @@ export default function Quiz (props) {
     const [correct, setCorrect] = useState();
     const [score, setScore] = useState(0)
     const { questions: triviaQuestions, fetchQuestions, apiStatus } = useTriviaQuestions(selectedCategory);
-    const triviaCategories = useQuizCategories()
+    // const triviaCategories = useQuizCategories()
     const { logout } = useAuth();
 
     const handleLogout = async () => {
@@ -33,9 +33,9 @@ export default function Quiz (props) {
         }
     }, [triviaQuestions, apiStatus]);
 
-    useEffect(() =>{
-        setCurrentCategories(triviaCategories)
-    }, [triviaCategories])
+    // useEffect(() =>{
+    //     setCurrentCategories(triviaCategories)
+    // }, [triviaCategories])
 
     useEffect(() => {
         if (remainingQuestions.length > 0) {
@@ -88,10 +88,10 @@ export default function Quiz (props) {
                     <button disabled={ correct != null ? true : selected != null ? false : true} onClick={ () => checkAnswer() }>Check Answer</button>
                     <button disabled={ correct != null ? false : true } onClick={ handleNextQuestion }>Next Question</button>
                     <p>Score { score }/{ Array.isArray(triviaQuestions) ? triviaQuestions.length : 0 }</p>
-                {currentCategories && (
+                {props.currentCategories && (
                     <select onChange={(e) => setSelectedCategory(e.target.value)}>
                         {
-                        currentCategories.map((e,index) => {
+                        props.currentCategories.map((e,index) => {
                            return <option key={ index }value={ e.id }>{ e.name }</option>
                         })}
                     </select>

@@ -28,10 +28,11 @@ export default function Quiz (props) {
     useEffect(() => {
         setScore(0)
         switch(apiStatus){
-            case 403:props.isLoading(false);props.loggedIn(false);break
-            case 500:props.isLoading(false);alert("Too many requests");break
-            default:props.isLoading(false);setRemainingQuestions(triviaQuestions);
+            case 403:props.loggedIn(false);break
+            case 500:alert("Too many requests");break
+            default:setRemainingQuestions(triviaQuestions);
         }
+        props.isLoading(false)
     }, [triviaQuestions, apiStatus]);
 
     useEffect(() =>{

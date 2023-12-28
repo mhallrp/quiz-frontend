@@ -1,31 +1,20 @@
 import { useState, useEffect } from 'react';
-// import { useTriviaQuestions } from '../../Model/CustomHooks';
 import AnswerCard from '../../Components/AnswerCard';
 import Styles from './styles.module.css'
 import { ShuffleArray, decodeHtmlEntities } from '../../Model/utils'
 import useAuth from '../../Model/useAuth'
 
 export default function Quiz (props) {
-
     const [currentQuestion, setCurrentQuestion] = useState(null);
-    // const [selectedCategory, setSelectedCategory] = useState('9')
-    // const [remainingQuestions, setRemainingQuestions] = useState([]);
     const [answers, setAnswers] = useState([])
     const [selected, setSelected] = useState();
     const [correct, setCorrect] = useState();
-    // const [score, setScore] = useState(0)
-    // const { questions: triviaQuestions, fetchQuestions } = useTriviaQuestions(selectedCategory);
     const { logout } = useAuth();
 
     const handleLogout = async () => {
         await logout();
         props.loggedIn(false)
     };
-
-    // useEffect(() => {
-    //     setScore(0)
-    //     setRemainingQuestions(triviaQuestions);
-    // }, [triviaQuestions]);
 
     useEffect(() => {
         if (props.remainingQuestions.length > 0) {
@@ -70,7 +59,12 @@ export default function Quiz (props) {
                 <h2 className={ Styles.questionTitle }>Q{Array.isArray(props.triviaQuestions) ? props.triviaQuestions.length - props.remainingQuestions.length + 1 : 0}: { currentQuestion && decodeHtmlEntities(currentQuestion.question) }</h2>
                 <div className={ Styles.answerCards }>
                     { answers.map((e, index) => 
-                        <AnswerCard selected={ selected == index ? true : false } correct={ correct == index ? true : false } key={index}  text={decodeHtmlEntities(e)}  onClick={ () => { correct == null && selected != index ? setSelected(index) : correct == null && setSelected() }}/>
+                        <AnswerCard 
+                            selected={ selected == index ? true : false } 
+                            correct={ correct == index ? true : false } 
+                            key={index}  text={decodeHtmlEntities(e)}  
+                            onClick={ () => { correct == null && selected != index ? setSelected(index) : correct == null && setSelected() }}
+                        />
                         ) 
                     }
                 </div>

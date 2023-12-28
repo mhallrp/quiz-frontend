@@ -5,7 +5,8 @@ import { useState, useEffect } from 'react'
 import useAuth from './Model/useAuth';
 import { useTriviaQuestions, useQuizCategories } from './Model/CustomHooks';
 
-const App = () => {
+export default function App () {
+    
     const { sessionCheck } = useAuth();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [currentCategories, setCurrentCategories] = useState(null);
@@ -43,10 +44,23 @@ const App = () => {
     return (
         <div className={ Styles.mainSection }>
             <div className={ Styles.dataSection }>
-                { isLoggedIn ? <Quiz score={score} setRemainingQuestions={setRemainingQuestions}setSelectedCategory={setSelectedCategory} remainingQuestions={ remainingQuestions } fetchQuestions={ fetchQuestions }triviaQuestions={ triviaQuestions } currentCategories={ currentCategories } loggedIn={ setIsLoggedIn } /> : <Login loggedIn={ setIsLoggedIn } /> }
+                { isLoggedIn 
+                    ?   <Quiz 
+                            score={score} 
+                            setRemainingQuestions={setRemainingQuestions}
+                            setSelectedCategory={setSelectedCategory} 
+                            remainingQuestions={ remainingQuestions } 
+                            fetchQuestions={ fetchQuestions }
+                            triviaQuestions={ triviaQuestions } 
+                            currentCategories={ currentCategories } 
+                            loggedIn={ setIsLoggedIn } 
+                        />
+
+                    :   <Login 
+                            loggedIn={ setIsLoggedIn } 
+                        /> 
+                }
             </div>
         </div>
     );
 };
-
-export default App;

@@ -6,7 +6,7 @@ import { ShuffleArray, decodeHtmlEntities } from '../../Model/utils'
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../../Model/useAuth'
 
-const Quiz = () => {
+export default function Quiz () {
 
     const [currentQuestion, setCurrentQuestion] = useState(null);
     const [currentCategories, setCurrentCategories] = useState(null);
@@ -19,7 +19,6 @@ const Quiz = () => {
     const { questions: triviaQuestions, fetchQuestions, apiStatus } = useTriviaQuestions(selectedCategory);
     const triviaCategories = useQuizCategories()
     const navigate = useNavigate();
-
     const { logout } = useAuth();
 
     const handleLogout = async () => {
@@ -106,5 +105,3 @@ const Quiz = () => {
         </div>
     );
 };
-
-export default Quiz;

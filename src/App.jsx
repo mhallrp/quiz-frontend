@@ -1,17 +1,36 @@
-import Quiz from './Pages/Quiz';
-import Login from './Pages/Login';
-import Unknown from './Pages/Unknown'
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Styles from './styles.module.css'
+import Login from './Components/Login'
+import Quiz from './Components/Quiz'
+import { useState, useEffect } from 'react'
+import useAuth from './Model/useAuth';
 
 const App = () => {
+    const { sessionCheck } = useAuth();
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const checkSession = async () => {
+            try {
+                const status = await sessionCheck();
+                if (status === 500) {
+                    setIsLoggedIn(false);
+                } else {
+                    setIsLoggedIn(true);
+                }
+            } catch (error) {
+                console.error('Error checking session:', error);
+                setIsLoggedIn(false);
+            }
+        };
+        checkSession();
+    }, [sessionCheck]);
+
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={ <Login /> }/>
-                <Route path= "/quiz" element={<Quiz />}/>
-                <Route path="*" element={ <Unknown /> }/>
-            </Routes>
-        </ BrowserRouter>
+        <div className={Styles.mainSection}>
+            <div className={Styles.loginSection}>
+                {isLoggedIn ? <Quiz /> : <Login />}
+            </div>
+        </div>
     );
 };
 

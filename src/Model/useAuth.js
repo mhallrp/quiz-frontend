@@ -1,5 +1,16 @@
 const useAuth = () => {
 
+    const sessionCheck = async () => {
+        try {
+            const response = await fetch(`https://request.matt-hall.dev/`, {
+                credentials: 'include',
+            });
+            return response.status
+        } catch (networkError) {
+            return(500)
+        }
+    };
+
     const login = async (username, password) => {
         try {
             const response = await fetch(`https://request.matt-hall.dev/user/login`, {
@@ -21,7 +32,7 @@ const useAuth = () => {
             return { data: null, error: 'Network error occurred', status: false };
         }
     };
-    
+
     const register = async (username, password) => {
         try {
             const response = await fetch(`https://request.matt-hall.dev/user/register`, {
@@ -40,22 +51,23 @@ const useAuth = () => {
         }
     };
 
-const logout = async () => {
-    try {
-        const response = await fetch(`https://request.matt-hall.dev/user/logout`, {
-            method: 'GET',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-        const data = await response.json();
-        return { data, status: response.ok };
-    } catch (networkError) {
-        console.error('Network error:', networkError);
-        return { data: null, error: 'Network error occurred', status: false };
-    }
-};
-    return { register, login, logout };
+    const logout = async () => {
+        try {
+            const response = await fetch(`https://request.matt-hall.dev/user/logout`, {
+                method: 'GET',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            const data = await response.json();
+            return { data, status: response.ok };
+        } catch (networkError) {
+            console.error('Network error:', networkError);
+            return { data: null, error: 'Network error occurred', status: false };
+        }
+    };
+
+    return { sessionCheck, register, login, logout };
 };
 export default useAuth;

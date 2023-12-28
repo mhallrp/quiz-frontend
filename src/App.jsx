@@ -13,13 +13,14 @@ const App = () => {
         const checkSession = async () => {
             try {
                 const status = await sessionCheck();
-                setIsLoading(false);
                 if (status !== 200) {
                     setIsLoggedIn(false);
+                    isLoading(false)
                 } else {
                     setIsLoggedIn(true);
                 }
             } catch (error) {
+                isLoading(false)
                 setIsLoggedIn(false);
             }
         };
@@ -33,7 +34,7 @@ const App = () => {
                 <div className={ Styles.spinner }></div>
             :
             <div className={Styles.dataSection}>
-                { isLoggedIn ? <Quiz isLoading={setIsLoading} loggedIn={ setIsLoggedIn } /> : <Login isLoading={ setIsLoading } loggedIn={ setIsLoggedIn } /> }
+                { isLoggedIn ? <Quiz isLoading={ setIsLoading } loggedIn={ setIsLoggedIn } /> : <Login isLoading={ setIsLoading } loggedIn={ setIsLoggedIn } /> }
             </div>
             }
         </div>

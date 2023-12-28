@@ -12,11 +12,12 @@ const App = () => {
         const checkSession = async () => {
             try {
                 const status = await sessionCheck();
-                if (status === 500) {
-                    setIsLoggedIn(false);
-                } else {
-                    setIsLoggedIn(true);
-                }
+                console.log(status)
+                // if (status === 500) {
+                //     setIsLoggedIn(false);
+                // } else {
+                //     setIsLoggedIn(true);
+                // }
             } catch (error) {
                 console.error('Error checking session:', error);
                 setIsLoggedIn(false);

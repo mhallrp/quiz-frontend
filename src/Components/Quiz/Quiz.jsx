@@ -3,10 +3,9 @@ import { useTriviaQuestions, useQuizCategories } from '../../Model/CustomHooks';
 import AnswerCard from '../../Components/AnswerCard';
 import Styles from './styles.module.css'
 import { ShuffleArray, decodeHtmlEntities } from '../../Model/utils'
-// import { useNavigate } from 'react-router-dom';
 import useAuth from '../../Model/useAuth'
 
-export default function Quiz () {
+export default function Quiz (props) {
 
     const [currentQuestion, setCurrentQuestion] = useState(null);
     const [currentCategories, setCurrentCategories] = useState(null);
@@ -18,12 +17,11 @@ export default function Quiz () {
     const [score, setScore] = useState(0)
     const { questions: triviaQuestions, fetchQuestions, apiStatus } = useTriviaQuestions(selectedCategory);
     const triviaCategories = useQuizCategories()
-    // const navigate = useNavigate();
     const { logout } = useAuth();
 
     const handleLogout = async () => {
         await logout();
-        console.log("handle logout")
+        props.loggedIn(false)
     };
 
     useEffect(() => {

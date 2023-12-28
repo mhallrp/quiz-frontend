@@ -2,7 +2,7 @@ const useAuth = () => {
 
     const sessionCheck = async () => {
         try {
-            const response = await fetch(`https://request.matt-hall.dev/`, {
+            const response = await fetch(`https://request.matt-hall.dev/check`, {
                 credentials: 'include',
             });
             return response.status

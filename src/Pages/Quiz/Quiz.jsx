@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useTriviaQuestions, useQuizCategories } from '../../Model/CustomHooks';
 import AnswerCard from '../../Components/AnswerCard';
 import Styles from './styles.module.css'

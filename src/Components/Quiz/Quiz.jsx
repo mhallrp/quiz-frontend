@@ -74,9 +74,9 @@ export default function Quiz (props) {
     }
 
     return (
-        <div className={ Styles.quizMain }>
+        <>
             { currentQuestion && (
-            <div>
+            <>
                 <h2 className={ Styles.questionTitle }>Q{Array.isArray(triviaQuestions) ? triviaQuestions.length - remainingQuestions.length + 1 : 0}: { currentQuestion && decodeHtmlEntities(currentQuestion.question) }</h2>
                 <div className={ Styles.answerCards }>
                     { answers.map((e, index) => 
@@ -98,8 +98,8 @@ export default function Quiz (props) {
                 )}  
                 <button onClick={ () => handleLogout() }>Logout</button>
                 </div>
-            </div>
+            </>
             )}
-        </div>
+        </>
     );
 };

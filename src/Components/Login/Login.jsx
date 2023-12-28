@@ -26,7 +26,7 @@ export default function Register (props) {
         if (status) {
             props.loggedIn(true)
         } else {
-            props.isLoading(false)
+            // props.isLoading(false)
             alert('Login failed: ' + error);
         }
     };

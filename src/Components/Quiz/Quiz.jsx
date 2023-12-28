@@ -21,7 +21,7 @@ export default function Quiz (props) {
 
     const handleLogout = async () => {
         await logout();
-        props.isLoading(false);
+        // props.isLoading(false);
         props.loggedIn(false)
     };
 

@@ -13,7 +13,7 @@ export default function Quiz (props) {
     const [answers, setAnswers] = useState([])
     const [selected, setSelected] = useState();
     const [correct, setCorrect] = useState();
-    const [score, setScore] = useState(0)
+    // const [score, setScore] = useState(0)
     // const { questions: triviaQuestions, fetchQuestions } = useTriviaQuestions(selectedCategory);
     const { logout } = useAuth();
 
@@ -44,20 +44,20 @@ export default function Quiz (props) {
         props.setRemainingQuestions(prevQuestions => prevQuestions.slice(1));
         } else {
             const totalQuestions = props.triviaQuestions.length;
-            alert(`Your score is ${score}/${totalQuestions}`);
+            alert(`Your score is ${props.score}/${totalQuestions}`);
             resetQuiz();
         }
     };
     
     const resetQuiz = () => {
         props.fetchQuestions()
-        setScore(0);
+        props.setScore(0);
     };
 
     const checkAnswer = () => {
         if (selected != null){
             if (answers[selected] == props.remainingQuestions[0].correct_answer){
-                setScore(prevScore => prevScore + 1)
+                props.setScore(prevScore => prevScore + 1)
             }
             setCorrect(answers.indexOf(props.remainingQuestions[0].correct_answer))
         }
@@ -77,7 +77,7 @@ export default function Quiz (props) {
                 <div className={ Styles.buttons }>
                     <button disabled={ correct != null ? true : selected != null ? false : true} onClick={ () => checkAnswer() }>Check Answer</button>
                     <button disabled={ correct != null ? false : true } onClick={ handleNextQuestion }>Next Question</button>
-                    <p>Score { score }/{ Array.isArray(props.triviaQuestions) ? props.triviaQuestions.length : 0 }</p>
+                    <p>Score { props.score }/{ Array.isArray(props.triviaQuestions) ? props.triviaQuestions.length : 0 }</p>
                 {props.currentCategories && (
                     <select onChange={(e) => props.setSelectedCategory(e.target.value)}>
                         {

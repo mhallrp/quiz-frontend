@@ -14,7 +14,7 @@ const App = () => {
     const triviaCategories = useQuizCategories()
     const { questions: triviaQuestions, fetchQuestions } = useTriviaQuestions(selectedCategory);
     const [selectedCategory, setSelectedCategory] = useState('9')
-    
+    const [score, setScore] = useState(0)
 
     useEffect(() => {
         const checkSession = async () => {
@@ -44,7 +44,7 @@ const App = () => {
     return (
         <div className={ Styles.mainSection }>
             <div className={ Styles.dataSection }>
-                { isLoggedIn ? <Quiz setRemainingQuestions={setRemainingQuestions}setSelectedCategory={setSelectedCategory} remainingQuestions={ remainingQuestions } fetchQuestions={ fetchQuestions }triviaQuestions={ triviaQuestions } currentCategories={ currentCategories } loggedIn={ setIsLoggedIn } /> : <Login loggedIn={ setIsLoggedIn } /> }
+                { isLoggedIn ? <Quiz score={score} setRemainingQuestions={setRemainingQuestions}setSelectedCategory={setSelectedCategory} remainingQuestions={ remainingQuestions } fetchQuestions={ fetchQuestions }triviaQuestions={ triviaQuestions } currentCategories={ currentCategories } loggedIn={ setIsLoggedIn } /> : <Login loggedIn={ setIsLoggedIn } /> }
             </div>
         </div>
     );

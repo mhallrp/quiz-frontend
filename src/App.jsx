@@ -3,7 +3,7 @@ import Login from './Components/Login'
 import Quiz from './Components/Quiz'
 import { useState, useEffect } from 'react'
 import useAuth from './Model/useAuth';
-import { useTriviaQuestions, useQuizCategories } from '../../Model/CustomHooks';
+import { useTriviaQuestions, useQuizCategories } from './Model/CustomHooks';
 
 const App = () => {
 

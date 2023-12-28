@@ -35,7 +35,7 @@ const App = () => {
     return (
         <div className={ Styles.mainSection }>
             <div className={ Styles.dataSection }>
-                { isLoggedIn ? <Quiz loggedIn={ setIsLoggedIn } /> : <Login currentCategories={ currentCategories } loggedIn={ setIsLoggedIn } /> }
+                { isLoggedIn ? <Quiz currentCategories={ currentCategories } loggedIn={ setIsLoggedIn } /> : <Login loggedIn={ setIsLoggedIn } /> }
             </div>
         </div>
     );

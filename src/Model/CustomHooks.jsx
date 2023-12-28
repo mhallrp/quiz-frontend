@@ -5,7 +5,10 @@ export const useTriviaQuestions = (categoryId) => {
     const [apiStatus, setApiStatus] = useState(null);
     const fetchQuestions = async () => {
         try {
-            const response = await fetch(`https://request.matt-hall.dev/quiz/trivia?category=${categoryId}`);
+            const url = `https://request.matt-hall.dev/quiz/trivia?category=${categoryId}`;
+            const response = await fetch(url,{ 
+                credentials: 'include'
+            });
             const data = await response.json();
             setApiStatus(response.status);
             setQuestions(data);
@@ -24,7 +27,9 @@ export const useQuizCategories = () => {
     useEffect(() => {
         const initializeCategories = async () => {
             try {
-                const response = await fetch(`https://request.matt-hall.dev/quiz/categories`);
+                const response = await fetch(`https://request.matt-hall.dev/quiz/categories`,{ 
+                    credentials: 'include'
+                });
                 const data = await response.json();
                 setCategories(data);
             } catch (error) {

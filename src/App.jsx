@@ -13,8 +13,8 @@ const App = () => {
         const checkSession = async () => {
             try {
                 const status = await sessionCheck();
+                setIsLoading(false);
                 if (status !== 200) {
-                    setIsLoading(false);
                     setIsLoggedIn(false);
                 } else {
                     setIsLoggedIn(true);

@@ -14,8 +14,8 @@ const App = () => {
             try {
                 const status = await sessionCheck();
                 if (status !== 200) {
+                    setIsLoading(false);
                     setIsLoggedIn(false);
-                    setIsLoading(false)
                 } else {
                     setIsLoggedIn(true);
                 }
@@ -30,7 +30,7 @@ const App = () => {
         <div className={Styles.mainSection}>
             { isLoading
             ?
-                <div className="spinner"></div>
+                <div className={ Styles.spinner }></div>
             :
             <div className={Styles.dataSection}>
                 { isLoggedIn ? <Quiz isLoading={setIsLoading} loggedIn={ setIsLoggedIn } /> : <Login loggedIn={ setIsLoggedIn } /> }

@@ -3,7 +3,7 @@ import { useTriviaQuestions, useQuizCategories } from '../../Model/CustomHooks';
 import AnswerCard from '../../Components/AnswerCard';
 import Styles from './styles.module.css'
 import { ShuffleArray, decodeHtmlEntities } from '../../Model/utils'
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import useAuth from '../../Model/useAuth'
 
 export default function Quiz () {
@@ -18,22 +18,22 @@ export default function Quiz () {
     const [score, setScore] = useState(0)
     const { questions: triviaQuestions, fetchQuestions, apiStatus } = useTriviaQuestions(selectedCategory);
     const triviaCategories = useQuizCategories()
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const { logout } = useAuth();
 
     const handleLogout = async () => {
         await logout();
-        navigate('/');
+        console.log("handle logout")
     };
 
     useEffect(() => {
         setScore(0)
         switch(apiStatus){
-            case 403:navigate('/');break
+            case 403:console.log("handle session inactive")
             case 500:alert("Too many requests");break
             default:setRemainingQuestions(triviaQuestions);
         }
-    }, [triviaQuestions, apiStatus, navigate]);
+    }, [triviaQuestions, apiStatus]);
 
     useEffect(() =>{
         setCurrentCategories(triviaCategories)

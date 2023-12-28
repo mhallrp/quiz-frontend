@@ -6,7 +6,7 @@ import useAuth from './Model/useAuth';
 
 const App = () => {
     const { sessionCheck } = useAuth();
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
 
     useEffect(() => {
         const checkSession = async () => {
@@ -29,7 +29,7 @@ const App = () => {
     return (
         <div className={Styles.mainSection}>
             <div className={Styles.loginSection}>
-                {isLoggedIn ? <Quiz /> : <Login />}
+                { isLoggedIn ? <Quiz /> : <Login /> }
             </div>
         </div>
     );

@@ -13,7 +13,7 @@ const App = () => {
             try {
                 const status = await sessionCheck();
                 console.log(status)
-                if (status === 500) {
+                if (status !== 200) {
                     setIsLoggedIn(false);
                 } else {
                     setIsLoggedIn(true);

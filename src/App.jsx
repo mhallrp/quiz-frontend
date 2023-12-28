@@ -33,7 +33,7 @@ const App = () => {
                 <div className={ Styles.spinner }></div>
             :
             <div className={Styles.dataSection}>
-                { isLoggedIn ? <Quiz isLoading={setIsLoading} loggedIn={ setIsLoggedIn } /> : <Login isLoading={setIsLoading} loggedIn={ setIsLoggedIn } /> }
+                { isLoggedIn ? <Quiz isLoading={setIsLoading} loggedIn={ setIsLoggedIn } /> : <Login isLoading={ setIsLoading } loggedIn={ setIsLoggedIn } /> }
             </div>
             }
         </div>

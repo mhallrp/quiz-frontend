@@ -16,6 +16,7 @@ const App = () => {
                 if (status !== 200) {
                     setIsLoggedIn(false);
                 } else {
+                    setIsLoading(true)
                     setIsLoggedIn(true);
                 }
             } catch (error) {
@@ -28,7 +29,7 @@ const App = () => {
     return (
         <div className={ Styles.mainSection }>
             <div className={ Styles.dataSection } style={ { opacity: isLoading ? 0 : 1} }>
-                { isLoggedIn ? <Quiz loggedIn={ setIsLoggedIn } /> : <Login loggedIn={ setIsLoggedIn } /> }
+                { isLoggedIn ? <Quiz loggedIn={ setIsLoggedIn } /> : <Login isLoading={ setIsLoading }loggedIn={ setIsLoggedIn } /> }
             </div>
         </div>
     );

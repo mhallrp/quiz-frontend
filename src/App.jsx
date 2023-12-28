@@ -1,4 +1,3 @@
-import React from 'react';
 import Quiz from './Pages/Quiz';
 import Login from './Pages/Login';
 import Unknown from './Pages/Unknown'

@@ -20,8 +20,10 @@ export default function Register (props) {
     };
 
     const handleLogin = async (event) => {
+        props.isLoading(true)
         event.preventDefault();
         const { data, error, status } = await login(username, password);
+        props.isLoading(false)
         if (status) {
             props.loggedIn(true)
         } else {

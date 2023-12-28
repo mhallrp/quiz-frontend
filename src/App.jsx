@@ -6,15 +6,14 @@ import useAuth from './Model/useAuth';
 import { useTriviaQuestions, useQuizCategories } from './Model/CustomHooks';
 
 const App = () => {
-
     const { sessionCheck } = useAuth();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [currentCategories, setCurrentCategories] = useState(null);
     const [remainingQuestions, setRemainingQuestions] = useState([]);
-    const triviaCategories = useQuizCategories()
+    const [selectedCategory, setSelectedCategory] = useState('9');
     const { questions: triviaQuestions, fetchQuestions } = useTriviaQuestions(selectedCategory);
-    const [selectedCategory, setSelectedCategory] = useState('9')
-    const [score, setScore] = useState(0)
+    const triviaCategories = useQuizCategories();
+    const [score, setScore] = useState(0);
 
     useEffect(() => {
         const checkSession = async () => {

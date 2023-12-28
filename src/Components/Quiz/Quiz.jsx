@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useTriviaQuestions, useQuizCategories } from '../../Model/CustomHooks';
+import { useTriviaQuestions } from '../../Model/CustomHooks';
 import AnswerCard from '../../Components/AnswerCard';
 import Styles from './styles.module.css'
 import { ShuffleArray, decodeHtmlEntities } from '../../Model/utils'
@@ -8,7 +8,6 @@ import useAuth from '../../Model/useAuth'
 export default function Quiz (props) {
 
     const [currentQuestion, setCurrentQuestion] = useState(null);
-    // const [currentCategories, setCurrentCategories] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState('9')
     const [remainingQuestions, setRemainingQuestions] = useState([]);
     const [answers, setAnswers] = useState([])
@@ -16,7 +15,6 @@ export default function Quiz (props) {
     const [correct, setCorrect] = useState();
     const [score, setScore] = useState(0)
     const { questions: triviaQuestions, fetchQuestions, apiStatus } = useTriviaQuestions(selectedCategory);
-    // const triviaCategories = useQuizCategories()
     const { logout } = useAuth();
 
     const handleLogout = async () => {
@@ -32,10 +30,6 @@ export default function Quiz (props) {
             default:setRemainingQuestions(triviaQuestions);
         }
     }, [triviaQuestions, apiStatus]);
-
-    // useEffect(() =>{
-    //     setCurrentCategories(triviaCategories)
-    // }, [triviaCategories])
 
     useEffect(() => {
         if (remainingQuestions.length > 0) {

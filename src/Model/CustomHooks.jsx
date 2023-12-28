@@ -27,9 +27,7 @@ export const useQuizCategories = () => {
     useEffect(() => {
         const initializeCategories = async () => {
             try {
-                const response = await fetch(`https://request.matt-hall.dev/quiz/categories`,{ 
-                    credentials: 'include'
-                });
+                const response = await fetch(`https://request.matt-hall.dev/quiz/categories`);
                 const data = await response.json();
                 setCategories(data);
             } catch (error) {

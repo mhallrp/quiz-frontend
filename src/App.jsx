@@ -6,6 +6,7 @@ import useAuth from './Model/useAuth';
 import { useTriviaQuestions, useQuizCategories } from './Model/CustomHooks';
 
 export default function App () {
+    
     const { sessionCheck } = useAuth();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [currentCategories, setCurrentCategories] = useState(null);
@@ -61,7 +62,7 @@ export default function App () {
     return (
         <div className={ Styles.mainSection }>
             <div className={ Styles.dataSection }>
-                {renderContent()}
+                { renderContent() }
             </div>
         </div>
     );

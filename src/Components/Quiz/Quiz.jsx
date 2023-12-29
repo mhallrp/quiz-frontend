@@ -5,6 +5,7 @@ import { ShuffleArray, decodeHtmlEntities } from '../../Model/utils'
 import useAuth from '../../Model/useAuth'
 
 export default function Quiz (props) {
+    
     const [currentQuestion, setCurrentQuestion] = useState(null);
     const [answers, setAnswers] = useState([])
     const [selected, setSelected] = useState();

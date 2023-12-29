@@ -2,11 +2,11 @@ import { useState } from 'react';
 import useAuth from '../../Model/useAuth';
 
 export default function Register (props) {
+
     const [regUsername, setRegUsername] = useState('');
     const [regPassword, setRegPassword] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
     const { register, login } = useAuth();
 
     const handleRegister = async (event) => {
@@ -22,11 +22,7 @@ export default function Register (props) {
     const handleLogin = async (event) => {
         event.preventDefault();
         const { data, error, status } = await login(username, password);
-        if (status) {
-            props.loggedIn(true)
-        } else {
-            alert('Login failed: ' + error);
-        }
+        status ? props.loggedIn(true) : alert('Login failed: ' + error);
     };
     
     return (

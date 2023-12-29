@@ -35,13 +35,13 @@ export default function App () {
 
     useEffect(() => {
         if (status === 500 && retryCount < maxRetries) {
-            const delay = 5000 * (retryCount + 1); // Exponential backoff
+            const delay = 2000 * (retryCount + 1);
             setTimeout(() => {
                 fetchQuestions();
                 setRetryCount(retryCount + 1);
             }, delay);
         } else if (status !== 500) {
-            setRetryCount(0); // Reset retry count on successful fetch
+            setRetryCount(0);
         }
         if (triviaCategories && triviaQuestions.length > 0) {
             setCurrentCategories(triviaCategories);

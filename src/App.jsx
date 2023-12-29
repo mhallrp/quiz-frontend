@@ -15,6 +15,7 @@ export default function App () {
     const { questions: triviaQuestions, fetchQuestions } = useTriviaQuestions(selectedCategory);
     const triviaCategories = useQuizCategories();
     const [score, setScore] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const checkSession = async () => {
@@ -32,19 +33,20 @@ export default function App () {
         checkSession();
     }, [sessionCheck]);
 
-    useEffect(() =>{
-        setCurrentCategories(triviaCategories)
-    }, [triviaCategories])
-
     useEffect(() => {
-        setScore(0)
-        setRemainingQuestions(triviaQuestions);
-    }, [triviaQuestions]);
+        if (triviaCategories && triviaQuestions.length > 0) {
+            setIsLoading(false);
+        }
+    }, [triviaCategories, triviaQuestions]);
 
     return (
+
+
         <div className={ Styles.mainSection }>
             <div className={ Styles.dataSection }>
-                { isLoggedIn 
+            {isLoading
+                    ? <div className={ Styles.spinner }></div> 
+                : isLoggedIn 
                     ?   <Quiz 
                             setScore={ setScore }
                             score={ score } 

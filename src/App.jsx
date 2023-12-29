@@ -60,7 +60,7 @@ export default function App () {
                         loggedIn={ setIsLoggedIn } 
                     />;
         } else {
-            return <Login loggedIn={ setIsLoggedIn } />;
+            return <><div className={ Styles.spinner }></div>;<Login loggedIn={ setIsLoggedIn }/></>;
         }
     };
 

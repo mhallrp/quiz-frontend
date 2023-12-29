@@ -1,12 +1,11 @@
-import Styles from './styles.module.css'
-import Login from './Components/Login'
-import Quiz from './Components/Quiz'
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
+import Styles from './styles.module.css';
+import Login from './Components/Login';
+import Quiz from './Components/Quiz';
 import useAuth from './Model/useAuth';
 import { useTriviaQuestions, useQuizCategories } from './Model/CustomHooks';
 
 export default function App () {
-
     const { sessionCheck } = useAuth();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [currentCategories, setCurrentCategories] = useState(null);
@@ -17,60 +16,52 @@ export default function App () {
     const [score, setScore] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
 
+    const checkSessionStatus = async () => {
+        try {
+            const status = await sessionCheck();
+            setIsLoggedIn(status === 200);
+        } catch (error) {
+            setIsLoggedIn(false);
+        }
+    };
+
     useEffect(() => {
-        const checkSession = async () => {
-            try {
-                const status = await sessionCheck();
-                if (status !== 200) {
-                    setIsLoggedIn(false);
-                } else {
-                    setIsLoggedIn(true);
-                }
-            } catch (error) {
-                setIsLoggedIn(false);
-            }
-        };
-        checkSession();
+        checkSessionStatus();
     }, [sessionCheck]);
 
     useEffect(() => {
         if (triviaCategories && triviaQuestions.length > 0) {
+            setCurrentCategories(triviaCategories);
+            setRemainingQuestions(triviaQuestions);
+            setScore(0);
             setIsLoading(false);
         }
     }, [triviaCategories, triviaQuestions]);
 
-    useEffect(() =>{
-        setCurrentCategories(triviaCategories)
-    }, [triviaCategories])
-
-    useEffect(() => {
-        setScore(0)
-        setRemainingQuestions(triviaQuestions);
-    }, [triviaQuestions]);
+    const renderContent = () => {
+        if (isLoading) {
+            return <div className={ Styles.spinner }></div>;
+        } else if (isLoggedIn) {
+            return <Quiz 
+                        setScore={ setScore }
+                        score={ score } 
+                        setRemainingQuestions={ setRemainingQuestions }
+                        setSelectedCategory={ setSelectedCategory } 
+                        remainingQuestions={ remainingQuestions } 
+                        fetchQuestions={ fetchQuestions }
+                        triviaQuestions={ triviaQuestions } 
+                        currentCategories={ currentCategories } 
+                        loggedIn={ setIsLoggedIn } 
+                    />;
+        } else {
+            return <Login loggedIn={ setIsLoggedIn } />;
+        }
+    };
 
     return (
-
-
         <div className={ Styles.mainSection }>
             <div className={ Styles.dataSection }>
-            {isLoading
-                    ? <div className={ Styles.spinner }></div> 
-                : isLoggedIn 
-                    ?   <Quiz 
-                            setScore={ setScore }
-                            score={ score } 
-                            setRemainingQuestions={ setRemainingQuestions }
-                            setSelectedCategory={ setSelectedCategory } 
-                            remainingQuestions={ remainingQuestions } 
-                            fetchQuestions={ fetchQuestions }
-                            triviaQuestions={ triviaQuestions } 
-                            currentCategories={ currentCategories } 
-                            loggedIn={ setIsLoggedIn } 
-                        />
-                    :   <Login 
-                            loggedIn={ setIsLoggedIn } 
-                        /> 
-                }
+                {renderContent()}
             </div>
         </div>
     );

@@ -32,7 +32,7 @@ export default function App () {
 
     useEffect(() => {
         if (status === 500) {
-            alert("Whoops, looks like there's a network error :/")
+            alert("Whoops, looks like there's a network error :/ \n Try refreshing in a moment")
         } else {
         if (triviaCategories && triviaQuestions.length > 0) {
             setCurrentCategories(triviaCategories);

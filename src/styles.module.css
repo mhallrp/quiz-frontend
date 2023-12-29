@@ -5,6 +5,8 @@
     height: calc(100vh - 60px);
     background: linear-gradient(126deg, #F9ED32 4.79%, #D9BD32 54.4%);
     backdrop-filter: blur(2px);
+    position: relative; /* Add this line */
+    z-index: -1; 
 }
 
 .dataSection{

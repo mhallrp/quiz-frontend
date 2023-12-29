@@ -65,14 +65,13 @@ export default function App () {
     };
 
     return (
-        <div>
-        <div className={ Styles.navBar }><NavBar /></div>
+        <>
+        <NavBar />
         <div className={ Styles.mainSection }>
-
             <div className={ Styles.dataSection }>
                 { renderContent() }
             </div>
         </div>
-        </div>
+        </>
     );
 };

@@ -35,7 +35,7 @@ export default function App () {
 
     useEffect(() => {
         if (status === 500 && retryCount < maxRetries) {
-            const delay = 2000 * (retryCount + 1);
+            const delay = 5000 * (retryCount + 1);
             setTimeout(() => {
                 fetchQuestions();
                 setRetryCount(retryCount + 1);

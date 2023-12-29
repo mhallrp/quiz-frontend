@@ -14,6 +14,8 @@ export default function App () {
     const [selectedCategory, setSelectedCategory] = useState('9');
     const { questions: triviaQuestions, fetchQuestions, status } = useTriviaQuestions(selectedCategory);
     const triviaCategories = useQuizCategories();
+    const [retryCount, setRetryCount] = useState(0);
+    const maxRetries = 5;
 
     const [score, setScore] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
@@ -32,9 +34,14 @@ export default function App () {
     }, [sessionCheck]);
 
     useEffect(() => {
-        console.log("this is the status " + status)
-        if (status === 500){
-            setTimeout(fetchQuestions(), 5000)
+        if (status === 500 && retryCount < maxRetries) {
+            const delay = 5000 * (retryCount + 1); // Exponential backoff
+            setTimeout(() => {
+                fetchQuestions();
+                setRetryCount(retryCount + 1);
+            }, delay);
+        } else if (status !== 500) {
+            setRetryCount(0); // Reset retry count on successful fetch
         }
         if (triviaCategories && triviaQuestions.length > 0) {
             setCurrentCategories(triviaCategories);

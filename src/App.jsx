@@ -50,7 +50,7 @@ export default function App() {
             const { width, height } = contentRef.current.getBoundingClientRect();
             setContainerSize({ width, height });
         }
-    }, [isLoggedIn, isLoading]); // Dependencies are isLoggedIn and isLoading
+    }, [isLoggedIn]); // Dependencies are isLoggedIn and isLoading
 
     const renderContent = () => {
         if (isLoading) {

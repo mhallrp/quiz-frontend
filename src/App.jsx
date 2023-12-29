@@ -4,6 +4,7 @@ import Login from './Components/Login';
 import Quiz from './Components/Quiz';
 import useAuth from './Model/useAuth';
 import { useTriviaQuestions, useQuizCategories } from './Model/CustomHooks';
+import NavBar from './Components/NavBar'
 
 export default function App () {
 
@@ -65,6 +66,7 @@ export default function App () {
 
     return (
         <div className={ Styles.mainSection }>
+            <div className={Styles.navBar}><NavBar /></div>
             <div className={ Styles.dataSection }>
                 { renderContent() }
             </div>

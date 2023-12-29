@@ -39,6 +39,15 @@ export default function App () {
         }
     }, [triviaCategories, triviaQuestions]);
 
+    useEffect(() =>{
+        setCurrentCategories(triviaCategories)
+    }, [triviaCategories])
+
+    useEffect(() => {
+        setScore(0)
+        setRemainingQuestions(triviaQuestions);
+    }, [triviaQuestions]);
+
     return (
 
 

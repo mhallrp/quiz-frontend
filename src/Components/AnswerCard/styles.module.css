@@ -1,9 +1,9 @@
 .answerCard{
     height: 250px;
     width: 300px;
-    background-color: #f0f8fc;
+    background-color: #ebfe90;
     margin: 8px;
-    border-bottom: 0.2rem solid #0292B1;
+    border-bottom: 0.2rem solid #f1f494;
     border-radius: 10px;
     display: flex;
     justify-content: center;

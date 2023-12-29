@@ -61,9 +61,9 @@ export default function Quiz (props) {
                 <div className={ Styles.answerCards }>
                     { answers.map((e, index) => 
                         <AnswerCard 
-                            selected={ selected == index ? true : false } 
-                            correct={ correct == index ? true : false } 
-                            key={index}  text={decodeHtmlEntities(e)}  
+                            selected={ selected == index ? true : false }
+                            correct={ correct == index ? true : false }
+                            key={index}  text={decodeHtmlEntities(e)}
                             onClick={ () => { correct == null && selected != index ? setSelected(index) : correct == null && setSelected() }}
                         />
                         ) 

@@ -16,6 +16,7 @@ export default function App() {
     const triviaCategories = useQuizCategories();
     const [score, setScore] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
+    const [isLoaded, setIsLoaded] = useState(false)
 
     const contentRef = useRef(null);
     const [containerSize, setContainerSize] = useState({ width: 'auto', height: 'auto' });
@@ -57,6 +58,7 @@ export default function App() {
             return <div className={Styles.spinner}></div>;
         } else if (isLoggedIn) {
             return <Quiz 
+                        setIsLoaded={setIsLoaded}
                         setScore={setScore}
                         score={score}
                         setRemainingQuestions={setRemainingQuestions}
@@ -78,11 +80,8 @@ export default function App() {
         <div className={Styles.mainSection}>
             <div 
                 className={Styles.dataSection} 
-                style={{ 
-                    width: containerSize.width, 
-                    height: containerSize.height,
-                    transition: 'width 0.3s ease-in-out, height 0.3s ease-in-out'
-                }}
+                style={{ width: containerSize.width, height: containerSize.height, transition: isLoaded && 'width 0.3s ease-in-out, height 0.3s ease-in-out' }}
+                
             >
                 <div ref={contentRef}>
                     {renderContent()}

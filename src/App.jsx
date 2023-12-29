@@ -14,8 +14,8 @@ export default function App () {
     const [selectedCategory, setSelectedCategory] = useState('9');
     const { questions: triviaQuestions, fetchQuestions, status } = useTriviaQuestions(selectedCategory);
     const triviaCategories = useQuizCategories();
-    const [retryCount, setRetryCount] = useState(0);
-    const maxRetries = 5;
+    // const [retryCount, setRetryCount] = useState(0);
+    // const maxRetries = 5;
 
     const [score, setScore] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
@@ -34,15 +34,15 @@ export default function App () {
     }, []);
 
     useEffect(() => {
-        if (status === 500 && retryCount < maxRetries) {
-            const delay = 5000 * (retryCount + 1);
-            setTimeout(() => {
-                fetchQuestions();
-                setRetryCount(retryCount + 1);
-            }, delay);
-        } else if (status !== 500) {
-            setRetryCount(0);
-        }
+        // if (status === 500 && retryCount < maxRetries) {
+        //     const delay = 5000 * (retryCount + 1);
+        //     setTimeout(() => {
+        //         fetchQuestions();
+        //         setRetryCount(retryCount + 1);
+        //     }, delay);
+        // } else if (status !== 500) {
+        //     setRetryCount(0);
+        // }
         if (triviaCategories && triviaQuestions.length > 0) {
             setCurrentCategories(triviaCategories);
             setRemainingQuestions(triviaQuestions);

@@ -49,7 +49,7 @@ export default function App() {
             setTimeout(() => {
                 setShowQuiz(true); 
                 setContentOpacity(1);
-            }, 200); 
+            }, 300); 
         } else {
             setShowQuiz(false);
         }

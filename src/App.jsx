@@ -47,10 +47,12 @@ export default function App() {
 
     // Effect to measure and set the size of the content container
     useEffect(() => {
+        if (isLoaded){
         if (contentRef.current) {
             const { width, height } = contentRef.current.getBoundingClientRect();
             setContainerSize({ width, height });
         }
+    }
     }, [isLoggedIn, isLoading]); // Dependencies are isLoggedIn and isLoading
 
     const renderContent = () => {
@@ -80,7 +82,7 @@ export default function App() {
         <div className={Styles.mainSection}>
             <div 
                 className={Styles.dataSection} 
-                style={{ width: containerSize.width, height: containerSize.height, transition: isLoaded && 'width 0.3s ease-in-out, height 0.3s ease-in-out' }}
+                style={{ width: containerSize.width, height: containerSize.height, transition: 'width 0.3s ease-in-out, height 0.3s ease-in-out' }}
                 
             >
                 <div ref={contentRef}>

@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Styles from './styles.module.css';
 import Login from './Components/Login';
 import Quiz from './Components/Quiz';
 import useAuth from './Model/useAuth';
 import { useTriviaQuestions, useQuizCategories } from './Model/CustomHooks';
-import NavBar from './Components/NavBar';
+import NavBar from './Components/NavBar'
 import { Transition } from 'react-transition-group';
 
-export default function App() {
+export default function App () {
+
     const { sessionCheck } = useAuth();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [currentCategories, setCurrentCategories] = useState(null);
@@ -16,21 +17,7 @@ export default function App() {
     const { questions: triviaQuestions, fetchQuestions, status } = useTriviaQuestions(selectedCategory);
     const triviaCategories = useQuizCategories();
     const [score, setScore] = useState(0);
-
-    const duration = 300; // Duration of the transition
-
-    // Styles for entering and exiting transitions
-    const defaultStyle = {
-        transition: `opacity ${duration}ms ease-in-out`,
-        opacity: 0,
-    };
-
-    const transitionStyles = {
-        entering: { opacity: 0 },
-        entered:  { opacity: 0 },
-        exiting:  { opacity: 1 },
-        exited:   { opacity: 1 },
-    };
+    const [isLoading, setIsLoading] = useState(true);
 
     const checkSessionStatus = async () => {
         try {
@@ -47,44 +34,45 @@ export default function App() {
 
     useEffect(() => {
         if (status === 500) {
-            alert("Whoops, looks like there's a network error :/ \n Try refreshing in a moment");
-        } else if (triviaCategories && triviaQuestions.length > 0) {
+            alert("Whoops, looks like there's a network error :/ \n Try refreshing in a moment")
+        } else {
+        if (triviaCategories && triviaQuestions.length > 0) {
             setCurrentCategories(triviaCategories);
             setRemainingQuestions(triviaQuestions);
             setScore(0);
+            setIsLoading(false);
         }
+    }
     }, [triviaCategories, triviaQuestions, status]);
+
+    const renderContent = () => {
+        if (isLoading) {
+            return <div className={ Styles.spinner }></div>;
+        } else if (isLoggedIn) {
+            return <Quiz 
+                        setScore={ setScore }
+                        score={ score } 
+                        setRemainingQuestions={ setRemainingQuestions }
+                        setSelectedCategory={ setSelectedCategory } 
+                        remainingQuestions={ remainingQuestions } 
+                        fetchQuestions={ fetchQuestions }
+                        triviaQuestions={ triviaQuestions } 
+                        currentCategories={ currentCategories } 
+                        loggedIn={ setIsLoggedIn } 
+                    />;
+        } else {
+            return <Login loggedIn={ setIsLoggedIn } />;
+        }
+    };
 
     return (
         <>
-            <NavBar />
-            <div className={Styles.mainSection}>
-                <div className={Styles.dataSection}>
-                    <Transition in={isLoggedIn} timeout={duration}>
-                        {state => (
-                            <div style={{
-                                ...defaultStyle,
-                                ...transitionStyles[state]
-                            }}>
-                                {isLoggedIn
-                                    ? <Quiz 
-                                        setScore={setScore}
-                                        score={score}
-                                        setRemainingQuestions={setRemainingQuestions}
-                                        setSelectedCategory={setSelectedCategory}
-                                        remainingQuestions={remainingQuestions}
-                                        fetchQuestions={fetchQuestions}
-                                        triviaQuestions={triviaQuestions}
-                                        currentCategories={currentCategories}
-                                        loggedIn={setIsLoggedIn}
-                                      />
-                                    : <Login loggedIn={setIsLoggedIn} />
-                                }
-                            </div>
-                        )}
-                    </Transition>
-                </div>
+        <NavBar />
+        <div className={ Styles.mainSection }>
+            <div className={ Styles.dataSection }>
+                { renderContent() }
             </div>
+        </div>
         </>
     );
-}
+};

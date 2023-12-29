@@ -17,6 +17,7 @@ export default function App() {
     const [score, setScore] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
     const [contentOpacity, setContentOpacity] = useState(1);
+    const [showQuiz, setShowQuiz] = useState(false);
 
     const checkSessionStatus = async () => {
         try {
@@ -34,31 +35,30 @@ export default function App() {
     useEffect(() => {
         if (status === 500) {
             alert("Whoops, looks like there's a network error :/ \n Try refreshing in a moment");
-        } else {
-            if (triviaCategories && triviaQuestions.length > 0) {
-                setCurrentCategories(triviaCategories);
-                setRemainingQuestions(triviaQuestions);
-                setScore(0);
-                setIsLoading(false);
-            }
+        } else if (triviaCategories && triviaQuestions.length > 0) {
+            setCurrentCategories(triviaCategories);
+            setRemainingQuestions(triviaQuestions);
+            setScore(0);
+            setIsLoading(false);
         }
     }, [triviaCategories, triviaQuestions, status]);
 
     useEffect(() => {
         if (isLoggedIn) {
-            // Fade out when logging in
             setContentOpacity(0);
             setTimeout(() => {
-                // Delay for the fade-out effect
+                setShowQuiz(true); // Switch to Quiz after fade-out
                 setContentOpacity(1);
-            }, 300); // Adjust the timeout to match your fade duration
+            }, 300); // Duration of fade-out
+        } else {
+            setShowQuiz(false);
         }
     }, [isLoggedIn]);
 
     const renderContent = () => {
         if (isLoading) {
             return <div className={Styles.spinner}></div>;
-        } else if (isLoggedIn) {
+        } else if (showQuiz) {
             return (
                 <Quiz 
                     setScore={setScore}

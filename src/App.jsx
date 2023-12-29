@@ -31,7 +31,7 @@ export default function App () {
 
     useEffect(() => {
         checkSessionStatus();
-    }, [sessionCheck]);
+    }, []);
 
     useEffect(() => {
         if (status === 500 && retryCount < maxRetries) {

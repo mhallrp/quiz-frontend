@@ -12,11 +12,7 @@ export default function Register (props) {
     const handleRegister = async (event) => {
         event.preventDefault();
         const { data, status } = await register(regUsername, regPassword);
-        if (status) {
-            console.log('Registration successful:', data);
-        } else {
-            console.error('Registration failed:', data.error);
-        }
+        status ? console.log('Registration successful:', data) : console.error('Registration failed:', data.error);
     };
 
     const handleLogin = async (event) => {

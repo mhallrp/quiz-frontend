@@ -6,14 +6,15 @@ import useAuth from './Model/useAuth';
 import { useTriviaQuestions, useQuizCategories } from './Model/CustomHooks';
 
 export default function App () {
-    
+
     const { sessionCheck } = useAuth();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [currentCategories, setCurrentCategories] = useState(null);
     const [remainingQuestions, setRemainingQuestions] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('9');
-    const { questions: triviaQuestions, fetchQuestions } = useTriviaQuestions(selectedCategory);
+    const { questions: triviaQuestions, fetchQuestions, status } = useTriviaQuestions(selectedCategory);
     const triviaCategories = useQuizCategories();
+
     const [score, setScore] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -31,13 +32,14 @@ export default function App () {
     }, [sessionCheck]);
 
     useEffect(() => {
+        console.log("this is the status " + status)
         if (triviaCategories && triviaQuestions.length > 0) {
             setCurrentCategories(triviaCategories);
             setRemainingQuestions(triviaQuestions);
             setScore(0);
             setIsLoading(false);
         }
-    }, [triviaCategories, triviaQuestions]);
+    }, [triviaCategories, triviaQuestions, status]);
 
     const renderContent = () => {
         if (isLoading) {

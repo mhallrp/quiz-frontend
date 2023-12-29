@@ -6,7 +6,7 @@ import useAuth from './Model/useAuth';
 import { useTriviaQuestions, useQuizCategories } from './Model/CustomHooks';
 
 export default function App () {
-    
+
     const { sessionCheck } = useAuth();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [currentCategories, setCurrentCategories] = useState(null);
@@ -46,16 +46,16 @@ export default function App () {
             <div className={ Styles.dataSection }>
                 { isLoggedIn 
                     ?   <Quiz 
-                            score={score} 
-                            setRemainingQuestions={setRemainingQuestions}
-                            setSelectedCategory={setSelectedCategory} 
+                            setScore={ setScore }
+                            score={ score } 
+                            setRemainingQuestions={ setRemainingQuestions }
+                            setSelectedCategory={ setSelectedCategory } 
                             remainingQuestions={ remainingQuestions } 
                             fetchQuestions={ fetchQuestions }
                             triviaQuestions={ triviaQuestions } 
                             currentCategories={ currentCategories } 
                             loggedIn={ setIsLoggedIn } 
                         />
-
                     :   <Login 
                             loggedIn={ setIsLoggedIn } 
                         /> 

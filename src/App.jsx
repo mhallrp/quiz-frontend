@@ -16,7 +16,6 @@ export default function App() {
     const { questions: triviaQuestions, fetchQuestions, status } = useTriviaQuestions(selectedCategory);
     const triviaCategories = useQuizCategories();
     const [score, setScore] = useState(0);
-    const [isLoading, setIsLoading] = useState(true);
 
     const duration = 300; // Duration of the transition
 
@@ -53,43 +52,36 @@ export default function App() {
             setCurrentCategories(triviaCategories);
             setRemainingQuestions(triviaQuestions);
             setScore(0);
-            setIsLoading(false);
         }
     }, [triviaCategories, triviaQuestions, status]);
-
-    const renderContent = (state) => {
-        return (
-            <div style={{
-                ...defaultStyle,
-                ...transitionStyles[state]
-            }}>
-                {isLoading
-                    ? <div className={Styles.spinner}></div>
-                    : isLoggedIn
-                        ? <Quiz 
-                            setScore={setScore}
-                            score={score}
-                            setRemainingQuestions={setRemainingQuestions}
-                            setSelectedCategory={setSelectedCategory}
-                            remainingQuestions={remainingQuestions}
-                            fetchQuestions={fetchQuestions}
-                            triviaQuestions={triviaQuestions}
-                            currentCategories={currentCategories}
-                            loggedIn={setIsLoggedIn}
-                          />
-                        : <Login loggedIn={setIsLoggedIn} />
-                }
-            </div>
-        );
-    };
 
     return (
         <>
             <NavBar />
             <div className={Styles.mainSection}>
                 <div className={Styles.dataSection}>
-                    <Transition in={!isLoading} timeout={duration}>
-                        {state => renderContent(state)}
+                    <Transition in={isLoggedIn} timeout={duration}>
+                        {state => (
+                            <div style={{
+                                ...defaultStyle,
+                                ...transitionStyles[state]
+                            }}>
+                                {isLoggedIn
+                                    ? <Quiz 
+                                        setScore={setScore}
+                                        score={score}
+                                        setRemainingQuestions={setRemainingQuestions}
+                                        setSelectedCategory={setSelectedCategory}
+                                        remainingQuestions={remainingQuestions}
+                                        fetchQuestions={fetchQuestions}
+                                        triviaQuestions={triviaQuestions}
+                                        currentCategories={currentCategories}
+                                        loggedIn={setIsLoggedIn}
+                                      />
+                                    : <Login loggedIn={setIsLoggedIn} />
+                                }
+                            </div>
+                        )}
                     </Transition>
                 </div>
             </div>

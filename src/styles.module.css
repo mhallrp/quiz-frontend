@@ -5,7 +5,8 @@
     height: calc(100vh - 60px);
     background: linear-gradient(126deg, #F9ED32 4.79%, #D9BD32 54.4%);
     backdrop-filter: blur(2px);
-
+    position: relative; /* Add this line */
+    z-index: -1; 
 }
 
 .dataSection{
@@ -20,6 +21,8 @@
     padding: 32px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(1.5px);
+    position: relative; /* Add this line */
+    z-index: 1; 
 }
 
 .navBar{

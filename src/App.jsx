@@ -33,6 +33,10 @@ export default function App () {
 
     useEffect(() => {
         console.log("this is the status " + status)
+        if (status === 500){
+            fetchQuestions()
+            return
+        }
         if (triviaCategories && triviaQuestions.length > 0) {
             setCurrentCategories(triviaCategories);
             setRemainingQuestions(triviaQuestions);

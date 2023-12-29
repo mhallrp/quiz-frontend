@@ -47,9 +47,9 @@ export default function App() {
         if (isLoggedIn) {
             setContentOpacity(0);
             setTimeout(() => {
-                setShowQuiz(true); // Switch to Quiz after fade-out
+                setShowQuiz(true); 
                 setContentOpacity(1);
-            }, 300); // Duration of fade-out
+            }, 200); 
         } else {
             setShowQuiz(false);
         }

@@ -26,10 +26,10 @@ export default function App() {
     };
 
     const transitionStyles = {
-        entering: { opacity: 1 },
-        entered:  { opacity: 1 },
-        exiting:  { opacity: 0 },
-        exited:   { opacity: 0 },
+        entering: { opacity: 0 },
+        entered:  { opacity: 0 },
+        exiting:  { opacity: 1 },
+        exited:   { opacity: 1 },
     };
 
     const checkSessionStatus = async () => {

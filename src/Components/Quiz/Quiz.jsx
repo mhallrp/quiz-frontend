@@ -14,8 +14,12 @@ export default function Quiz (props) {
 
     const handleLogout = async () => {
         await logout();
-        props.fetchQuestions()
-        props.loggedIn(false)
+        setCurrentQuestion(null);
+        setAnswers([]);
+        setSelected(undefined);
+        setCorrect(undefined);
+        props.fetchQuestions();
+        props.loggedIn(false);
     };
 
     useEffect(() => {

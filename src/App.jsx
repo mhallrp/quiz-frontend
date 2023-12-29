@@ -61,15 +61,15 @@ export default function App() {
         } else if (showQuiz) {
             return (
                 <Quiz 
-                    setScore={setScore}
-                    score={score}
-                    setRemainingQuestions={setRemainingQuestions}
-                    setSelectedCategory={setSelectedCategory}
-                    remainingQuestions={remainingQuestions}
-                    fetchQuestions={fetchQuestions}
-                    triviaQuestions={triviaQuestions}
-                    currentCategories={currentCategories}
-                    loggedIn={setIsLoggedIn}
+                    setScore={ setScore }
+                    score={ score }
+                    setRemainingQuestions={ setRemainingQuestions }
+                    setSelectedCategory={ setSelectedCategory }
+                    remainingQuestions={ remainingQuestions }
+                    fetchQuestions={ fetchQuestions }
+                    triviaQuestions={ triviaQuestions }
+                    currentCategories={ currentCategories }
+                    loggedIn={ setIsLoggedIn }
                 />
             );
         } else {

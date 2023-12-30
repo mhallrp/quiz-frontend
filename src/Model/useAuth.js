@@ -22,7 +22,9 @@ const useAuth = () => {
                 body: JSON.stringify({ user: { username, password } }),
             });
             const data = await response.json();
-            console.log("Here's the data: " + data[0].username)
+
+            console.log('Username:', data.userName, 'Score:', data.score);
+
             if (!response.ok) {
                 const errorMessage = data.errorMessage || 'Login failed for an unknown reason';
                 return { error: errorMessage, status: false };

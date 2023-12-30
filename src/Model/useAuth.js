@@ -5,7 +5,7 @@ const useAuth = () => {
             const response = await fetch(`https://request.matt-hall.dev/check`, {
                 credentials: 'include',
             });
-            return response.status
+            return { status: response.status, data: response }
         } catch (networkError) {
             return(500)
         }
@@ -22,9 +22,6 @@ const useAuth = () => {
                 body: JSON.stringify({ user: { username, password } }),
             });
             const data = await response.json();
-
-            console.log('Username:', data.userName, 'Score:', data.score);
-
             if (!response.ok) {
                 const errorMessage = data.errorMessage || 'Login failed for an unknown reason';
                 return { error: errorMessage, status: false };

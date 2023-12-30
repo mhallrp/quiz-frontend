@@ -22,8 +22,11 @@ export default function App() {
 
     const checkSessionStatus = async () => {
         try {
-            const status = await sessionCheck();
-            setIsLoggedIn(status === 200);
+            const data = await sessionCheck();
+            if (data.status === 200){
+                setUserData(data.userName + " " + data.total_score)
+                setIsLoggedIn(true);
+            }
         } catch (error) {
             setIsLoggedIn(false);
         }

@@ -5,6 +5,7 @@ const useAuth = () => {
             const response = await fetch(`https://request.matt-hall.dev/check`, {
                 credentials: 'include',
             });
+            const data = await response.json(); 
             if (response.status === 200) {
                 console.log('Username:', data.username, 'Score:', data.score); // Print username and score
             }

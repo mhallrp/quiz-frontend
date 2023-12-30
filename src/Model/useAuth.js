@@ -6,9 +6,6 @@ const useAuth = () => {
                 credentials: 'include',
             });
             const data = await response.json(); 
-            if (response.status === 200) {
-                console.log('Username:', data.username, 'Score:', data.score); // Print username and score
-            }
             return { data: data, status: response.status }
         } catch (networkError) {
             return(500)

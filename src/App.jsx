@@ -75,6 +75,7 @@ export default function App() {
                     triviaQuestions={ triviaQuestions }
                     currentCategories={ currentCategories }
                     loggedIn={ setIsLoggedIn }
+                    setUserData={ setUserData }
                 />
             );
         } else {

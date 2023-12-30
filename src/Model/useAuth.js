@@ -5,7 +5,7 @@ const useAuth = () => {
             const response = await fetch(`https://request.matt-hall.dev/check`, {
                 credentials: 'include',
             });
-            return { status: response.status, data: response }
+            return { data:response, status: response.status }
         } catch (networkError) {
             return(500)
         }

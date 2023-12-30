@@ -37,9 +37,8 @@
 }
 
 
-/* @media (max-width: 504px) {
+@media (max-width: 504px) {
   .mainSection{
-    justify-content:flex-start;
-    align-items: flex-start;
+    margin-top: -120px;
   }
-} */
+}

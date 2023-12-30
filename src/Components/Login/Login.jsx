@@ -20,6 +20,7 @@ export default function Register (props) {
         const { data, error, status } = await login(username, password);
         if (status){ 
             props.loggedIn(true)
+            //why isnt the below line working??
             props.setUserData(data.data.userName + ' ' + data.data.score)
             return
         }

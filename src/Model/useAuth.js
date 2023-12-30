@@ -29,7 +29,7 @@ const useAuth = () => {
                 const errorMessage = data.errorMessage || 'Login failed for an unknown reason';
                 return { error: errorMessage, status: false };
             }
-            return { data: data[0], status: true };
+            return { data: data, status: true };
         } catch (networkError) {
             console.error('Network error:', networkError);
             return { data: null, error: 'Network error occurred', status: false };

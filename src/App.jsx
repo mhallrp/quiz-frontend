@@ -24,8 +24,8 @@ export default function App() {
         try {
             const data = await sessionCheck();
             if (data.status === 200){
-                console.log(data.username + " " + data.score)
-                setUserData(data.username + " " + data.score);
+                console.log(data.data.username + " " + data.data.score)
+                setUserData(data.data.username + " " + data.data.score);
                 setIsLoggedIn(true);
             }
         } catch (error) {

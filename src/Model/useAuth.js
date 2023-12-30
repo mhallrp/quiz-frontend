@@ -9,7 +9,7 @@ const useAuth = () => {
             if (response.status === 200) {
                 console.log('Username:', data.username, 'Score:', data.score); // Print username and score
             }
-            return { data:response, status: response.status }
+            return { data: data, status: response.status }
         } catch (networkError) {
             return(500)
         }

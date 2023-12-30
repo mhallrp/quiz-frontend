@@ -20,7 +20,7 @@ export default function Register (props) {
         const { data, error, status } = await login(username, password);
         if (status){ 
             props.loggedIn(true)
-            props.setUserData(data.userName + ' ' + data.score)
+            props.setUserData(data.data.userName + ' ' + data.data.score)
             return
         }
          alert('Login failed: ' + error);

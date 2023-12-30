@@ -19,6 +19,7 @@ export default function App() {
     const [contentOpacity, setContentOpacity] = useState(1);
     const [showQuiz, setShowQuiz] = useState(false);
     const [userData, setUserData] = useState('')
+    const [dataOpacity, setDataOpacity] = useState(0)
 
     const checkSessionStatus = async () => {
         try {
@@ -83,6 +84,7 @@ export default function App() {
                 <Login 
                     loggedIn={ setIsLoggedIn }
                     setUserData={ setUserData }
+                    setDataOpacity={ setDataOpacity }
                 />
             )
         }
@@ -92,6 +94,7 @@ export default function App() {
         <>
             <NavBar 
                 userData={ userData }
+                dataOpacity={ dataOpacity }
             />
             <div className={Styles.mainSection}>
                 <div 

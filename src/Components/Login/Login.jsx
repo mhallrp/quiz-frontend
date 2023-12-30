@@ -21,6 +21,7 @@ export default function Register (props) {
         if (status){ 
             props.loggedIn(true)
             props.setUserData(data.username + ' ' + data.score)
+            props.setDataOpacity(0)
             return
         }
          alert('Login failed: ' + error);

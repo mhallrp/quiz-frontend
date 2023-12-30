@@ -50,16 +50,16 @@ export default function App() {
     }, [triviaCategories, triviaQuestions, status]);
 
     useEffect(() => {
+        setContentOpacity(0);
+        setTimeout(() => {
         if (isLoggedIn) {
-            setContentOpacity(0);
-            setTimeout(() => {
-                setShowQuiz(true); 
-                setContentOpacity(1);
-                setDataOpacity(1)
-            }, 300); 
+            setShowQuiz(true); 
+            setContentOpacity(1);
+            setDataOpacity(1)
         } else {
             setShowQuiz(false);
-        }
+            setContentOpacity(1);
+        }}, 300); 
     }, [isLoggedIn]);
 
     const renderContent = () => {

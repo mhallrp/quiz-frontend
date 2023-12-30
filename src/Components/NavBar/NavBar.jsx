@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Styles from './styles.module.css';
 
-const NavBar = () => {
+const NavBar = (props) => {
     return (
         <div className={Styles.navBar}>
                 <h1 className={Styles.navTitle}>Quik Quiz 💡</h1>
-                <button className={Styles.navContact}>Contact Me</button>
+                <h1 className={Styles.user}>{ props.userData }</h1>
         </div>
     );
 };

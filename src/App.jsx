@@ -18,6 +18,7 @@ export default function App() {
     const [isLoading, setIsLoading] = useState(true);
     const [contentOpacity, setContentOpacity] = useState(1);
     const [showQuiz, setShowQuiz] = useState(false);
+    const [userData, setUserData] = useState('')
 
     const checkSessionStatus = async () => {
         try {
@@ -73,13 +74,20 @@ export default function App() {
                 />
             );
         } else {
-            return <Login loggedIn={setIsLoggedIn} />;
+            return( 
+                <Login 
+                    loggedIn={ setIsLoggedIn }
+                    setUserData={ setUserData }
+                />
+            )
         }
     };
 
     return (
         <>
-            <NavBar />
+            <NavBar 
+                userData={ userData }
+            />
             <div className={Styles.mainSection}>
                 <div 
                     className={Styles.dataSection} 

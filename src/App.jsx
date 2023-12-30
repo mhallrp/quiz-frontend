@@ -55,6 +55,7 @@ export default function App() {
             setTimeout(() => {
                 setShowQuiz(true); 
                 setContentOpacity(1);
+                setDataOpacity(1)
             }, 300); 
         } else {
             setShowQuiz(false);
@@ -77,6 +78,7 @@ export default function App() {
                     currentCategories={ currentCategories }
                     loggedIn={ setIsLoggedIn }
                     setUserData={ setUserData }
+                    setDataOpacity={ setDataOpacity }
                 />
             );
         } else {
@@ -84,7 +86,6 @@ export default function App() {
                 <Login 
                     loggedIn={ setIsLoggedIn }
                     setUserData={ setUserData }
-                    setDataOpacity={ setDataOpacity }
                 />
             )
         }

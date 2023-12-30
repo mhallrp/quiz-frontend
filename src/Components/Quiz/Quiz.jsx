@@ -17,7 +17,7 @@ export default function Quiz (props) {
         props.fetchQuestions()
         props.setUserData('')
         props.loggedIn(false)
-
+        props.setDataOpacity(0)
     };
 
     useEffect(() => {

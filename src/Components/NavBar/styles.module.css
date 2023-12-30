@@ -27,3 +27,12 @@
     color: #0292B1;
     margin-right: 85px;
 }
+
+@media (max-width: 504px) {
+.navTitle{
+    margin-left: 16px;
+}
+.navContact{
+    margin-right: 16px;
+}
+}

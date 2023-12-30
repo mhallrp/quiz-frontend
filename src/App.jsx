@@ -24,7 +24,7 @@ export default function App() {
         try {
             const data = await sessionCheck();
             if (data.status === 200){
-                setUserData(data.userName + " " + data.total_score)
+                setUserData(data.username + " " + data.score)
                 setIsLoggedIn(true);
             }
         } catch (error) {

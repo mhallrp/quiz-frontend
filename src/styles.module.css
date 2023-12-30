@@ -38,7 +38,8 @@
 
 @media (max-width: 504px) {
   .mainSection{
-    justify-content: baseline;
+    justify-content:flex-start;
+    align-items: flex-start;
   }
   .dataSection{
 

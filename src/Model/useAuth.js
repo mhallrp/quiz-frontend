@@ -24,7 +24,7 @@ const useAuth = () => {
             const data = await response.json();
             if (!response.ok) {
                 const errorMessage = data.errorMessage || 'Login failed for an unknown reason';
-                return { data: null, error: errorMessage, status: false };
+                return { data: data, error: errorMessage, status: false };
             }
             return { data, status: true };
         } catch (networkError) {

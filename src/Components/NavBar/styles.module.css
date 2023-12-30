@@ -21,16 +21,15 @@
 }
 .user{
     margin-left: auto;
-    height: 40px;
     margin-right: 85px;
     font-size: 22px;
 }
 
 @media (max-width: 504px) {
-.navTitle{
-    margin-left: 16px;
-}
-.navContact{
-    margin-right: 16px;
-}
+    .navTitle{
+        margin-left: 16px;
+    }
+    .navContact{
+        margin-right: 16px;
+    }
 }

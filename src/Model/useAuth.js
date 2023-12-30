@@ -22,12 +22,12 @@ const useAuth = () => {
                 body: JSON.stringify({ user: { username, password } }),
             });
             const data = await response.json();
-            console.log("Here's the data: " + data[0])
+            console.log("Here's the data: " + data[username])
             if (!response.ok) {
                 const errorMessage = data.errorMessage || 'Login failed for an unknown reason';
-                return { data: data, error: errorMessage, status: false };
+                return { error: errorMessage, status: false };
             }
-            return { data: data, status: true };
+            return { data: data[0], status: true };
         } catch (networkError) {
             console.error('Network error:', networkError);
             return { data: null, error: 'Network error occurred', status: false };

@@ -22,16 +22,16 @@ export default function App() {
 
     const checkSessionStatus = async () => {
         try {
-            const data = await sessionCheck();
-            if (data.status === 200){
-                console.log(data.username + " " + data.score)
-                setUserData(data.username + " " + data.score);
+            const result = await sessionCheck();
+            if (result.status === 200) {
+                setUserData(result.data.username + " " + result.data.score);
                 setIsLoggedIn(true);
             }
         } catch (error) {
             setIsLoggedIn(false);
         }
     };
+    
 
     useEffect(() => {
         checkSessionStatus();

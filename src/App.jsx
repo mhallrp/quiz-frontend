@@ -26,45 +26,45 @@ export default function App() {
     status,
   } = useTriviaQuestions(selectedCategory);
 
-  // const checkSessionStatus = async () => {
-  //     try {
-  //         const result = await sessionCheck();
-  //         if (result.status === 200) {
-  //             setUserData(result.data.username + " " + result.data.score);
-  //             setIsLoggedIn(true);
-  //         }
-  //     } catch (error) {
-  //         setIsLoggedIn(false);
-  //     }
-  // };
+  const checkSessionStatus = async () => {
+      try {
+          const result = await sessionCheck();
+          if (result.status === 200) {
+              setUserData(result.data.username + " " + result.data.score);
+              setIsLoggedIn(true);
+          }
+      } catch (error) {
+          setIsLoggedIn(false);
+      }
+  };
 
-  // useEffect(() => {
-  //     checkSessionStatus();
-  // }, []);
+  useEffect(() => {
+      checkSessionStatus();
+  }, []);
 
-  // useEffect(() => {
-  //     if (status === 500) {
-  //         alert("Whoops, looks like there's a network error :/ \n Try refreshing in a moment");
-  //     } else if (triviaCategories && triviaQuestions.length > 0) {
-  //         setCurrentCategories(triviaCategories);
-  //         setRemainingQuestions(triviaQuestions);
-  //         setScore(0);
-  //         setIsLoading(false);
-  //     }
-  // }, [triviaCategories, triviaQuestions, status]);
+  useEffect(() => {
+      if (status === 500) {
+          alert("Whoops, looks like there's a network error :/ \n Try refreshing in a moment");
+      } else if (triviaCategories && triviaQuestions.length > 0) {
+          setCurrentCategories(triviaCategories);
+          setRemainingQuestions(triviaQuestions);
+          setScore(0);
+          setIsLoading(false);
+      }
+  }, [triviaCategories, triviaQuestions, status]);
 
-  // useEffect(() => {
-  //     setContentOpacity(0);
-  //     setTimeout(() => {
-  //     if (isLoggedIn) {
-  //         setShowQuiz(true);
-  //         setContentOpacity(1);
-  //         setDataOpacity(1)
-  //     } else {
-  //         setShowQuiz(false);
-  //         setContentOpacity(1);
-  //     }}, 300);
-  // }, [isLoggedIn]);
+  useEffect(() => {
+      setContentOpacity(0);
+      setTimeout(() => {
+      if (isLoggedIn) {
+          setShowQuiz(true);
+          setContentOpacity(1);
+          setDataOpacity(1)
+      } else {
+          setShowQuiz(false);
+          setContentOpacity(1);
+      }}, 300);
+  }, [isLoggedIn]);
 
   const renderContent = () => {
     if (isLoading) {

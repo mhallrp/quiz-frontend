@@ -9,8 +9,8 @@ export default function Register(props) {
   const { register, login } = useAuth();
   const [isRegister, setIsRegister] = useState(false);
 
-  const handleRegister = async (event) => {
-    event.preventDefault();
+  const handleRegister = async (e) => {
+    e.preventDefault();
     if (password !== confirmPassword) {
       alert('Password mismatch');
     } else {
@@ -21,8 +21,8 @@ export default function Register(props) {
     }
   };
 
-  const handleLogin = async (event) => {
-    event.preventDefault();
+  const handleLogin = async (e) => {
+    e.preventDefault();
     const { data, error, status } = await login(username, password);
     if (status) {
       props.loggedIn(true);

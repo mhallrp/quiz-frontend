@@ -47,7 +47,19 @@ export default function App() {
         // setIsLoggedIn([true,'']);
       }
     } catch (error) {
-      setIsLoggedIn([false, '']);
+
+      setTimeout(() => {
+        // if (isLoggedIn[0]) {
+          // setShowQuiz(true);
+          // setContentOpacity(1);
+          // setDataOpacity(1);
+        // } else {
+          setShowQuiz(false);
+          setContentOpacity(1);
+        // }
+      }, 300);
+
+      // setIsLoggedIn([false, '']);
     }
   };
 

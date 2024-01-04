@@ -33,14 +33,14 @@ export default function App() {
       if (result.status === 200) {
         setContentOpacity(0);
         setTimeout(() => {
-          if (isLoggedIn[0]) {
+          // if (isLoggedIn[0]) {
             setShowQuiz(true);
             setContentOpacity(1);
             setDataOpacity(1);
-          } else {
-            setShowQuiz(false);
-            setContentOpacity(1);
-          }
+          // } else {
+          //   setShowQuiz(false);
+          //   setContentOpacity(1);
+          // }
         }, 300);
 
         // setUserData(result.data.username + " " + result.data.score);

@@ -31,10 +31,10 @@ export default function App() {
           const result = await sessionCheck();
           if (result.status === 200) {
               setUserData(result.data.username + " " + result.data.score);
-              setIsLoggedIn[0](true);
+              setIsLoggedIn[0]([true,'']);
           }
       } catch (error) {
-          setIsLoggedIn[0](false);
+          setIsLoggedIn([false,'']);
       }
   };
 

@@ -30,11 +30,14 @@ export default function App() {
       const result = await sessionCheck();
 
       if (result.status === 200) {
-
-//this is the point we update the view
+        setContentOpacity(0);
+        setDataOpacity(0)
+        setTimeout(() => {
           setUserData(result.data.username + ' ' + result.data.score);
           setState('quiz');
-
+          setContentOpacity(1);
+          setDataOpacity(1);
+        }, 300);
       } else {
         setState('login');
       }
@@ -85,7 +88,12 @@ export default function App() {
     <div className="backdrop-blu-sm flex h-screen flex-col bg-main font-sans">
       <NavBar userData={userData} dataOpacity={dataOpacity} />
       <div className="flex h-full items-center justify-center">
-      <div className={`dataSection transition-opacity duration-300 ${state === 'loading' ? 'opacity-0' : 'opacity-100'}`}>
+        <div
+          className="dataSection "
+          style={{
+            opacity: contentOpacity,
+            transition: 'opacity 300ms ease-in-out',
+          }}>
           {renderContent()}
         </div>
       </div>

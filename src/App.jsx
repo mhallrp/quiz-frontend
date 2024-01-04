@@ -32,7 +32,7 @@ export default function App() {
       try {
           const result = await sessionCheck();
           setIsLoading(false)
-          setIsLoaded(true)
+          // setIsLoaded(true)
           if (result.status === 200) {
               setUserData(result.data.username + " " + result.data.score);
               setIsLoggedIn([true,'']);

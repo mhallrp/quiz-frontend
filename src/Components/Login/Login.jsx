@@ -19,7 +19,6 @@ export default function Register(props) {
   const handleLogin = async () => {
     const { data, error, status } = await login(username, password);
     if (status) {
-      // props.setIsLoggedIn([true, '']);
       props.setState("quiz")
       props.setUserData(data.username + ' ' + data.score);
       return;

@@ -8,15 +8,12 @@ import NavBar from './Components/NavBar';
 
 export default function App() {
   const { sessionCheck } = useAuth();
-  const [isLoggedIn, setIsLoggedIn] = useState([false, '']);
   const [currentCategories, setCurrentCategories] = useState(null);
   const [remainingQuestions, setRemainingQuestions] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('9');
   const triviaCategories = useQuizCategories();
   const [score, setScore] = useState(0);
-
   const [contentOpacity, setContentOpacity] = useState(1);
-  const [showQuiz, setShowQuiz] = useState(false);
   const [userData, setUserData] = useState('');
   const [dataOpacity, setDataOpacity] = useState(0);
 
@@ -33,13 +30,11 @@ export default function App() {
       const result = await sessionCheck();
 
       if (result.status === 200) {
-        setContentOpacity(0);
-        setTimeout(() => {
+
+//this is the point we update the view
           setUserData(result.data.username + ' ' + result.data.score);
           setState('quiz');
-          setContentOpacity(1);
-          setDataOpacity(1);
-        }, 300);
+
       } else {
         setState('login');
       }
@@ -60,19 +55,6 @@ export default function App() {
       checkSessionStatus();
     }
   }, [triviaCategories, triviaQuestions, status]);
-
-  // useEffect(() => {
-  //     setContentOpacity(0);
-  //     setTimeout(() => {
-  //     if (isLoggedIn[0]) {
-  //         setShowQuiz(true);
-  //         setContentOpacity(1);
-  //         setDataOpacity(1)
-  //     } else {
-  //         setShowQuiz(false);
-  //         setContentOpacity(1);
-  //     }}, 300);
-  // }, [isLoggedIn[0]]);
 
   const renderContent = () => {
     switch (state) {
@@ -103,15 +85,12 @@ export default function App() {
     <div className="backdrop-blu-sm flex h-screen flex-col bg-main font-sans">
       <NavBar userData={userData} dataOpacity={dataOpacity} />
       <div className="flex h-full items-center justify-center">
-        <div
-          className="dataSection "
-          style={{
-            opacity: contentOpacity,
-            transition: 'opacity 300ms ease-in-out',
-          }}>
+      <div className={`dataSection transition-opacity duration-300 ${state === 'loading' ? 'opacity-0' : 'opacity-100'}`}>
           {renderContent()}
         </div>
       </div>
     </div>
   );
 }
+
+

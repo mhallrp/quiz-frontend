@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import Styles from './styles.module.css';
 import './index.css';
 import Login from './Components/Login';
 import Quiz from './Components/Quiz';
@@ -15,7 +14,7 @@ export default function App() {
   const [selectedCategory, setSelectedCategory] = useState('9');
   const triviaCategories = useQuizCategories();
   const [score, setScore] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [contentOpacity, setContentOpacity] = useState(1);
   const [showQuiz, setShowQuiz] = useState(false);
   const [userData, setUserData] = useState('');
@@ -32,9 +31,11 @@ export default function App() {
           if (result.status === 200) {
               setUserData(result.data.username + " " + result.data.score);
               setIsLoggedIn([true,'']);
+              setIsLoading(false)
           }
       } catch (error) {
           setIsLoggedIn([false,'']);
+          setIsLoading(false)
       }
   };
 

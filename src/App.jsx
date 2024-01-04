@@ -20,6 +20,8 @@ export default function App() {
   const [userData, setUserData] = useState('');
   const [dataOpacity, setDataOpacity] = useState(0);
 
+  const [viewStatus, setViewStatus] = useState('loading');
+
   const {
     questions: triviaQuestions,
     fetchQuestions,
@@ -31,85 +33,69 @@ export default function App() {
       const result = await sessionCheck();
       setIsLoading(false);
       if (result.status === 200) {
-        setContentOpacity(0);
-        setTimeout(() => {
-          // if (isLoggedIn[0]) {
-            setShowQuiz(true);
-            setContentOpacity(1);
-            setDataOpacity(1);
-          // } else {
-          //   setShowQuiz(false);
-          //   setContentOpacity(1);
-          // }
-        }, 300);
-
-        // setUserData(result.data.username + " " + result.data.score);
-        // setIsLoggedIn([true,'']);
+        setUserData(result.data.username + ' ' + result.data.score);
+        setIsLoggedIn([true, '']);
+        setViewStatus('quiz');
       }
     } catch (error) {
-
-      setTimeout(() => {
-        // if (isLoggedIn[0]) {
-          // setShowQuiz(true);
-          // setContentOpacity(1);
-          // setDataOpacity(1);
-        // } else {
-          setShowQuiz(false);
-          setContentOpacity(1);
-        // }
-      }, 300);
-
-      // setIsLoggedIn([false, '']);
+      setViewStatus('login');
+      setIsLoggedIn([false, '']);
     }
   };
 
   useEffect(() => {
-    if (status === 500) {
-      alert(
-        "Whoops, looks like there's a network error :/ \n Try refreshing in a moment",
-      );
-    } else if (triviaCategories && triviaQuestions.length > 0) {
-      setCurrentCategories(triviaCategories);
-      setRemainingQuestions(triviaQuestions);
-      setScore(0);
-      checkSessionStatus();
-    }
-  }, [triviaCategories, triviaQuestions, status]);
+    const init = async () => {
+      await checkSessionStatus();
+      if (isLoggedIn[0] && triviaCategories && triviaQuestions.length > 0) {
+        setViewStatus('quiz');
+      } else if (!isLoggedIn[0]) {
+        setViewStatus('login');
+      }
+    };
 
-  // useEffect(() => {
-  //     setContentOpacity(0);
-  //     setTimeout(() => {
-  //     if (isLoggedIn[0]) {
-  //         setShowQuiz(true);
-  //         setContentOpacity(1);
-  //         setDataOpacity(1)
-  //     } else {
-  //         setShowQuiz(false);
-  //         setContentOpacity(1);
-  //     }}, 300);
-  // }, [isLoggedIn[0]]);
+    init();
+  }, [isLoggedIn, triviaCategories, triviaQuestions, status]);
+
+  useEffect(() => {
+    setContentOpacity(0);
+    setTimeout(() => {
+      if (isLoggedIn[0]) {
+        setShowQuiz(true);
+        setContentOpacity(1);
+        setDataOpacity(1);
+      } else {
+        setShowQuiz(false);
+        setContentOpacity(1);
+      }
+    }, 300);
+  }, [isLoggedIn[0]]);
 
   const renderContent = () => {
-    if (isLoading) {
-      return <div className="spinner"></div>;
-    } else if (showQuiz) {
-      return (
-        <Quiz
-          setScore={setScore}
-          score={score}
-          setRemainingQuestions={setRemainingQuestions}
-          setSelectedCategory={setSelectedCategory}
-          remainingQuestions={remainingQuestions}
-          fetchQuestions={fetchQuestions}
-          triviaQuestions={triviaQuestions}
-          currentCategories={currentCategories}
-          setIsLoggedIn={setIsLoggedIn}
-          setUserData={setUserData}
-          setDataOpacity={setDataOpacity}
-        />
-      );
-    } else{
-      return <Login setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} />;
+    switch (viewStatus) {
+      case 'login':
+        return (
+          <Login setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} />
+        );
+
+      case 'quiz':
+        return (
+          <Quiz
+            setScore={setScore}
+            score={score}
+            setRemainingQuestions={setRemainingQuestions}
+            setSelectedCategory={setSelectedCategory}
+            remainingQuestions={remainingQuestions}
+            fetchQuestions={fetchQuestions}
+            triviaQuestions={triviaQuestions}
+            currentCategories={currentCategories}
+            setIsLoggedIn={setIsLoggedIn}
+            setUserData={setUserData}
+            setDataOpacity={setDataOpacity}
+          />
+        );
+
+      default:
+        return <div className="spinner"></div>;
     }
   };
 

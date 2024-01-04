@@ -20,7 +20,7 @@ export default function Register(props) {
     e.preventDefault();
     const { data, error, status } = await login(username, password);
     if (status) {
-      props.setIsLoggedIn([true,'']);
+      props.setIsLoggedIn([true, '']);
       props.setUserData(data.username + ' ' + data.score);
       return;
     }
@@ -60,12 +60,12 @@ export default function Register(props) {
             onClick={
               isRegister
                 ? (e) => {
-                    e.preventDefault
+                    e.preventDefault;
                     password !== confirmPassword
                       ? alert('Password mismatch')
                       : handleRegister();
                   }
-                : () => handleLogin(e)
+                : (e) => handleLogin(e)
             }
             className="bg-darkYellow my-4 rounded px-6 py-3"
             type="submit">

@@ -81,7 +81,7 @@ export default function App() {
           setDataOpacity={setDataOpacity}
         />
       );
-    } else {
+    } else if(isLoading !== true) {
       return <Login setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} />;
     }
   };

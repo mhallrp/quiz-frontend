@@ -38,12 +38,7 @@ export default function App() {
       }
   };
 
-  // useEffect(() => {
-  //     checkSessionStatus();
-  // }, []);
-
   useEffect(() => {
-    setIsLoading(true)
       if (status === 500) {
           alert("Whoops, looks like there's a network error :/ \n Try refreshing in a moment");
       } else if (triviaCategories && triviaQuestions.length > 0) {

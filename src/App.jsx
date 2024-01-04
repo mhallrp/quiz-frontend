@@ -14,13 +14,13 @@ export default function App() {
   const [selectedCategory, setSelectedCategory] = useState('9');
   const triviaCategories = useQuizCategories();
   const [score, setScore] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+
   const [contentOpacity, setContentOpacity] = useState(1);
   const [showQuiz, setShowQuiz] = useState(false);
   const [userData, setUserData] = useState('');
   const [dataOpacity, setDataOpacity] = useState(0);
 
-  const [viewStatus, setViewStatus] = useState('loading');
+  const [state, setState] = useState('loading');
 
   const {
     questions: triviaQuestions,
@@ -31,52 +31,47 @@ export default function App() {
   const checkSessionStatus = async () => {
     try {
       const result = await sessionCheck();
-      setIsLoading(false);
       if (result.status === 200) {
         setUserData(result.data.username + ' ' + result.data.score);
-        setIsLoggedIn([true, '']);
-        setViewStatus('quiz');
+        setState('quiz');
+        // setIsLoggedIn([true,'']);
+      } else {
+        setState('login');
       }
     } catch (error) {
-      setViewStatus('login');
-      setIsLoggedIn([false, '']);
+      setState('login');
+      // setIsLoggedIn([false,'']);
     }
   };
 
   useEffect(() => {
-    const init = async () => {
-      await checkSessionStatus();
-      if (isLoggedIn[0] && triviaCategories && triviaQuestions.length > 0) {
-        setViewStatus('quiz');
-      } else if (!isLoggedIn[0]) {
-        setViewStatus('login');
-      }
-    };
+    if (status === 500) {
+      alert(
+        "Whoops, looks like there's a network error :/ \n Try refreshing in a moment",
+      );
+    } else if (triviaCategories && triviaQuestions.length > 0) {
+      setCurrentCategories(triviaCategories);
+      setRemainingQuestions(triviaQuestions);
+      setScore(0);
+      checkSessionStatus();
+    }
+  }, [triviaCategories, triviaQuestions, status]);
 
-    init();
-  }, [isLoggedIn, triviaCategories, triviaQuestions, status]);
-
-  useEffect(() => {
-    setContentOpacity(0);
-    setTimeout(() => {
-      if (isLoggedIn[0]) {
-        setShowQuiz(true);
-        setContentOpacity(1);
-        setDataOpacity(1);
-      } else {
-        setShowQuiz(false);
-        setContentOpacity(1);
-      }
-    }, 300);
-  }, [isLoggedIn[0]]);
+  // useEffect(() => {
+  //     setContentOpacity(0);
+  //     setTimeout(() => {
+  //     if (isLoggedIn[0]) {
+  //         setShowQuiz(true);
+  //         setContentOpacity(1);
+  //         setDataOpacity(1)
+  //     } else {
+  //         setShowQuiz(false);
+  //         setContentOpacity(1);
+  //     }}, 300);
+  // }, [isLoggedIn[0]]);
 
   const renderContent = () => {
-    switch (viewStatus) {
-      case 'login':
-        return (
-          <Login setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} />
-        );
-
+    switch (state) {
       case 'quiz':
         return (
           <Quiz
@@ -93,10 +88,35 @@ export default function App() {
             setDataOpacity={setDataOpacity}
           />
         );
-
+      case 'login':
+        return (
+          <Login setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} />
+        );
       default:
         return <div className="spinner"></div>;
     }
+
+    // if (isLoading) {
+    //   return <div className="spinner"></div>;
+    // } else if (showQuiz) {
+    //   return (
+    //     <Quiz
+    //       setScore={setScore}
+    //       score={score}
+    //       setRemainingQuestions={setRemainingQuestions}
+    //       setSelectedCategory={setSelectedCategory}
+    //       remainingQuestions={remainingQuestions}
+    //       fetchQuestions={fetchQuestions}
+    //       triviaQuestions={triviaQuestions}
+    //       currentCategories={currentCategories}
+    //       setIsLoggedIn={setIsLoggedIn}
+    //       setUserData={setUserData}
+    //       setDataOpacity={setDataOpacity}
+    //     />
+    //   );
+    // } else {
+    //   return <Login setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} />;
+    // }
   };
 
   return (

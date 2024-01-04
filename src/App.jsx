@@ -28,16 +28,9 @@ export default function App() {
   const checkSessionStatus = async () => {
     try {
       const result = await sessionCheck();
-
       if (result.status === 200) {
-        setContentOpacity(0);
-        setDataOpacity(0)
-        setTimeout(() => {
           setUserData(result.data.username + ' ' + result.data.score);
           setState('quiz');
-          setContentOpacity(1);
-          setDataOpacity(1);
-        }, 300);
       } else {
         setState('login');
       }
@@ -45,6 +38,18 @@ export default function App() {
       setState('login');
     }
   };
+
+
+  const changeState = (view, data) =>{
+    setContentOpacity(0);
+    setDataOpacity(0)
+    setTimeout(() => {
+      setState(view);
+      setUserData(data);
+      setContentOpacity(1);
+      setDataOpacity(1);
+    }, 300);
+  }
 
   useEffect(() => {
     if (status === 500) {
@@ -72,13 +77,13 @@ export default function App() {
             fetchQuestions={fetchQuestions}
             triviaQuestions={triviaQuestions}
             currentCategories={currentCategories}
-            setState={setState}
+            changeState={changeState}
             setUserData={setUserData}
             setDataOpacity={setDataOpacity}
           />
         );
       case 'login':
-        return <Login setState={setState} setUserData={setUserData} />;
+        return <Login changeState={changeState} setUserData={setUserData} />;
       default:
         return <div className="spinner"></div>;
     }

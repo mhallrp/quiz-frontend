@@ -13,7 +13,7 @@ export default function Quiz(props) {
 
   const handleLogout = async () => {
     await logout();
-    // props.fetchQuestions();
+    props.fetchQuestions();
     props.setIsLoggedIn([false, '']);
     props.setDataOpacity(0);
   };

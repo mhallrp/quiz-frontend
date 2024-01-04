@@ -42,9 +42,12 @@ export default function App() {
       }
   };
 
-  // useEffect(() => {
-  //     checkSessionStatus();
-  // }, []);
+  useEffect(() => {
+    setIsLoading(true);
+    checkSessionStatus().then(() => {
+      setIsLoading(false);
+    });
+  }, []);
 
   useEffect(() => {
     setIsLoading(true)

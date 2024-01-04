@@ -28,16 +28,19 @@ export default function App() {
   const checkSessionStatus = async () => {
       try {
           const result = await sessionCheck();
+          setIsLoading(false)
           if (result.status === 200) {
               setUserData(result.data.username + " " + result.data.score);
               setIsLoggedIn([true,'']);
-              setIsLoading(false)
           }
       } catch (error) {
           setIsLoggedIn([false,'']);
-          setIsLoading(false)
       }
   };
+
+  // useEffect(() => {
+  //     checkSessionStatus();
+  // }, []);
 
   useEffect(() => {
     setIsLoading(true)
@@ -48,6 +51,7 @@ export default function App() {
           setRemainingQuestions(triviaQuestions);
           setScore(0);
           checkSessionStatus();
+          
       }
   }, [triviaCategories, triviaQuestions, status]);
 

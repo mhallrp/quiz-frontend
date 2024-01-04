@@ -9,7 +9,7 @@ import NavBar from './Components/NavBar';
 
 export default function App() {
   const { sessionCheck } = useAuth();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState([false, '']);
   const [currentCategories, setCurrentCategories] = useState(null);
   const [remainingQuestions, setRemainingQuestions] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('9');
@@ -31,10 +31,10 @@ export default function App() {
           const result = await sessionCheck();
           if (result.status === 200) {
               setUserData(result.data.username + " " + result.data.score);
-              setIsLoggedIn(true);
+              setIsLoggedIn[0](true);
           }
       } catch (error) {
-          setIsLoggedIn(false);
+          setIsLoggedIn[0](false);
       }
   };
 
@@ -56,7 +56,7 @@ export default function App() {
   useEffect(() => {
       setContentOpacity(0);
       setTimeout(() => {
-      if (isLoggedIn) {
+      if (isLoggedIn[0]) {
           setShowQuiz(true);
           setContentOpacity(1);
           setDataOpacity(1)
@@ -64,7 +64,7 @@ export default function App() {
           setShowQuiz(false);
           setContentOpacity(1);
       }}, 300);
-  }, [isLoggedIn]);
+  }, [isLoggedIn[0]]);
 
   const renderContent = () => {
     if (isLoading) {
@@ -80,13 +80,13 @@ export default function App() {
           fetchQuestions={fetchQuestions}
           triviaQuestions={triviaQuestions}
           currentCategories={currentCategories}
-          loggedIn={setIsLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
           setUserData={setUserData}
           setDataOpacity={setDataOpacity}
         />
       );
     } else {
-      return <Login loggedIn={setIsLoggedIn} setUserData={setUserData} />;
+      return <Login setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} />;
     }
   };
 

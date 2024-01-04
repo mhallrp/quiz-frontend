@@ -20,7 +20,7 @@ export default function Register(props) {
     e.preventDefault();
     const { data, error, status } = await login(username, password);
     if (status) {
-      props.loggedIn(true);
+      props.setIsLoggedIn([true,'']);
       props.setUserData(data.username + ' ' + data.score);
       return;
     }

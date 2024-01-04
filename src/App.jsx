@@ -85,7 +85,7 @@ export default function App() {
   return (
     <div className="backdrop-blu-sm flex h-screen flex-col bg-main font-sans">
       <NavBar userData={userData} opacity={opacity} />
-      <div className="flex h-full items-center justify-center">
+      <div className="flex h-full items-center justify-center w-full sm:w-auto">
         <div
           className="dataSection "
           style={{

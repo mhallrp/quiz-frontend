@@ -15,7 +15,7 @@ export default function App() {
   const [score, setScore] = useState(0);
   const [opacity, setOpacity] = useState(1);
   const [userData, setUserData] = useState('');
-  const [state, setState] = useState('login');
+  const [state, setState] = useState('loading');
 
   const {
     questions: triviaQuestions,

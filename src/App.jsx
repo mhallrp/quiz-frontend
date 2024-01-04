@@ -19,6 +19,9 @@ export default function App() {
   const [showQuiz, setShowQuiz] = useState(false);
   const [userData, setUserData] = useState('');
   const [dataOpacity, setDataOpacity] = useState(0);
+
+  const [isLoaded, setIsLoaded] = useState(false)
+
   const {
     questions: triviaQuestions,
     fetchQuestions,
@@ -29,6 +32,7 @@ export default function App() {
       try {
           const result = await sessionCheck();
           setIsLoading(false)
+          setIsLoaded(true)
           if (result.status === 200) {
               setUserData(result.data.username + " " + result.data.score);
               setIsLoggedIn([true,'']);
@@ -81,7 +85,7 @@ export default function App() {
           setDataOpacity={setDataOpacity}
         />
       );
-    } else if(isLoading !== true) {
+    } else if(isLoaded !== false){
       return <Login setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} />;
     }
   };

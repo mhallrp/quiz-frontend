@@ -35,7 +35,7 @@ export default function Register(props) {
           </label>
           <input
             placeholder="Type your username..."
-            className="w-full rounded border p-2 md:w-96"
+            className="w-80 rounded border p-2 sm:w-96"
             type="text"
             id="username"
             value={username}

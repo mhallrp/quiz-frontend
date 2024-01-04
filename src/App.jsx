@@ -31,11 +31,11 @@ export default function App() {
           if (result.status === 200) {
               setUserData(result.data.username + " " + result.data.score);
               setIsLoggedIn([true,'']);
-              setIsLoading(false)
+              // setIsLoading(false)
           }
       } catch (error) {
           setIsLoggedIn([false,'']);
-          setIsLoading(false)
+          // setIsLoading(false)
       }
   };
 

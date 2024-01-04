@@ -31,11 +31,11 @@ export default function App() {
           if (result.status === 200) {
               setUserData(result.data.username + " " + result.data.score);
               setIsLoggedIn([true,'']);
-              // setIsLoading(false)
+              setIsLoading(false)
           }
       } catch (error) {
           setIsLoggedIn([false,'']);
-          // setIsLoading(false)
+          setIsLoading(false)
       }
   };
 
@@ -50,7 +50,6 @@ export default function App() {
           setCurrentCategories(triviaCategories);
           setRemainingQuestions(triviaQuestions);
           setScore(0);
-          // setIsLoading(false);
       }
   }, [triviaCategories, triviaQuestions, status]);
 
@@ -68,7 +67,9 @@ export default function App() {
   }, [isLoggedIn[0]]);
 
   const renderContent = () => {
-if (showQuiz) {
+    if (isLoading) {
+      return <div className="spinner"></div>;
+    } else if (showQuiz) {
       return (
         <Quiz
           setScore={setScore}
@@ -99,7 +100,6 @@ if (showQuiz) {
             opacity: contentOpacity,
             transition: 'opacity 300ms ease-in-out',
           }}>
-            <div className="spinner"></div>;
           {renderContent()}
         </div>
       </div>

@@ -51,7 +51,6 @@ export default function App() {
           setRemainingQuestions(triviaQuestions);
           setScore(0);
           checkSessionStatus();
-          
       }
   }, [triviaCategories, triviaQuestions, status]);
 

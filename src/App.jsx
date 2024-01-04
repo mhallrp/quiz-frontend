@@ -31,16 +31,20 @@ export default function App() {
   const checkSessionStatus = async () => {
     try {
       const result = await sessionCheck();
+
       if (result.status === 200) {
-        setUserData(result.data.username + ' ' + result.data.score);
-        setState('quiz');
-        // setIsLoggedIn([true,'']);
+        setContentOpacity(0);
+        setTimeout(() => {
+          setUserData(result.data.username + ' ' + result.data.score);
+          setState('quiz');
+          setContentOpacity(1);
+          setDataOpacity(1);
+        }, 300);
       } else {
         setState('login');
       }
     } catch (error) {
       setState('login');
-      // setIsLoggedIn([false,'']);
     }
   };
 
@@ -89,34 +93,10 @@ export default function App() {
           />
         );
       case 'login':
-        return (
-          <Login setState={setState} setUserData={setUserData} />
-        );
+        return <Login setState={setState} setUserData={setUserData} />;
       default:
         return <div className="spinner"></div>;
     }
-
-    // if (isLoading) {
-    //   return <div className="spinner"></div>;
-    // } else if (showQuiz) {
-    //   return (
-    //     <Quiz
-    //       setScore={setScore}
-    //       score={score}
-    //       setRemainingQuestions={setRemainingQuestions}
-    //       setSelectedCategory={setSelectedCategory}
-    //       remainingQuestions={remainingQuestions}
-    //       fetchQuestions={fetchQuestions}
-    //       triviaQuestions={triviaQuestions}
-    //       currentCategories={currentCategories}
-    //       setIsLoggedIn={setIsLoggedIn}
-    //       setUserData={setUserData}
-    //       setDataOpacity={setDataOpacity}
-    //     />
-    //   );
-    // } else {
-    //   return <Login setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} />;
-    // }
   };
 
   return (

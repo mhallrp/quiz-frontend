@@ -39,9 +39,9 @@ export default function App() {
       }
   };
 
-  useEffect(() => {
-      checkSessionStatus();
-  }, []);
+  // useEffect(() => {
+  //     checkSessionStatus();
+  // }, []);
 
   useEffect(() => {
     setIsLoading(true)
@@ -51,7 +51,7 @@ export default function App() {
           setCurrentCategories(triviaCategories);
           setRemainingQuestions(triviaQuestions);
           setScore(0);
-          setIsLoading(false)
+          checkSessionStatus();
       }
   }, [triviaCategories, triviaQuestions, status]);
 

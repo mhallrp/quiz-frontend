@@ -14,13 +14,13 @@ export default function App() {
   const [selectedCategory, setSelectedCategory] = useState('9');
   const triviaCategories = useQuizCategories();
   const [score, setScore] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
   const [contentOpacity, setContentOpacity] = useState(1);
   const [showQuiz, setShowQuiz] = useState(false);
   const [userData, setUserData] = useState('');
   const [dataOpacity, setDataOpacity] = useState(0);
 
-  const [isLoaded, setIsLoaded] = useState(false)
+  // const [isLoaded, setIsLoaded] = useState(false)
 
   const {
     questions: triviaQuestions,
@@ -31,11 +31,12 @@ export default function App() {
   const checkSessionStatus = async () => {
       try {
           const result = await sessionCheck();
-          setIsLoading(false)
+          
           // setIsLoaded(true)
           if (result.status === 200) {
               setUserData(result.data.username + " " + result.data.score);
               setIsLoggedIn([true,'']);
+              setIsLoading(false)
           }
       } catch (error) {
           setIsLoggedIn([false,'']);
@@ -67,7 +68,7 @@ export default function App() {
   }, [isLoggedIn[0]]);
 
   const renderContent = () => {
-    if (isLoading) {
+    if (!showQuiz) {
       return <div className="spinner"></div>;
     } else if (showQuiz) {
       return (
@@ -85,7 +86,7 @@ export default function App() {
           setDataOpacity={setDataOpacity}
         />
       );
-    } else if(isLoaded !== false){
+    } else {
       return <Login setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} />;
     }
   };

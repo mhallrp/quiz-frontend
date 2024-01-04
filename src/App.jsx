@@ -68,9 +68,7 @@ export default function App() {
   }, [isLoggedIn[0]]);
 
   const renderContent = () => {
-    if (isLoading) {
-      return <div className="spinner"></div>;
-    } else if (showQuiz) {
+if (showQuiz) {
       return (
         <Quiz
           setScore={setScore}
@@ -101,6 +99,7 @@ export default function App() {
             opacity: contentOpacity,
             transition: 'opacity 300ms ease-in-out',
           }}>
+            <div className="spinner"></div>;
           {renderContent()}
         </div>
       </div>

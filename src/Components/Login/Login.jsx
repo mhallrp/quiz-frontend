@@ -60,10 +60,10 @@ export default function Register(props) {
             onClick={
               isRegister
                 ? (e) => {
-                    e.preventDefault;
+                    e.preventDefault
                     password !== confirmPassword
                       ? alert('Password mismatch')
-                      : handleRegister;
+                      : handleRegister();
                   }
                 : handleLogin
             }

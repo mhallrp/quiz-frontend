@@ -65,7 +65,7 @@ export default function Register(props) {
                       ? alert('Password mismatch')
                       : handleRegister();
                   }
-                : handleLogin(e)
+                : () => handleLogin(e)
             }
             className="bg-darkYellow my-4 rounded px-6 py-3"
             type="submit">

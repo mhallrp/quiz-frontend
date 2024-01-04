@@ -32,6 +32,9 @@ export default function App() {
               setUserData(result.data.username + " " + result.data.score);
               setIsLoggedIn([true,'']);
               setIsLoading(false)
+          } else {
+            setIsLoggedIn([false,'']);
+            setIsLoading(false)
           }
       } catch (error) {
           setIsLoggedIn([false,'']);

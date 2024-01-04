@@ -16,8 +16,7 @@ export default function Register(props) {
       : alert('Registration failed:' + data.error);
   };
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+  const handleLogin = async () => {
     const { data, error, status } = await login(username, password);
     if (status) {
       props.setIsLoggedIn([true, '']);
@@ -60,12 +59,15 @@ export default function Register(props) {
             onClick={
               isRegister
                 ? (e) => {
-                    e.preventDefault;
+                    e.preventDefault();
                     password !== confirmPassword
                       ? alert('Password mismatch')
                       : handleRegister();
                   }
-                : (e) => handleLogin(e)
+                : (e) => {
+                    e.preventDefault();
+                    handleLogin();
+                  }
             }
             className="bg-darkYellow my-4 rounded px-6 py-3"
             type="submit">

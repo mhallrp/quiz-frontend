@@ -18,17 +18,14 @@ export default function Register(props) {
 
   const handleLogin = async () => {
     const { data, error, status } = await login(username, password);
-    if (status) {
-      props.changeState("quiz", data.username + ' ' + data.score)
-      // props.setUserData(data.username + ' ' + data.score);
-      return;
-    }
-    alert('Login failed: ' + error);
+    status
+      ? props.changeState('quiz', data.username + ' ' + data.score)
+      : alert('Login failed: ' + error);
   };
 
   return (
     <div>
-      <h2 className="font-oswald w-full text-center text-2xl">
+      <h2 className="w-full text-center font-oswald text-2xl">
         {isRegister ? '🖊️ Create an account' : '🔓 Login to access'}
       </h2>
       <form onSubmit={handleLogin}>
@@ -69,18 +66,18 @@ export default function Register(props) {
                     handleLogin();
                   }
             }
-            className="bg-darkYellow my-4 rounded px-6 py-3"
+            className="my-4 rounded bg-darkYellow px-6 py-3"
             type="submit">
             {isRegister ? 'Create account' : 'Login and Play'}
           </button>
         </div>
       </form>
-      <div className="bg-grey h-px w-full"></div>
+      <div className="h-px w-full bg-grey"></div>
       <p className="pt-4 text-center">
         {isRegister ? 'Already have an account?' : 'Dont have an account?'}{' '}
         <button
           onClick={() => setIsRegister(!isRegister)}
-          className="text-mustard font-bold underline">
+          className="font-bold text-mustard underline">
           {isRegister ? 'Login here' : 'Sign up here'}
         </button>
       </p>

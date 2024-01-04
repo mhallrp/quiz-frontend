@@ -13,10 +13,8 @@ export default function App() {
   const [selectedCategory, setSelectedCategory] = useState('9');
   const triviaCategories = useQuizCategories();
   const [score, setScore] = useState(0);
-  const [contentOpacity, setContentOpacity] = useState(1);
+  const [opacity, setOpacity] = useState(1);
   const [userData, setUserData] = useState('');
-  const [dataOpacity, setDataOpacity] = useState(0);
-
   const [state, setState] = useState('loading');
 
   const {
@@ -29,8 +27,8 @@ export default function App() {
     try {
       const result = await sessionCheck();
       if (result.status === 200) {
-          setUserData(result.data.username + ' ' + result.data.score);
-          setState('quiz');
+        setUserData(result.data.username + ' ' + result.data.score);
+        setState('quiz');
       } else {
         setState('login');
       }
@@ -39,17 +37,14 @@ export default function App() {
     }
   };
 
-
-  const changeState = (view, data) =>{
-    setContentOpacity(0);
-    setDataOpacity(0)
+  const changeState = (view, data) => {
+    setOpacity(0);
     setTimeout(() => {
       setState(view);
       setUserData(data);
-      setContentOpacity(1);
-      setDataOpacity(1);
+      setOpacity(1);
     }, 300);
-  }
+  };
 
   useEffect(() => {
     if (status === 500) {
@@ -78,12 +73,10 @@ export default function App() {
             triviaQuestions={triviaQuestions}
             currentCategories={currentCategories}
             changeState={changeState}
-            setUserData={setUserData}
-            setDataOpacity={setDataOpacity}
           />
         );
       case 'login':
-        return <Login changeState={changeState} setUserData={setUserData} />;
+        return <Login changeState={changeState} />;
       default:
         return <div className="spinner"></div>;
     }
@@ -91,12 +84,12 @@ export default function App() {
 
   return (
     <div className="backdrop-blu-sm flex h-screen flex-col bg-main font-sans">
-      <NavBar userData={userData} dataOpacity={dataOpacity} />
+      <NavBar userData={userData} opacity={opacity} />
       <div className="flex h-full items-center justify-center">
         <div
           className="dataSection "
           style={{
-            opacity: contentOpacity,
+            opacity: opacity,
             transition: 'opacity 300ms ease-in-out',
           }}>
           {renderContent()}
@@ -105,5 +98,3 @@ export default function App() {
     </div>
   );
 }
-
-

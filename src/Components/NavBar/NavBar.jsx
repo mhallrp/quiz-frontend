@@ -8,7 +8,7 @@ const NavBar = (props) => {
       <h1
         className={Styles.user}
         style={{
-          opacity: props.dataOpacity,
+          opacity: props.opacity,
           transition: 'opacity 300ms ease-in-out',
         }}>
         {props.userData}

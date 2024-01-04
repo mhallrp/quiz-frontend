@@ -87,7 +87,7 @@ export default function App() {
       <NavBar userData={userData} opacity={opacity} />
       <div className="flex h-full items-center justify-center ">
         <div
-          className="dataSection w-full sm:w-auto"
+          className="dataSection w-full sm:w-auto "
           style={{
             opacity: opacity,
             transition: 'opacity 300ms ease-in-out',

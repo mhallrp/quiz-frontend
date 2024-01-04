@@ -83,14 +83,14 @@ export default function App() {
             fetchQuestions={fetchQuestions}
             triviaQuestions={triviaQuestions}
             currentCategories={currentCategories}
-            setIsLoggedIn={setIsLoggedIn}
+            setState={setState}
             setUserData={setUserData}
             setDataOpacity={setDataOpacity}
           />
         );
       case 'login':
         return (
-          <Login setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} />
+          <Login setState={setState} setUserData={setUserData} />
         );
       default:
         return <div className="spinner"></div>;

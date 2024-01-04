@@ -9,16 +9,11 @@ export default function Register(props) {
   const { register, login } = useAuth();
   const [isRegister, setIsRegister] = useState(false);
 
-  const handleRegister = async (e) => {
-    e.preventDefault();
-    if (password !== confirmPassword) {
-      alert('Password mismatch');
-    } else {
-      const { data, status } = await register(username, password);
-      status
-        ? alert('Registration successful:' + data)
-        : alert('Registration failed:' + data.error);
-    }
+  const handleRegister = async () => {
+    const { data, status } = await register(username, password);
+    status
+      ? alert('Registration successful:' + data)
+      : alert('Registration failed:' + data.error);
   };
 
   const handleLogin = async (e) => {
@@ -62,7 +57,16 @@ export default function Register(props) {
             />
           )}
           <button
-            onClick={isRegister ? handleRegister : handleLogin}
+            onClick={
+              isRegister
+                ? (e) => {
+                    e.preventDefault;
+                    password !== confirmPassword
+                      ? alert('Password mismatch')
+                      : handleRegister;
+                  }
+                : handleLogin
+            }
             className="bg-darkYellow my-4 rounded px-6 py-3"
             type="submit">
             {isRegister ? 'Create account' : 'Login and Play'}

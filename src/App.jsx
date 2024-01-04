@@ -14,13 +14,11 @@ export default function App() {
   const [selectedCategory, setSelectedCategory] = useState('9');
   const triviaCategories = useQuizCategories();
   const [score, setScore] = useState(0);
-  // const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [contentOpacity, setContentOpacity] = useState(1);
   const [showQuiz, setShowQuiz] = useState(false);
   const [userData, setUserData] = useState('');
   const [dataOpacity, setDataOpacity] = useState(0);
-
-  // const [isLoaded, setIsLoaded] = useState(false)
 
   const {
     questions: triviaQuestions,
@@ -29,46 +27,58 @@ export default function App() {
   } = useTriviaQuestions(selectedCategory);
 
   const checkSessionStatus = async () => {
-      try {
-          const result = await sessionCheck();
-          
-          // setIsLoaded(true)
-          if (result.status === 200) {
-              setUserData(result.data.username + " " + result.data.score);
-              setIsLoggedIn([true,'']);
-              setIsLoading(false)
+    try {
+      const result = await sessionCheck();
+      setIsLoading(false);
+      if (result.status === 200) {
+        setContentOpacity(0);
+        setTimeout(() => {
+          if (isLoggedIn[0]) {
+            setShowQuiz(true);
+            setContentOpacity(1);
+            setDataOpacity(1);
+          } else {
+            setShowQuiz(false);
+            setContentOpacity(1);
           }
-      } catch (error) {
-          setIsLoggedIn([false,'']);
+        }, 300);
+
+        // setUserData(result.data.username + " " + result.data.score);
+        // setIsLoggedIn([true,'']);
       }
+    } catch (error) {
+      setIsLoggedIn([false, '']);
+    }
   };
 
   useEffect(() => {
-      if (status === 500) {
-          alert("Whoops, looks like there's a network error :/ \n Try refreshing in a moment");
-      } else if (triviaCategories && triviaQuestions.length > 0) {
-          setCurrentCategories(triviaCategories);
-          setRemainingQuestions(triviaQuestions);
-          setScore(0);
-          checkSessionStatus();
-      }
+    if (status === 500) {
+      alert(
+        "Whoops, looks like there's a network error :/ \n Try refreshing in a moment",
+      );
+    } else if (triviaCategories && triviaQuestions.length > 0) {
+      setCurrentCategories(triviaCategories);
+      setRemainingQuestions(triviaQuestions);
+      setScore(0);
+      checkSessionStatus();
+    }
   }, [triviaCategories, triviaQuestions, status]);
 
-  useEffect(() => {
-      setContentOpacity(0);
-      setTimeout(() => {
-      if (isLoggedIn[0]) {
-          setShowQuiz(true);
-          setContentOpacity(1);
-          setDataOpacity(1)
-      } else {
-          setShowQuiz(false);
-          setContentOpacity(1);
-      }}, 300);
-  }, [isLoggedIn[0]]);
+  // useEffect(() => {
+  //     setContentOpacity(0);
+  //     setTimeout(() => {
+  //     if (isLoggedIn[0]) {
+  //         setShowQuiz(true);
+  //         setContentOpacity(1);
+  //         setDataOpacity(1)
+  //     } else {
+  //         setShowQuiz(false);
+  //         setContentOpacity(1);
+  //     }}, 300);
+  // }, [isLoggedIn[0]]);
 
   const renderContent = () => {
-    if (!showQuiz) {
+    if (isLoading) {
       return <div className="spinner"></div>;
     } else if (showQuiz) {
       return (
@@ -86,7 +96,7 @@ export default function App() {
           setDataOpacity={setDataOpacity}
         />
       );
-    } else {
+    } else if (isLoaded !== false) {
       return <Login setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} />;
     }
   };

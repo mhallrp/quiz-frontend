@@ -8,7 +8,7 @@
     box-shadow: 0px 5px 80px 0px rgba(0, 0, 0, 0.10);
     font-family: 'Roboto', sans-serif;
     position: relative;
-    z-index: 1;
+    z-index: 10;
 }
 
 .navTitle {

@@ -1,59 +1,83 @@
 import { useState } from 'react';
 import useAuth from '../../Model/useAuth';
+import PasswordInput from './PasswordInput';
 
-export default function Register (props) {
+export default function Register(props) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const { register, login } = useAuth();
+  const [isRegister, setIsRegister] = useState(false);
 
-    const [regUsername, setRegUsername] = useState('');
-    const [regPassword, setRegPassword] = useState('');
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const { register, login } = useAuth();
+  const handleRegister = async (event) => {
+    event.preventDefault();
+    if (password !== confirmPassword) {
+      alert('Password mismatch');
+    } else {
+      const { data, status } = await register(username, password);
+      status
+        ? alert('Registration successful:' + data)
+        : alert('Registration failed:' + data.error);
+    }
+  };
 
-    const handleRegister = async (event) => {
-        event.preventDefault();
-        const { data, status } = await register(regUsername, regPassword);
-        status ? console.log('Registration successful:', data) : console.error('Registration failed:', data.error);
-    };
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    const { data, error, status } = await login(username, password);
+    if (status) {
+      props.loggedIn(true);
+      props.setUserData(data.username + ' ' + data.score);
+      return;
+    }
+    alert('Login failed: ' + error);
+  };
 
-    const handleLogin = async (event) => {
-        event.preventDefault();
-        const { data, error, status } = await login(username, password);
-        if (status){ 
-            props.loggedIn(true)
-            props.setUserData(data.username + ' ' + data.score)
-            return
-        }
-         alert('Login failed: ' + error);
-    };
-    
-    return (
-            <div>
-                <h2>Login</h2>
-                <form onSubmit={handleLogin}>
-                    <div>
-                        <label htmlFor="username">Username:</label>
-                        <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
-                    </div>
-                    <div>
-                        <label htmlFor="password">Password:</label>
-                        <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                    </div>
-                    <button type="submit">Login</button>
-                </form>
-                <p>or...</p>
-                <h2>Register</h2>
-                <form onSubmit={handleRegister}>
-                    <div>
-                        <label htmlFor="regUsername">Username:</label>
-                        <input type="text" id="regUsername" value={regUsername} onChange={(e) => setRegUsername(e.target.value)}/>
-                    </div>
-                    <div>
-                        <label htmlFor="regPassword">Password:</label>
-                        <input type="password" id="regPassword" value={regPassword} onChange={(e) => setRegPassword(e.target.value)}/>
-                    </div>
-                    <button type="submit">Register</button>
-                </form>
-            </div>
-    );
-};
-
+  return (
+    <div>
+      <h2 className="font-oswald w-full text-center text-2xl">
+        {isRegister ? '🖊️ Create an account' : '🔓 Login to access'}
+      </h2>
+      <form onSubmit={handleLogin}>
+        <div className="flex flex-col items-center">
+          <label className="w-full py-4" htmlFor="username">
+            Username:
+          </label>
+          <input
+            placeholder="Type your username..."
+            className="w-full rounded border p-2 md:w-96"
+            type="text"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <label className="w-full py-4" htmlFor="password">
+            Password:
+          </label>
+          <PasswordInput password={password} setPassword={setPassword} />
+          {isRegister && (
+            <PasswordInput
+              confirm={true}
+              confirmPassword={confirmPassword}
+              setConfirmPassword={setConfirmPassword}
+            />
+          )}
+          <button
+            onClick={isRegister ? handleRegister : handleLogin}
+            className="bg-darkYellow my-4 rounded px-6 py-3"
+            type="submit">
+            {isRegister ? 'Create account' : 'Login and Play'}
+          </button>
+        </div>
+      </form>
+      <div className="bg-grey h-px w-full"></div>
+      <p className="pt-4 text-center">
+        {isRegister ? 'Already have an account?' : 'Dont have an account?'}{' '}
+        <button
+          onClick={() => setIsRegister(!isRegister)}
+          className="text-mustard font-bold underline">
+          {isRegister ? 'Login here' : 'Sign up here'}
+        </button>
+      </p>
+    </div>
+  );
+}

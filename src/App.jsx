@@ -50,7 +50,7 @@ export default function App() {
           setCurrentCategories(triviaCategories);
           setRemainingQuestions(triviaQuestions);
           setScore(0);
-          setIsLoading(false);
+          // setIsLoading(false);
       }
   }, [triviaCategories, triviaQuestions, status]);
 

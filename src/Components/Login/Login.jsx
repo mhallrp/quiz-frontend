@@ -18,9 +18,9 @@ export default function Register(props) {
 
   const handleLogin = async () => {
     const { data, error, status } = await login(username, password);
-
-      props.changeState('quiz', data.username + ' ' + data.score)
-
+    status
+      ? props.changeState('quiz', data.username + ' ' + data.score)
+      : alert('Login failed: ' + error);
   };
 
   return (

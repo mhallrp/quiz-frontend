@@ -23,19 +23,19 @@ export default function App() {
     status,
   } = useTriviaQuestions(selectedCategory);
 
-  // const checkSessionStatus = async () => {
-  //   try {
-  //     const result = await sessionCheck();
-  //     if (result.status === 200) {
-  //       setUserData(result.data.username + ' ' + result.data.score);
-  //       setState('quiz');
-  //     } else {
-  //       setState('login');
-  //     }
-  //   } catch (error) {
-  //     setState('login');
-  //   }
-  // };
+  const checkSessionStatus = async () => {
+    try {
+      const result = await sessionCheck();
+      if (result.status === 200) {
+        setUserData(result.data.username + ' ' + result.data.score);
+        setState('quiz');
+      } else {
+        setState('login');
+      }
+    } catch (error) {
+      setState('login');
+    }
+  };
 
   const changeState = (view, data) => {
     setOpacity(0);
@@ -46,18 +46,18 @@ export default function App() {
     }, 300);
   };
 
-  // useEffect(() => {
-  //   if (status === 500) {
-  //     alert(
-  //       "Whoops, looks like there's a network error :/ \n Try refreshing in a moment",
-  //     );
-  //   } else if (triviaCategories && triviaQuestions.length > 0) {
-  //     setCurrentCategories(triviaCategories);
-  //     setRemainingQuestions(triviaQuestions);
-  //     setScore(0);
-  //     checkSessionStatus();
-  //   }
-  // }, [triviaCategories, triviaQuestions, status]);
+  useEffect(() => {
+    if (status === 500) {
+      alert(
+        "Whoops, looks like there's a network error :/ \n Try refreshing in a moment",
+      );
+    } else if (triviaCategories && triviaQuestions.length > 0) {
+      setCurrentCategories(triviaCategories);
+      setRemainingQuestions(triviaQuestions);
+      setScore(0);
+      checkSessionStatus();
+    }
+  }, [triviaCategories, triviaQuestions, status]);
 
   const renderContent = () => {
     switch (state) {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './index.css';
 import Login from './Components/Login';
 import Quiz from './Components/Quiz';
+
 import useAuth from './Model/useAuth';
 import { useTriviaQuestions, useQuizCategories } from './Model/CustomHooks';
 import NavBar from './Components/NavBar';
@@ -77,7 +78,7 @@ export default function App() {
         return <Login changeState={changeState} />;
       default:
         return (
-          <div className="spinner border-black10 border-t-spinnerYellow h-12 w-12 animate-spin rounded-full border-4 border-t-4 border-solid"></div>
+          <div className=" border-black10 border-t-spinnerYellow h-12 w-12 animate-spin rounded-full border-4 border-t-4 border-solid"></div>
         );
     }
   };

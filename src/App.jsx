@@ -87,7 +87,7 @@ export default function App() {
     <div className="backdrop-blu-sm flex min-h-screen flex-col items-center bg-main font-sans">
       <NavBar userData={userData} opacity={opacity} />
       <div
-        className="mx-2 mt-8 flex flex-col items-center justify-center sm:mx-20"
+        className="mx-2 mt-4 flex flex-col items-center justify-center sm:mx-20"
         style={{
           opacity: opacity,
           transition: 'opacity 300ms ease-in-out',

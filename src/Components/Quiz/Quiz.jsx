@@ -94,18 +94,6 @@ export default function Quiz(props) {
                 ? props.triviaQuestions.length
                 : 0}
             </p>
-            {props.currentCategories && (
-              <select
-                onChange={(e) => props.setSelectedCategory(e.target.value)}>
-                {props.currentCategories.map((e, index) => {
-                  return (
-                    <option key={index} value={e.id}>
-                      {e.name}
-                    </option>
-                  );
-                })}
-              </select>
-            )}
           </div>
         </>
       )}

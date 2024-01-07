@@ -1,5 +1,22 @@
+
 const Categories = () => {
-  return <div className="mx-2 mb-2.5 h-16 w-full rounded-xl bg-white sm:mx-20"></div>;
+
+  return (
+    <div className="mx-2 mb-2.5 py-6 flex items-center w-full rounded-xl bg-white sm:mx-20">
+      <p className="font-oswald text-2xl">Quiz Topic</p>
+      {props.currentCategories && (
+        <select className="my-6" onChange={(e) => props.setSelectedCategory(e.target.value)}>
+          {props.currentCategories.map((e, index) => {
+            return (
+              <option key={index} value={e.id}>
+                {e.name}
+              </option>
+            );
+          })}
+        </select>
+      )}
+    </div>
+  );
 };
 
 export default Categories;

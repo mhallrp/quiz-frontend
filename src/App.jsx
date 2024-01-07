@@ -15,7 +15,10 @@ export default function App() {
   const triviaCategories = useQuizCategories();
   const [score, setScore] = useState(0);
   const [opacity, setOpacity] = useState(1);
-  const [userData, setUserData] = useState({ name: undefined, score: undefined });
+  const [userData, setUserData] = useState({
+    name: undefined,
+    score: undefined,
+  });
   const [state, setState] = useState('loading');
 
   const {
@@ -50,7 +53,7 @@ export default function App() {
   const handleLogout = async () => {
     await logout();
     fetchQuestions();
-    changeState('login', {name:undefined,score:undefined});
+    changeState('login', { name: undefined, score: undefined });
   };
 
   useEffect(() => {
@@ -72,11 +75,9 @@ export default function App() {
             setScore={setScore}
             score={score}
             setRemainingQuestions={setRemainingQuestions}
-            setSelectedCategory={setSelectedCategory}
             remainingQuestions={remainingQuestions}
             fetchQuestions={fetchQuestions}
             triviaQuestions={triviaQuestions}
-            currentCategories={currentCategories}
           />
         );
       case 'login':
@@ -101,7 +102,13 @@ export default function App() {
           opacity: opacity,
           transition: 'opacity 300ms ease-in-out',
         }}>
-        {state === 'quiz' && <Categories opacity />}
+        {state === 'quiz' && (
+          <Categories
+            opacity={opacity}
+            setSelectedCategory={setSelectedCategory}
+            currentCategories={currentCategories}
+          />
+        )}
         <div className="rounded-25px border-l-greylight  flex w-auto flex-col items-center justify-center overflow-auto border-b bg-white p-6">
           {renderContent()}
         </div>

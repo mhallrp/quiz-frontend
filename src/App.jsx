@@ -89,7 +89,7 @@ export default function App() {
       <div className="mt-8 flex flex-col items-center justify-center">
         {state === 'quiz' && <Categories />}
         <div
-          className="rounded-25px border-l-greylight mx-2 flex w-auto flex-col items-center justify-center overflow-auto border-b bg-white p-6 sm:mx-20"
+          className="rounded-25px border-l-greylight flex w-auto flex-col items-center justify-center overflow-auto border-b bg-white p-6 "
           style={{
             opacity: opacity,
             transition: 'opacity 300ms ease-in-out',

@@ -17,67 +17,72 @@ export default function App() {
   const [userData, setUserData] = useState('');
   const [state, setState] = useState('loading');
 
-  const {
-    questions: triviaQuestions,
-    fetchQuestions,
-    status,
-  } = useTriviaQuestions(selectedCategory);
+  // const {
+  //   questions: triviaQuestions,
+  //   fetchQuestions,
+  //   status,
+  // } = useTriviaQuestions(selectedCategory);
 
-  const checkSessionStatus = async () => {
-    try {
-      const result = await sessionCheck();
-      if (result.status === 200) {
-        setUserData(result.data.username + ' ' + result.data.score);
-        setState('quiz');
-      } else {
-        setState('login');
-      }
-    } catch (error) {
-      setState('login');
-    }
-  };
+  // const checkSessionStatus = async () => {
+  //   try {
+  //     const result = await sessionCheck();
+  //     if (result.status === 200) {
+  //       setUserData(result.data.username + ' ' + result.data.score);
+  //       setState('quiz');
+  //     } else {
+  //       setState('login');
+  //     }
+  //   } catch (error) {
+  //     setState('login');
+  //   }
+  // };
 
-  const changeState = (view, data) => {
-    setOpacity(0);
-    setTimeout(() => {
-      setState(view);
-      setUserData(data);
-      setOpacity(1);
-    }, 300);
-  };
+  // const changeState = (view, data) => {
+  //   setOpacity(0);
+  //   setTimeout(() => {
+  //     setState(view);
+  //     setUserData(data);
+  //     setOpacity(1);
+  //   }, 300);
+  // };
 
-  useEffect(() => {
-    if (status === 500) {
-      alert('This API inlcudes rate limiting:/ \n Try refreshing in a moment');
-    } else if (triviaCategories && triviaQuestions.length > 0) {
-      setCurrentCategories(triviaCategories);
-      setRemainingQuestions(triviaQuestions);
-      setScore(0);
-      checkSessionStatus();
-    }
-  }, [triviaCategories, triviaQuestions, status]);
+  // useEffect(() => {
+  //   if (status === 500) {
+  //     alert('This API inlcudes rate limiting:/ \n Try refreshing in a moment');
+  //   } else if (triviaCategories && triviaQuestions.length > 0) {
+  //     setCurrentCategories(triviaCategories);
+  //     setRemainingQuestions(triviaQuestions);
+  //     setScore(0);
+  //     checkSessionStatus();
+  //   }
+  // }, [triviaCategories, triviaQuestions, status]);
 
   const renderContent = () => {
     switch (state) {
       case 'quiz':
         return (
           <Quiz
-            setScore={setScore}
-            score={score}
-            setRemainingQuestions={setRemainingQuestions}
-            setSelectedCategory={setSelectedCategory}
-            remainingQuestions={remainingQuestions}
-            fetchQuestions={fetchQuestions}
-            triviaQuestions={triviaQuestions}
-            currentCategories={currentCategories}
-            changeState={changeState}
+            // setScore={setScore}
+            // score={score}
+            // setRemainingQuestions={setRemainingQuestions}
+            // setSelectedCategory={setSelectedCategory}
+            // remainingQuestions={remainingQuestions}
+            // fetchQuestions={fetchQuestions}
+            // triviaQuestions={triviaQuestions}
+            // currentCategories={currentCategories}
+            // changeState={changeState}
           />
         );
       case 'login':
-        return <Login changeState={changeState} />;
+        return <Login 
+        // changeState={changeState} 
+        />;
       default:
         return (
-          <div className="spinner border-black10 border-t-spinnerYellow h-12 w-12 animate-spin rounded-full border-4 border-t-4 border-solid"></div>
+<Login 
+        // changeState={changeState} 
+        />
+          // <div className="spinner border-black10 border-t-spinnerYellow h-12 w-12 animate-spin rounded-full border-4 border-t-4 border-solid"></div>
         );
     }
   };
@@ -85,8 +90,7 @@ export default function App() {
   return (
     <div className="backdrop-blu-sm flex min-h-screen flex-col items-center bg-main font-sans">
       <NavBar userData={userData} opacity={opacity} />
-      {/* why is the below appearing above navbar when vertically squeezing the browser? */}
-      <div className="flex h-full items-center justify-center ">
+      {/* <div className="flex h-full"> */}
         <div
           className="backdrop-blur-custom shadow-maindata rounded-25px mt-14 flex w-full flex-col overflow-auto bg-white p-6 sm:w-auto "
           style={{
@@ -95,7 +99,7 @@ export default function App() {
           }}>
           {renderContent()}
         </div>
-      </div>
+      {/* </div> */}
     </div>
   );
 }

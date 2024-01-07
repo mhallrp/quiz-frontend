@@ -1,20 +1,12 @@
 import { useState, useEffect } from 'react';
 import AnswerCard from '../AnswerCard';
 import { ShuffleArray, decodeHtmlEntities } from '../../Model/utils';
-import useAuth from '../../Model/useAuth';
 
 export default function Quiz(props) {
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [answers, setAnswers] = useState([]);
   const [selected, setSelected] = useState();
   const [correct, setCorrect] = useState();
-  const { logout } = useAuth();
-
-  const handleLogout = async () => {
-    await logout();
-    props.fetchQuestions();
-    props.changeState('login', undefined);
-  };
 
   useEffect(() => {
     if (props.remainingQuestions.length > 0) {
@@ -114,7 +106,6 @@ export default function Quiz(props) {
                 })}
               </select>
             )}
-            <button onClick={() => handleLogout()}>Logout</button>
           </div>
         </>
       )}

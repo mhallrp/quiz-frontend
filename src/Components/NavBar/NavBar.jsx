@@ -1,4 +1,5 @@
 const NavBar = (props) => {
+  
   return (
     <div className="border-greylight flex min-h-16 w-full flex-row items-center border-b bg-white">
       <div className="mx-2 flex w-full sm:mx-20">
@@ -16,7 +17,7 @@ const NavBar = (props) => {
         <div className="rounded bg-darkYellow text-black">
           {props.userData.score}
         </div>
-        <button className="text-mustard underline">Logout</button>
+        <button onClick={() => props.handleLogout()} className="text-mustard underline">Logout</button>
       </div>
     </div>
   );

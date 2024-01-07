@@ -8,14 +8,14 @@ import { useTriviaQuestions, useQuizCategories } from './Model/CustomHooks';
 import NavBar from './Components/NavBar';
 
 export default function App() {
-  const { sessionCheck } = useAuth();
+  const { sessionCheck, logout } = useAuth();
   const [currentCategories, setCurrentCategories] = useState(null);
   const [remainingQuestions, setRemainingQuestions] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('9');
   const triviaCategories = useQuizCategories();
   const [score, setScore] = useState(0);
   const [opacity, setOpacity] = useState(1);
-  const [userData, setUserData] = useState({name:'',score:0});
+  const [userData, setUserData] = useState({ name: '', score: 0 });
   const [state, setState] = useState('loading');
 
   const {
@@ -28,7 +28,7 @@ export default function App() {
     try {
       const result = await sessionCheck();
       if (result.status === 200) {
-        setUserData({name:result.data.username, score:result.data.score});
+        setUserData({ name: result.data.username, score: result.data.score });
         setState('quiz');
       } else {
         setState('login');
@@ -45,6 +45,12 @@ export default function App() {
       setUserData(data);
       setOpacity(1);
     }, 300);
+  };
+
+  const handleLogout = async () => {
+    await logout();
+    fetchQuestions();
+    changeState('login', undefined);
   };
 
   useEffect(() => {
@@ -71,11 +77,10 @@ export default function App() {
             fetchQuestions={fetchQuestions}
             triviaQuestions={triviaQuestions}
             currentCategories={currentCategories}
-            changeState={changeState}
           />
         );
       case 'login':
-        return <Login changeState={changeState} />;
+        return <Login changeState={changeState} handleLogout={handleLogout} />;
       default:
         return (
           <div className="spinner border-black10 border-t-spinnerYellow h-12 w-12 animate-spin rounded-full border-4 border-t-4 border-solid"></div>

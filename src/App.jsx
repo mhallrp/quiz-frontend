@@ -86,7 +86,7 @@ export default function App() {
     <div className="backdrop-blu-sm flex min-h-screen flex-col items-center bg-main font-sans">
       <NavBar userData={userData} opacity={opacity} />
       <div
-        className="backdrop-blur-custom shadow-maindata rounded-25px mx-2 mt-14 flex w-full flex-col items-center justify-center overflow-auto bg-white p-6 sm:w-fit"
+        className="backdrop-blur-custom shadow-maindata rounded-25px mx-2 mt-14 flex flex-col items-center justify-center overflow-auto bg-white p-6 w-auto"
         style={{
           opacity: opacity,
           transition: 'opacity 300ms ease-in-out',

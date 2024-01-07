@@ -86,20 +86,17 @@ export default function App() {
   return (
     <div className="backdrop-blu-sm flex min-h-screen flex-col items-center bg-main font-sans">
       <NavBar userData={userData} opacity={opacity} />
-      {/* <div className='flex flex-col mt-8 justify-center items-center'> */}
-        {/* {state === 'quiz' && <Categories />} */}
+      <div className='flex flex-col mt-8 justify-center items-center'>
+        {state === 'quiz' && <Categories />}
         <div
           className="rounded-25px border-l-greylight mx-2 flex w-auto flex-col items-center justify-center overflow-auto border-b bg-white p-6 sm:mx-20"
           style={{
             opacity: opacity,
             transition: 'opacity 300ms ease-in-out',
-          }}
-          >
-          <Login changeState={changeState} />
-            
-          {/* {renderContent()} */}
+          }}>
+          {renderContent()}
         </div>
-      {/* </div> */}
+      </div>
     </div>
   );
 }

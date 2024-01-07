@@ -8,7 +8,6 @@ const PasswordInput = (props) => {
     e.preventDefault();
     setShowPassword(!showPassword);
   };
-
   return (
     <div
       className={`relative flex w-full items-center md:w-96 ${

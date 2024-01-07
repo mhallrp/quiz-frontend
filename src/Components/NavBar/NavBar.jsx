@@ -3,7 +3,7 @@
 const NavBar = (props) => {
   return (
     <div className="flex items-center w-full min-h-16 flex-row shadow-navbar bg-white">
-      <div className="mx-2 sm:mx-20">
+      <div className="flex mx-2 sm:mx-20">
       <h1 className="text-greydark mr-auto font-oswald text-2xl leading-none">
         Quik Quiz 💡
       </h1>

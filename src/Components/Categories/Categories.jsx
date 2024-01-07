@@ -3,7 +3,7 @@ const Categories = () => {
 
 <p className="text-2xl font-oswald">Quiz Topic</p>
 {props.currentCategories && (
-        <select className="h-8" onChange={(e) => props.setSelectedCategory(e.target.value)}>
+        <select className="h-8 w-full" onChange={(e) => props.setSelectedCategory(e.target.value)}>
           {props.currentCategories.map((e, index) => {
             return (
               <option key={index} value={e.id}>

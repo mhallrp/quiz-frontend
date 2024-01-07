@@ -18,6 +18,7 @@ module.exports = {
         greylight:"#EAEAEA",
         greyanswer:"#F1F1F1",
         greyanswerb:"#989898",
+        greytext:"#5A5A5A",
         selected:"#FFF500",
         correct:"#E4FFA9",
         mustard:"#BB8700",

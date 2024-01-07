@@ -7,9 +7,9 @@ export default function SkillCard(props) {
           : props.selected
             ? 'bg-selected'
             : 'bg-greyanswer'
-      } border-greyanswerb m-2 flex h-64 w-72 content-center justify-center rounded-xl border-2 p-16`}
+      } border-greyanswerb text-greytext m-2 flex h-36 w-52 items-center justify-center rounded-xl border-2 p-16`}
       onClick={props.onClick}>
-      <p>{props.text}</p>
+      <p className="">{props.text}</p>
     </div>
   );
 }

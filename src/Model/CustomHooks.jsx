@@ -38,4 +38,5 @@ export const useQuizCategories = () => {
     initializeCategories();
   }, []);
   return categories;
+  
 };

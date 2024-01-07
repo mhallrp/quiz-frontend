@@ -24,7 +24,7 @@ export default function Register(props) {
   };
 
   return (
-    <div className='mt-14'>
+    <div>
       <h2 className="w-full text-center font-oswald text-2xl">
         {isRegister ? '🖊️ Create an account' : '🔓 Login to access'}
       </h2>

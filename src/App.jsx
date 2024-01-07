@@ -80,7 +80,7 @@ export default function App() {
           />
         );
       case 'login':
-        return <Login changeState={changeState} handleLogout={handleLogout} />;
+        return <Login changeState={changeState}/>;
       default:
         return (
           <div className="spinner border-black10 border-t-spinnerYellow h-12 w-12 animate-spin rounded-full border-4 border-t-4 border-solid"></div>
@@ -90,7 +90,7 @@ export default function App() {
 
   return (
     <div className="backdrop-blu-sm flex min-h-screen flex-col items-center bg-main font-sans">
-      <NavBar userData={userData} opacity={opacity} />
+      <NavBar userData={userData} opacity={opacity} handleLogout={handleLogout}/>
       <div
         className="mx-2 mt-8 flex flex-col items-center justify-center sm:mx-20"
         style={{

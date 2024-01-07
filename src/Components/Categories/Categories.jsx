@@ -1,5 +1,5 @@
 
-const Categories = () => {
+const Categories = (props) => {
 
   return (
     <div className="mx-2 mb-2.5 py-6 flex items-center w-full rounded-xl bg-white sm:mx-20">

@@ -95,9 +95,9 @@ export default function App() {
           //   transition: 'opacity 300ms ease-in-out',
           // }}>
           >
-<Login changeState={changeState} />;
+{/* <Login changeState={changeState} />; */}
             
-          {/* {renderContent()} */}
+          {renderContent()}
         </div>
       {/* </div> */}
     </div>

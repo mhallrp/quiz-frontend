@@ -1,9 +1,5 @@
 const Categories = () => {
-  return (
-    <div className="rounded-25px border-l-greylight mx-2 flex w-full flex-col items-center justify-center overflow-auto border-b bg-white p-6 sm:mx-20">
-      CATEGORIES
-    </div>
-  );
+  return <div className="mx-2 mb-6 h-16 w-full rounded-xl bg-white sm:mx-20"></div>;
 };
 
 export default Categories;

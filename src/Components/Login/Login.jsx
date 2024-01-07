@@ -45,27 +45,27 @@ export default function Register(props) {
             Password:
           </label>
           <PasswordInput password={password} setPassword={setPassword} />
-          {isRegister && (
+          {/* {isRegister && (
             <PasswordInput
               confirm={true}
               confirmPassword={confirmPassword}
               setConfirmPassword={setConfirmPassword}
             />
-          )}
+          )} */}
           <button
-            onClick={
-              isRegister
-                ? (e) => {
-                    e.preventDefault();
-                    password !== confirmPassword
-                      ? alert('Password mismatch')
-                      : handleRegister();
-                  }
-                : (e) => {
-                    e.preventDefault();
-                    handleLogin();
-                  }
-            }
+            // onClick={
+            //   isRegister
+            //     ? (e) => {
+            //         e.preventDefault();
+            //         password !== confirmPassword
+            //           ? alert('Password mismatch')
+            //           : handleRegister();
+            //       }
+            //     : (e) => {
+            //         e.preventDefault();
+            //         handleLogin();
+            //       }
+            // }
             className="my-4 rounded bg-darkYellow px-6 py-3"
             type="submit">
             {isRegister ? 'Create account' : 'Login and Play'}
@@ -73,14 +73,14 @@ export default function Register(props) {
         </div>
       </form>
       <div className="h-px w-full bg-greylight"></div>
-      <p className="pt-4 text-center">
+      {/* <p className="pt-4 text-center">
         {isRegister ? 'Already have an account?' : 'Dont have an account?'}{' '}
         <button
           onClick={() => setIsRegister(!isRegister)}
           className="font-bold text-mustard underline">
           {isRegister ? 'Login here' : 'Sign up here'}
         </button>
-      </p>
+      </p> */}
     </div>
   );
 }

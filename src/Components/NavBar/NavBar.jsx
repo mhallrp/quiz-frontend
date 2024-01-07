@@ -8,7 +8,7 @@ const NavBar = (props) => {
         Quik Quiz 💡
       </h1>
       <h1
-        className="ml-auto text-2xl"
+        className="ml-auto text-base text-greytext"
         style={{
           opacity: props.opacity,
           transition: 'opacity 300ms ease-in-out',

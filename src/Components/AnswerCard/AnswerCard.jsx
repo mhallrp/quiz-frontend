@@ -1,4 +1,4 @@
-export default function SkillCard(props) {
+const SkillCard = (props) => {
   const getBackgroundClass = () => {
     if (props.correct) {
       return 'bg-correct';
@@ -19,3 +19,5 @@ export default function SkillCard(props) {
     </div>
   );
 }
+
+export default SkillCard

@@ -68,7 +68,7 @@ export default function Quiz(props) {
               : 0}
             : {currentQuestion && decodeHtmlEntities(currentQuestion.question)}
           </h2>
-          <div className="mt-5 flex flex-wrap content-center">
+          <div className="mt-5 flex flex-wrap content-center justify-center">
             {answers.map((e, index) => (
               <AnswerCard
                 selected={selected == index ? true : false}

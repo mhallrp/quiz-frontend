@@ -5,22 +5,26 @@ const NavBar = (props) => {
         <h1 className="text-greydark mr-auto font-oswald text-2xl leading-none">
           Quik Quiz 💡
         </h1>
-        <h1
-          className="text-greytext ml-auto text-base"
-          style={{
-            opacity: props.opacity,
-            transition: 'opacity 300ms ease-in-out',
-          }}>
-          {props.userData.name}
-        </h1>
-        <div className="rounded bg-darkYellow px-2 py-1 mx-3 text-black">
-          {props.userData.score}
-        </div>
-        <button
-          onClick={() => props.handleLogout()}
-          className="text-mustard underline">
-          Logout
-        </button>
+        {props.userData.name && (
+          <div className="ml-auto">
+            <h1
+              className="text-greytext text-base"
+              style={{
+                opacity: props.opacity,
+                transition: 'opacity 300ms ease-in-out',
+              }}>
+              {props.userData.name}
+            </h1>
+            <div className="mx-3 rounded bg-darkYellow px-2 py-1 text-black">
+              {props.userData.score}
+            </div>
+            <button
+              onClick={() => props.handleLogout()}
+              className="text-mustard underline">
+              Logout
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

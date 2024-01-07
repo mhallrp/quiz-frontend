@@ -1,9 +1,5 @@
-const Categories = () =>{
-    return (
-        <div className="w-full h-16 rounded-xl bg-white">
+const Categories = () => {
+  return <div className="my-6 h-16 w-full rounded-xl bg-white"></div>;
+};
 
-        </div>
-    )
-}
-
-export default Categories
+export default Categories;

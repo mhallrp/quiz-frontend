@@ -13,7 +13,7 @@ const SkillCard = (props) => {
 
   return (
     <div
-      className="border-greyanswerb text-center text-greytext m-2 flex h-36 w-52 items-center justify-center rounded-xl border-2 p-16"
+      className={`${backgroundClass} border-greyanswerb text-center text-greytext m-2 flex h-36 w-52 items-center justify-center rounded-xl border-2 p-16`}
       onClick={props.onClick}>
       <p>{props.text}</p>
     </div>

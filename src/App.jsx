@@ -85,16 +85,14 @@ export default function App() {
   return (
     <div className="backdrop-blu-sm flex min-h-screen flex-col items-center bg-main font-sans">
       <NavBar userData={userData} opacity={opacity} />
-      {/* <div className="flex h-full"> */}
-        <div
-          className="backdrop-blur-custom shadow-maindata rounded-25px mt-14 flex w-full flex-col overflow-auto bg-white p-6 sm:w-auto "
-          style={{
-            opacity: opacity,
-            transition: 'opacity 300ms ease-in-out',
-          }}>
-          {renderContent()}
-        </div>
-      {/* </div> */}
+      <div
+        className="backdrop-blur-custom shadow-maindata rounded-25px mt-14 flex items-center justify-center w-full flex-col overflow-auto bg-white p-6 sm:w-auto "
+        style={{
+          opacity: opacity,
+          transition: 'opacity 300ms ease-in-out',
+        }}>
+        {renderContent()}
+      </div>
     </div>
   );
 }

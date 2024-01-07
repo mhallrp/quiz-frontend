@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './index.css';
 import Login from './Components/Login';
 import Quiz from './Components/Quiz';
-import Categories from './Components/Categories'
+import Categories from './Components/Categories';
 import useAuth from './Model/useAuth';
 import { useTriviaQuestions, useQuizCategories } from './Model/CustomHooks';
 import NavBar from './Components/NavBar';
@@ -86,14 +86,16 @@ export default function App() {
   return (
     <div className="backdrop-blu-sm flex min-h-screen flex-col items-center bg-main font-sans">
       <NavBar userData={userData} opacity={opacity} />
-      {state === 'quiz' && <Categories />}
-      <div
-        className="rounded-25px border-b border-l-greylight mx-2 mt-14 flex w-auto flex-col items-center justify-center overflow-auto bg-white p-6 sm:mx-20"
-        style={{
-          opacity: opacity,
-          transition: 'opacity 300ms ease-in-out',
-        }}>
-        {renderContent()}
+      <div className='flex'>
+        {state === 'quiz' && <Categories />}
+        <div
+          className="rounded-25px border-l-greylight mx-2 mt-14 flex w-auto flex-col items-center justify-center overflow-auto border-b bg-white p-6 sm:mx-20"
+          style={{
+            opacity: opacity,
+            transition: 'opacity 300ms ease-in-out',
+          }}>
+          {renderContent()}
+        </div>
       </div>
     </div>
   );

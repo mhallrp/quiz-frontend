@@ -15,7 +15,7 @@ export default function App() {
   const triviaCategories = useQuizCategories();
   const [score, setScore] = useState(0);
   const [opacity, setOpacity] = useState(1);
-  const [userData, setUserData] = useState('');
+  const [userData, setUserData] = useState({name:'',score:0});
   const [state, setState] = useState('loading');
 
   const {
@@ -28,7 +28,7 @@ export default function App() {
     try {
       const result = await sessionCheck();
       if (result.status === 200) {
-        setUserData(result.data.username + ' ' + result.data.score);
+        setUserData({name:result.data.username, score:result.data.score});
         setState('quiz');
       } else {
         setState('login');

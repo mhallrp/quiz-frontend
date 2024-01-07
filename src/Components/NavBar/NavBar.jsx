@@ -11,8 +11,11 @@ const NavBar = (props) => {
             opacity: props.opacity,
             transition: 'opacity 300ms ease-in-out',
           }}>
-          <div className="bg-darkYellow rounded text-black">{props.userData}</div>
+          {props.userData.name}
         </h1>
+        <div className="rounded bg-darkYellow text-black">
+          {props.userData.score}
+        </div>
         <button className="text-mustard underline">Logout</button>
       </div>
     </div>

@@ -6,7 +6,7 @@ const NavBar = (props) => {
           Quik Quiz 💡
         </h1>
         {props.userData.name && (
-          <div className="ml-auto flex flex-col">
+          <div className="ml-auto flex w-auto">
             <h1
               className="text-greytext text-base"
               style={{

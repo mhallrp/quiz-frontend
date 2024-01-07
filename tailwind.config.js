@@ -27,13 +27,12 @@ module.exports = {
         'maindata': '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
         'navbar': '0px 5px 80px 0px rgba(0, 0, 0, 0.10)',
       },
-      backdropFilter: {
-        'blur-1_5': 'blur(1.5px)',
+      backdropBlur: {
+        custom: '1.5px',
       },
     },
   },
   plugins: [
-    require('@tailwindcss/filters'),
   ],
 }
 

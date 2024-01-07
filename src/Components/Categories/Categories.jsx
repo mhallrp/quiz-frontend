@@ -12,6 +12,7 @@ const Categories = (props) => {
                 {e.name}
               </option>
             );
+            
           })}
         </select>
       )}

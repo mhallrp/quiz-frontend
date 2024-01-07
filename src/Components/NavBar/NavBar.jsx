@@ -7,8 +7,9 @@ const NavBar = (props) => {
       <h1 className="text-greydark mr-auto font-oswald text-2xl leading-none">
         Quik Quiz 💡
       </h1>
+      {/* Why isnt the below h1 aligned left in its parent div? */}
       <h1
-        className="ml-auto text-2xl"
+        className="ml-auto text-2xl w-full"
         style={{
           opacity: props.opacity,
           transition: 'opacity 300ms ease-in-out',

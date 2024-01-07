@@ -83,7 +83,7 @@ export default function Quiz(props) {
               />
             ))}
           </div>
-          <div className="flex flex-wrap mb-12 mt-5 content-center gap-6">
+          <div className="flex flex-wrap mb-12 mt-5 content-center justify-center gap-6">
             <button
               disabled={
                 correct != null ? true : selected != null ? false : true

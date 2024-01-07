@@ -72,7 +72,7 @@ export default function Register(props) {
           </button>
         </div>
       </form>
-      <div className="h-px w-full bg-grey"></div>
+      <div className="h-px w-full bg-greylight"></div>
       <p className="pt-4 text-center">
         {isRegister ? 'Already have an account?' : 'Dont have an account?'}{' '}
         <button

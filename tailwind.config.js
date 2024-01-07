@@ -14,16 +14,26 @@ module.exports = {
       },
       colors:{
         darkYellow:"#FFD600",
-        grey:"#EAEAEA",
+        greydark:"#484848",
+        greylight:"#EAEAEA",
         mustard:"#BB8700",
         spinnerYellow:"#d0a310",
         black10: 'rgba(0, 0, 0, 0.1)',
       },
       borderRadius: {
         '25px': '25px',
-      }
+      },
+      boxShadow: {
+        'maindata': '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+        'navbar': '0px 5px 80px 0px rgba(0, 0, 0, 0.10)',
+      },
+      backdropFilter: {
+        'blur-1_5': 'blur(1.5px)',
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/filters'),
+  ],
 }
 

@@ -4,7 +4,7 @@ const Categories = (props) => {
       <p className="font-oswald text-2xl p-6">Quiz Topic</p>
       {props.currentCategories && (
         <select
-        className="w-fit h-8 bg-white border border-greylight rounded"
+        className="grow h-8 bg-white border border-greylight rounded"
           onChange={(e) => props.setSelectedCategory(e.target.value)}>
           {props.currentCategories.map((e, index) => {
             return (

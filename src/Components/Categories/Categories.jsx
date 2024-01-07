@@ -1,10 +1,10 @@
 const Categories = (props) => {
   return (
-    <div className="mx-2 mb-2.5 flex w-full items-center rounded-xl bg-white sm:mx-20">
-      <p className="flex-shrink-0 p-6 font-oswald text-2xl">Quiz Topic</p>
+    <div className="mx-2 mb-2.5 flex items-center w-full rounded-xl bg-white sm:mx-20">
+      <p className="font-oswald text-2xl p-6">Quiz Topic</p>
       {props.currentCategories && (
         <select
-          className="border-greylight h-8 w-full flex-grow rounded border bg-white"
+        className="w-fit h-8 bg-white border border-greylight rounded"
           onChange={(e) => props.setSelectedCategory(e.target.value)}>
           {props.currentCategories.map((e, index) => {
             return (
@@ -12,7 +12,6 @@ const Categories = (props) => {
                 {e.name}
               </option>
             );
-            <div></div>
           })}
         </select>
       )}

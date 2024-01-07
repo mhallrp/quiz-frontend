@@ -12,7 +12,7 @@ const Categories = (props) => {
                 {e.name}
               </option>
             );
-            
+
           })}
         </select>
       )}
@@ -21,3 +21,5 @@ const Categories = (props) => {
 };
 
 export default Categories;
+
+

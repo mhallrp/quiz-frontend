@@ -21,5 +21,3 @@ const Categories = (props) => {
 };
 
 export default Categories;
-
-

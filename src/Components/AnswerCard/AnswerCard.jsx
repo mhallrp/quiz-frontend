@@ -1,18 +1,15 @@
-import Styles from './styles.module.css';
-
 export default function SkillCard(props) {
   return (
     <div
-      style={{
-        backgroundColor: props.correct
-          ? 'green'
+      className={`${
+        props.correct
+          ? 'bg-correct'
           : props.selected
-          ? '#effe16'
-          : '#f5ff69',
-      }}
-      className={Styles.answerCard}
+            ? 'bg-selected'
+            : 'bg-greyanswer'
+      } border-greyanswer text-greytext m-2 flex h-36 w-52 items-center justify-center rounded-xl border-2 p-16`}
       onClick={props.onClick}>
-      <p>{props.text}</p>
+      <p className="">{props.text}</p>
     </div>
   );
 }

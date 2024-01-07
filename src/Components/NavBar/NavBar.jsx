@@ -1,12 +1,12 @@
 const NavBar = (props) => {
   return (
     <div className="border-greylight flex min-h-16 w-full flex-row items-center border-b bg-white">
-      <div className="mx-2 flex w-full items-center sm:mx-20">
+      <div className="mx-2 flex w-full sm:mx-20">
         <h1 className="text-greydark mr-auto font-oswald text-2xl leading-none">
           Quik Quiz 💡
         </h1>
         {props.userData.name && (
-          <div className="ml-auto flex w-auto">
+          <div className="ml-auto flex items-center w-auto">
             <h1
               className="text-greytext text-base"
               style={{

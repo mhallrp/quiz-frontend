@@ -83,8 +83,9 @@ export default function App() {
   };
 
   return (
-    <div className="backdrop-blu-sm flex h-screen flex-col items-center bg-main font-sans">
+    <div className="backdrop-blu-sm flex min-h-screen flex-col items-center bg-main font-sans">
       <NavBar userData={userData} opacity={opacity} />
+      {/* why is the below appearing above navbar when vertically squeezing the browser? */}
       <div className="flex h-full items-center justify-center ">
         <div
           className="backdrop-blur-custom shadow-maindata rounded-25px mt-14 flex w-full flex-col overflow-auto bg-white p-6 sm:w-auto "

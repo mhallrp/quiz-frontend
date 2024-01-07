@@ -78,7 +78,7 @@ export default function App() {
         return <Login changeState={changeState} />;
       default:
         return (
-          <div className=" border-black10 border-t-spinnerYellow h-12 w-12 animate-spin rounded-full border-4 border-t-4 border-solid"></div>
+          <div className="spinner border-black10 border-t-spinnerYellow h-12 w-12 animate-spin rounded-full border-4 border-t-4 border-solid"></div>
         );
     }
   };

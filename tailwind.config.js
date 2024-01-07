@@ -16,7 +16,12 @@ module.exports = {
         darkYellow:"#FFD600",
         grey:"#EAEAEA",
         mustard:"#BB8700",
+        spinnerYellow:"#d0a310",
+        black10: 'rgba(0, 0, 0, 0.1)',
       },
+      borderRadius: {
+        '25px': '25px',
+      }
     },
   },
   plugins: [],

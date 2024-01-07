@@ -48,9 +48,7 @@ export default function App() {
 
   useEffect(() => {
     if (status === 500) {
-      alert(
-        "Whoops, looks like there's a network error :/ \n Try refreshing in a moment",
-      );
+      alert('This API inlcudes rate limiting:/ \n Try refreshing in a moment');
     } else if (triviaCategories && triviaQuestions.length > 0) {
       setCurrentCategories(triviaCategories);
       setRemainingQuestions(triviaQuestions);
@@ -78,16 +76,18 @@ export default function App() {
       case 'login':
         return <Login changeState={changeState} />;
       default:
-        return <div className="spinner"></div>;
+        return (
+          <div className="spinner border-black10 border-t-spinnerYellow h-12 w-12 animate-spin rounded-full border-4 border-t-4 border-solid"></div>
+        );
     }
   };
 
   return (
-    <div className="backdrop-blu-sm flex h-screen flex-col bg-main font-sans">
+    <div className="backdrop-blu-sm flex h-screen flex-col items-center bg-main font-sans">
       <NavBar userData={userData} opacity={opacity} />
       <div className="flex h-full items-center justify-center ">
         <div
-          className="dataSection w-full sm:w-auto "
+          className="dataSection rounded-25px flex w-full mt-14 flex-col overflow-auto bg-white p-6 sm:w-auto "
           style={{
             opacity: opacity,
             transition: 'opacity 300ms ease-in-out',

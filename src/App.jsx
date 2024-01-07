@@ -15,7 +15,7 @@ export default function App() {
   const triviaCategories = useQuizCategories();
   const [score, setScore] = useState(0);
   const [opacity, setOpacity] = useState(1);
-  const [userData, setUserData] = useState({ name: '', score: 0 });
+  const [userData, setUserData] = useState({ name: undefined, score: 0 });
   const [state, setState] = useState('loading');
 
   const {
@@ -42,7 +42,7 @@ export default function App() {
     setOpacity(0);
     setTimeout(() => {
       setState(view);
-      setUserData({name:"", score:""});
+      setUserData({name:undefined, score:""});
       setOpacity(1);
     }, 300);
   };

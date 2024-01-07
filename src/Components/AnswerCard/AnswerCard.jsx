@@ -8,7 +8,7 @@ export default function SkillCard(props) {
             ? '#effe16'
             : '#f5ff69',
       }}
-      className="bg-greyanswer rounded-xl border-greyanswerb flex content-center justify-center h-64 w-72 border-2 p-16 m-2"
+      className="border-greyanswer text-greytext m-2 flex h-36 w-52 items-center justify-center rounded-xl border-2 p-16"
       onClick={props.onClick}>
       <p>{props.text}</p>
     </div>

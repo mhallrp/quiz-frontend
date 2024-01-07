@@ -15,7 +15,7 @@ export default function App() {
   const triviaCategories = useQuizCategories();
   const [score, setScore] = useState(0);
   const [opacity, setOpacity] = useState(1);
-  const [userData, setUserData] = useState({ name: undefined, score: 0 });
+  const [userData, setUserData] = useState({ name: undefined, score: undefined });
   const [state, setState] = useState('loading');
 
   const {
@@ -50,7 +50,7 @@ export default function App() {
   const handleLogout = async () => {
     await logout();
     fetchQuestions();
-    changeState('login', undefined);
+    changeState('login', {name:undefined,score:undefined});
   };
 
   useEffect(() => {
@@ -80,7 +80,7 @@ export default function App() {
           />
         );
       case 'login':
-        return <Login changeState={changeState}/>;
+        return <Login changeState={changeState} />;
       default:
         return (
           <div className="spinner border-black10 border-t-spinnerYellow h-12 w-12 animate-spin rounded-full border-4 border-t-4 border-solid"></div>
@@ -90,7 +90,11 @@ export default function App() {
 
   return (
     <div className="backdrop-blu-sm flex min-h-screen flex-col items-center bg-main font-sans">
-      <NavBar userData={userData} opacity={opacity} handleLogout={handleLogout}/>
+      <NavBar
+        userData={userData}
+        opacity={opacity}
+        handleLogout={handleLogout}
+      />
       <div
         className="mx-2 mt-8 flex flex-col items-center justify-center sm:mx-20"
         style={{

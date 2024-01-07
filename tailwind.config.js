@@ -18,6 +18,8 @@ module.exports = {
         greylight:"#EAEAEA",
         greyanswer:"#F1F1F1",
         greyanswerb:"#989898",
+        selected:"#FFF500",
+        correct:"#E4FFA9",
         mustard:"#BB8700",
         spinnerYellow:"#d0a310",
         black10: 'rgba(0, 0, 0, 0.1)',

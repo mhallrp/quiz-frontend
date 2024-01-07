@@ -1,6 +1,3 @@
-import React, { useEffect, useState } from 'react';
-import Styles from './styles.module.css';
-
 const NavBar = (props) => {
   return (
     <div className="flex z-10 align-middle relative w-full h-16 flex-row shadow-navbar bg-white">

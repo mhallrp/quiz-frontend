@@ -15,6 +15,7 @@ const Categories = (props) => {
           })}
         </select>
       )}
+      {/* comment */}
     </div>
   );
 };

@@ -90,10 +90,11 @@ export default function App() {
         {/* {state === 'quiz' && <Categories />} */}
         <div
           className="rounded-25px border-l-greylight mx-2 flex w-auto flex-col items-center justify-center overflow-auto border-b bg-white p-6 sm:mx-20"
-          style={{
-            opacity: opacity,
-            transition: 'opacity 300ms ease-in-out',
-          }}>
+          // style={{
+          //   opacity: opacity,
+          //   transition: 'opacity 300ms ease-in-out',
+          // }}>
+          >
 <Login changeState={changeState} />;
             
           {/* {renderContent()} */}

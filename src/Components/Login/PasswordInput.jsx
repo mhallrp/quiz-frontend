@@ -16,7 +16,7 @@ const PasswordInput = (props) => {
       }`}>
       <input
         type={showPassword ? 'text' : 'password'}
-        className="flex-grow rounded border border-gray-300 p-2"
+        className="flex-grow rounded border p-2"
         placeholder={
           props.confirm ? 'Confirm your password...' : 'Enter your password'
         }

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import AnswerCard from '../AnswerCard';
-import Styles from './styles.module.css';
 import { ShuffleArray, decodeHtmlEntities } from '../../Model/utils';
 import useAuth from '../../Model/useAuth';
 
@@ -60,7 +59,7 @@ export default function Quiz(props) {
     <>
       {currentQuestion && (
         <>
-          <h2 className={Styles.questionTitle}>
+          <h2 className="mt-5 w-full text-center">
             Q
             {Array.isArray(props.triviaQuestions)
               ? props.triviaQuestions.length -
@@ -69,7 +68,7 @@ export default function Quiz(props) {
               : 0}
             : {currentQuestion && decodeHtmlEntities(currentQuestion.question)}
           </h2>
-          <div className={Styles.answerCards}>
+          <div className="mt-5 flex flex-wrap content-center">
             {answers.map((e, index) => (
               <AnswerCard
                 selected={selected == index ? true : false}
@@ -84,7 +83,7 @@ export default function Quiz(props) {
               />
             ))}
           </div>
-          <div className={Styles.buttons}>
+          <div className="mb-12 mt-5 flex content-center gap-6">
             <button
               disabled={
                 correct != null ? true : selected != null ? false : true

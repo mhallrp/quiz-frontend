@@ -42,7 +42,7 @@ export default function App() {
     setOpacity(0);
     setTimeout(() => {
       setState(view);
-      setUserData({name:undefined, score:""});
+      setUserData(data);
       setOpacity(1);
     }, 300);
   };

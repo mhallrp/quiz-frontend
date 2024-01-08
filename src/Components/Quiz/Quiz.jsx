@@ -69,7 +69,7 @@ export default function Quiz(props) {
               </span>
             </p>
           </div>
-          <div className="mt-5 flex flex-wrap content-center justify-center gap-4">
+          <div className="mt-5 flex flex-col sm:flex-row w-full flex-nowrap sm:flex-wrap content-center justify-center gap-4">
             {answers.map((e, index) => (
               <AnswerCard
                 selected={selected == index ? true : false}

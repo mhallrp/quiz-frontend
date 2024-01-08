@@ -1,6 +1,6 @@
 const Categories = (props) => {
   return (
-    <div className=" mb-2.5 flex w-auto items-center rounded-xl bg-white ">
+    <div className=" mb-2.5 flex items-center rounded-xl bg-white ">
       <p className="m-6 font-oswald text-2xl">Quiz Topic</p>
       {props.currentCategories && (
         <select

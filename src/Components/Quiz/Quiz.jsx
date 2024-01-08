@@ -86,7 +86,15 @@ export default function Quiz(props) {
           </div>
           <div className="mt-4 flex flex-wrap content-center justify-center gap-4">
             <button
-              className={`${selected !== undefined && correct === undefined ? 'bg-darkYellow' : 'bg-greyanswer'} ${selected !== undefined && correct === undefined ? 'text-black' : 'text-greyanswerb'} h-11 rounded  px-6`}
+              className={`${
+                selected !== undefined && correct === undefined
+                  ? 'bg-darkYellow'
+                  : 'bg-greyanswer'
+              } ${
+                selected !== undefined && correct === undefined
+                  ? 'text-black'
+                  : 'text-greyanswerb'
+              } h-11 rounded  px-6`}
               disabled={
                 correct != null ? true : selected != null ? false : true
               }
@@ -94,7 +102,11 @@ export default function Quiz(props) {
               Check Answer
             </button>
             <button
-              className={`${correct !== undefined ? 'bg-darkYellow' : 'bg-greyanswer'} ${correct !== undefined ? 'text-black' : 'text-greyanswerb'} h-11 rounded px-6`}
+              className={`${
+                correct !== undefined ? 'bg-darkYellow' : 'bg-greyanswer'
+              } ${
+                correct !== undefined ? 'text-black' : 'text-greyanswerb'
+              } h-11 rounded px-6`}
               disabled={correct != null ? false : true}
               onClick={handleNextQuestion}>
               Next Question

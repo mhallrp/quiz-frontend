@@ -84,7 +84,7 @@ export default function App() {
         return <Login changeState={changeState} />;
       default:
         return (
-          <div className="spinner border-black10 border-t-spinnerYellow h-12 w-12 animate-spin rounded-full border-4 border-t-4 border-solid"></div>
+          <div className="spinner h-12 w-12 animate-spin rounded-full border-4 border-t-4 border-solid border-black10 border-t-spinnerYellow"></div>
         );
     }
   };
@@ -97,7 +97,7 @@ export default function App() {
         handleLogout={handleLogout}
       />
       <div
-        className="mx-2 mt-8 flex flex-col items-center justify-center sm:mx-20"
+        className="mx-4 mt-8 flex flex-col items-center justify-center sm:mx-20"
         style={{
           opacity: opacity,
           transition: 'opacity 300ms ease-in-out',
@@ -108,7 +108,7 @@ export default function App() {
             currentCategories={currentCategories}
           />
         )}
-        <div className="rounded-25px border-l-greylight  flex w-auto flex-col items-center justify-center overflow-auto border-b bg-white p-6">
+        <div className="flex w-auto  flex-col items-center justify-center overflow-auto rounded-25px border-b border-l-greylight bg-white p-6">
           {renderContent()}
         </div>
       </div>

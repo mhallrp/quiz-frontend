@@ -1,5 +1,4 @@
 const SkillCard = (props) => {
-
   const getBackgroundClass = () => {
     if (props.correct) {
       return 'bg-correct border-darkGreen text-black';
@@ -14,11 +13,11 @@ const SkillCard = (props) => {
 
   return (
     <button
-      className={`${backgroundClass} text-center flex h-36 w-52 items-center justify-center rounded-xl border-2 p-16`}
+      className={`${backgroundClass} flex h-36 w-52 items-center justify-center rounded-xl border-2 p-16 text-center`}
       onClick={props.onClick}>
       <p>{props.text}</p>
     </button>
   );
-}
+};
 
-export default SkillCard
+export default SkillCard;

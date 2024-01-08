@@ -1,8 +1,13 @@
+const apiKey = process.env.REACT_APP_APP_API_KEY;
+
 const useAuth = () => {
   const sessionCheck = async () => {
     try {
       const response = await fetch(`https://request.matt-hall.dev/check`, {
         credentials: 'include',
+        headers: {
+          'X-API-Key': apiKey,
+        },
       });
       const data = await response.json();
       return { data: data, status: response.status };
@@ -18,6 +23,7 @@ const useAuth = () => {
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
+          'X-API-Key': apiKey,
         },
         body: JSON.stringify({ user: { username, password } }),
       });
@@ -43,6 +49,7 @@ const useAuth = () => {
           credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
+            'X-API-Key': apiKey,
           },
           body: JSON.stringify({ user: { username, password } }),
         },
@@ -64,6 +71,7 @@ const useAuth = () => {
           credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
+            'X-API-Key': apiKey,
           },
         },
       );
@@ -77,4 +85,5 @@ const useAuth = () => {
 
   return { sessionCheck, register, login, logout };
 };
+
 export default useAuth;

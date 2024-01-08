@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-const apiKey = process.env.APP_API_KEY;
 
 export const useTriviaQuestions = (categoryId) => {
   const [questions, setQuestions] = useState([]);
@@ -8,11 +7,6 @@ export const useTriviaQuestions = (categoryId) => {
     try {
       const response = await fetch(
         `https://request.matt-hall.dev/quiz/trivia?category=${categoryId}`,
-        {
-          headers: {
-            'X-API-Key': apiKey, // Including the API key in the request headers
-          },
-        },
       );
       const data = await response.json();
       setStatus(200);
@@ -21,7 +15,7 @@ export const useTriviaQuestions = (categoryId) => {
       setStatus(500);
     }
   };
-
+  
   useEffect(() => {
     fetchQuestions();
   }, [categoryId]);
@@ -34,11 +28,6 @@ export const useQuizCategories = () => {
       try {
         const response = await fetch(
           `https://request.matt-hall.dev/quiz/categories`,
-          {
-            headers: {
-              'X-API-Key': apiKey, // Including the API key in the request headers
-            },
-          },
         );
         const data = await response.json();
         setCategories(data);
@@ -49,4 +38,5 @@ export const useQuizCategories = () => {
     initializeCategories();
   }, []);
   return categories;
+  
 };

@@ -108,7 +108,7 @@ export default function App() {
             currentCategories={currentCategories}
           />
         )}
-        <div className="flex w-auto  flex-col items-center justify-center overflow-auto rounded-25px border-b border-l-greylight bg-white p-6">
+        <div className="flex flex-col items-center justify-center overflow-auto rounded-25px border-b border-l-greylight bg-white p-6">
           {renderContent()}
         </div>
       </div>

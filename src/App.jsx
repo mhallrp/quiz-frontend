@@ -102,13 +102,13 @@ export default function App() {
           opacity: opacity,
           transition: 'opacity 300ms ease-in-out',
         }}>
-        {state === 'quiz' && (
+        {/* {state === 'quiz' && (
           <Categories
             setSelectedCategory={setSelectedCategory}
             currentCategories={currentCategories}
           />
-        )}
-        <div className="flex flex-col items-center justify-center overflow-auto rounded-25px border-b border-l-greylight bg-white p-6">
+        )} */}
+        <div className="flex flex-col items-center justify-center rounded-25px border-b border-l-greylight bg-white p-6">
           {renderContent()}
         </div>
       </div>

@@ -104,7 +104,6 @@ export default function App() {
         }}>
         {state === 'quiz' && (
           <Categories
-            opacity={opacity}
             setSelectedCategory={setSelectedCategory}
             currentCategories={currentCategories}
           />

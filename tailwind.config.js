@@ -24,6 +24,7 @@ module.exports = {
         mustard:"#BB8700",
         spinnerYellow:"#d0a310",
         black10: 'rgba(0, 0, 0, 0.1)',
+        darkGreen:'#3AB400'
       },
       borderRadius: {
         '25px': '25px',

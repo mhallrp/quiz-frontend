@@ -10,7 +10,7 @@ export const useTriviaQuestions = (categoryId) => {
         `https://request.matt-hall.dev/quiz/trivia?category=${categoryId}`,
         {
           headers: {
-            'X-API-Key': apiKey, // Including the API key in the request headers
+            'X-API-Key': apiKey,
           },
         },
       );

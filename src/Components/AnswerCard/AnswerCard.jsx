@@ -13,7 +13,7 @@ const SkillCard = (props) => {
 
   return (
     <button
-      className={`${backgroundClass} flex h-auto w-52 items-center justify-center rounded-xl border-2 p-16 text-center sm:h-36`}
+      className={`${backgroundClass} flex h-auto w-full items-center justify-center rounded-xl border-2 p-4 text-center sm:h-36 sm:w-52 sm:p-16`}
       onClick={props.onClick}>
       <p>{props.text}</p>
     </button>

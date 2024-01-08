@@ -20,7 +20,6 @@ export const useTriviaQuestions = (categoryId) => {
   }, [categoryId]);
   return { questions, fetchQuestions, status };
 };
-
 export const useQuizCategories = () => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {

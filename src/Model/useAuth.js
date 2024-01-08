@@ -1,4 +1,4 @@
-const apiKey = process.env.REACT_APP_API_KEY;
+const apiKey = process.env.REACT_APP_APP_API_KEY;
 
 const useAuth = () => {
   const sessionCheck = async () => {

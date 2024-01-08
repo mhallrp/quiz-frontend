@@ -13,6 +13,7 @@ const Categories = (props) => {
               </option>
             );
           })}
+          
         </select>
       )}
     </div>

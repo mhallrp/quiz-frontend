@@ -2,9 +2,9 @@ const Categories = (props) => {
   return (
     <div className=" mb-2.5 flex w-full items-center rounded-xl bg-white ">
       <p className="m-6 font-oswald text-2xl">Quiz Topic</p>
-      {/* {props.currentCategories && (
+      {props.currentCategories && (
         <select
-          className="mr-6 mt-1 flex h-8 grow rounded border border-greylight bg-white pl-2 text-greytext"
+          className="mr-6 mt-1 h-8 rounded border border-greylight bg-white pl-2 text-greytext"
           onChange={(e) => props.setSelectedCategory(e.target.value)}>
           {props.currentCategories.map((e, index) => {
             return (
@@ -14,7 +14,7 @@ const Categories = (props) => {
             );
           })}
         </select>
-      )} */}
+      )}
     </div>
   );
 };

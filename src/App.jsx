@@ -97,7 +97,7 @@ export default function App() {
         handleLogout={handleLogout}
       />
       <div
-        className="mx-2 my-2 flex flex-col items-center justify-center sm:mx-20 sm:my-8"
+        className="mx-2 my-4 flex flex-col items-center justify-center sm:mx-20 sm:my-8"
         style={{
           opacity: opacity,
           transition: 'opacity 300ms ease-in-out',

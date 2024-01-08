@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-const apiKey = process.env.REACT_APP_APP_API_KEY;
+const apiKey = process.env.REACT_APP_API_KEY;
 
 export const useTriviaQuestions = (categoryId) => {
   console.log("the key" + apiKey)

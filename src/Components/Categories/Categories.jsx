@@ -1,17 +1,15 @@
-import { useEffect, useState } from 'react';
-import { useData } from '../../Model/dataLogic';
-const apiKey = process.env.REACT_APP_API_KEY;
+import { useEffect, useState } from "react";
+import { useData } from "../../Model/dataLogic";
 
 const Categories = (props) => {
-
-  const [categories, setCategories] = useState(['General knowledge']);
-  const {getCategories} = useData()
+  const [categories, setCategories] = useState(["General knowledge"]);
+  const { getCategories } = useData();
 
   useEffect(() => {
-    const initializeCategories = async () =>{
-      const categories = await getCategories()
-      setCategories(categories)
-    }
+    const initializeCategories = async () => {
+      const categories = await getCategories();
+      setCategories(categories);
+    };
     initializeCategories();
   }, []);
 

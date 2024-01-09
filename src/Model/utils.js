@@ -1,5 +1,5 @@
 export const decodeHtmlEntities = (text) => {
-  var textArea = document.createElement('textarea');
+  var textArea = document.createElement("textarea");
   textArea.innerHTML = text;
   return textArea.value;
 };

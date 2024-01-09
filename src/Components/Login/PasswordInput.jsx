@@ -1,5 +1,5 @@
-import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
-import React, { useState } from 'react';
+import { MdVisibility, MdVisibilityOff } from "react-icons/md";
+import React, { useState } from "react";
 
 const PasswordInput = (props) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -11,13 +11,13 @@ const PasswordInput = (props) => {
   return (
     <div
       className={`relative flex w-full items-center md:w-96 ${
-        props.confirm && 'mt-4'
+        props.confirm && "mt-4"
       }`}>
       <input
-        type={showPassword ? 'text' : 'password'}
+        type={showPassword ? "text" : "password"}
         className="flex-grow rounded border p-2"
         placeholder={
-          props.confirm ? 'Confirm your password...' : 'Enter your password'
+          props.confirm ? "Confirm your password..." : "Enter your password"
         }
         value={props.confirm ? props.confirmPassword : props.password}
         onChange={

@@ -4,36 +4,27 @@ import Login from './Components/Login';
 import Quiz from './Components/Quiz';
 import Categories from './Components/Categories';
 import useAuth from './Model/authLogic';
-import { useTriviaQuestions } from './Model/dataLogic';
+import { useData } from './Model/dataLogic';
 import NavBar from './Components/NavBar';
 
 export default function App() {
-
   const { sessionCheck, logout } = useAuth();
-  const [remainingQuestions, setRemainingQuestions] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('9');
   const [state, setState] = useState('loading');
-  const [score, setScore] = useState(0);
   const [opacity, setOpacity] = useState(1);
-  const [selected, setSelected] = useState(undefined);
-  const [correct, setCorrect] = useState(undefined);
+  const { fetchQuestions } = useData(selectedCategory);
   const [userData, setUserData] = useState({
     name: undefined,
     score: undefined,
   });
-
-  const {
-    questions: triviaQuestions,
-    fetchQuestions,
-    status,
-  } = useTriviaQuestions(selectedCategory);
-
+  
   const checkSessionStatus = async () => {
     try {
       const result = await sessionCheck();
       if (result.status === 200) {
         setUserData({ name: result.data.username, score: result.data.score });
         setState('quiz');
+        return
       } else {
         setState('login');
       }
@@ -58,32 +49,16 @@ export default function App() {
   };
 
   useEffect(() => {
-    if (status === 500) {
-      alert('This API inlcudes rate limiting:/ \n Try refreshing in a moment');
-    } else if (triviaQuestions.length > 0) {
-      setRemainingQuestions(triviaQuestions);
-      setScore(0);
-      setSelected(undefined);
-      setCorrect(undefined);
-      checkSessionStatus();
-    }
-  }, [triviaQuestions, status]);
+    checkSessionStatus();
+  }, []);
 
   const renderContent = () => {
     switch (state) {
       case 'quiz':
         return (
           <Quiz
-            setScore={setScore}
-            score={score}
-            setRemainingQuestions={setRemainingQuestions}
-            remainingQuestions={remainingQuestions}
-            fetchQuestions={fetchQuestions}
-            triviaQuestions={triviaQuestions}
-            selected={selected}
-            setSelected={setSelected}
-            correct={correct}
-            setCorrect={setCorrect}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
           />
         );
       case 'login':
@@ -109,9 +84,7 @@ export default function App() {
           transition: 'opacity 300ms ease-in-out',
         }}>
         {state === 'quiz' && (
-          <Categories
-            setSelectedCategory={setSelectedCategory}
-          />
+          <Categories setSelectedCategory={setSelectedCategory} />
         )}
         <div className="flex flex-col items-center justify-center rounded-25px border-b border-l-greylight bg-white p-6">
           {renderContent()}

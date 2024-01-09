@@ -9,7 +9,7 @@ const NavBar = (props) => {
           className="ml-auto flex w-auto items-center"
           style={{
             opacity: props.opacity,
-            transition: 'opacity 300ms ease-in-out',
+            transition: "opacity 300ms ease-in-out",
           }}>
           {props.userData.name && (
             <>
@@ -17,7 +17,7 @@ const NavBar = (props) => {
                 className="text-base text-greytext"
                 style={{
                   opacity: props.opacity,
-                  transition: 'opacity 300ms ease-in-out',
+                  transition: "opacity 300ms ease-in-out",
                 }}>
                 {props.userData.name}
               </h1>

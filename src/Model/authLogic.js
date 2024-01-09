@@ -1,13 +1,12 @@
 const apiKey = process.env.REACT_APP_API_KEY;
 
 const useAuth = () => {
-  
   const sessionCheck = async () => {
     try {
       const response = await fetch(`https://request.matt-hall.dev/check`, {
-        credentials: 'include',
+        credentials: "include",
         headers: {
-          'X-API-Key': apiKey,
+          "X-API-Key": apiKey,
         },
       });
       const data = await response.json();
@@ -20,24 +19,24 @@ const useAuth = () => {
   const login = async (username, password) => {
     try {
       const response = await fetch(`https://request.matt-hall.dev/user/login`, {
-        method: 'POST',
-        credentials: 'include',
+        method: "POST",
+        credentials: "include",
         headers: {
-          'Content-Type': 'application/json',
-          'X-API-Key': apiKey,
+          "Content-Type": "application/json",
+          "X-API-Key": apiKey,
         },
         body: JSON.stringify({ user: { username, password } }),
       });
       const data = await response.json();
       if (!response.ok) {
         const errorMessage =
-          data.errorMessage || 'Login failed for an unknown reason';
+          data.errorMessage || "Login failed for an unknown reason";
         return { error: errorMessage, status: false };
       }
       return { data: data, status: true };
     } catch (networkError) {
-      console.error('Network error:', networkError);
-      return { data: null, error: 'Network error occurred', status: false };
+      console.error("Network error:", networkError);
+      return { data: null, error: "Network error occurred", status: false };
     }
   };
 
@@ -46,11 +45,11 @@ const useAuth = () => {
       const response = await fetch(
         `https://request.matt-hall.dev/user/register`,
         {
-          method: 'POST',
-          credentials: 'include',
+          method: "POST",
+          credentials: "include",
           headers: {
-            'Content-Type': 'application/json',
-            'X-API-Key': apiKey,
+            "Content-Type": "application/json",
+            "X-API-Key": apiKey,
           },
           body: JSON.stringify({ user: { username, password } }),
         },
@@ -58,7 +57,7 @@ const useAuth = () => {
       const data = await response.json();
       return { data, status: response.ok };
     } catch (error) {
-      console.error('Registration error:', error);
+      console.error("Registration error:", error);
       return { error };
     }
   };
@@ -68,19 +67,19 @@ const useAuth = () => {
       const response = await fetch(
         `https://request.matt-hall.dev/user/logout`,
         {
-          method: 'GET',
-          credentials: 'include',
+          method: "GET",
+          credentials: "include",
           headers: {
-            'Content-Type': 'application/json',
-            'X-API-Key': apiKey,
+            "Content-Type": "application/json",
+            "X-API-Key": apiKey,
           },
         },
       );
       const data = await response.json();
       return { data, status: response.ok };
     } catch (networkError) {
-      console.error('Network error:', networkError);
-      return { data: null, error: 'Network error occurred', status: false };
+      console.error("Network error:", networkError);
+      return { data: null, error: "Network error occurred", status: false };
     }
   };
 

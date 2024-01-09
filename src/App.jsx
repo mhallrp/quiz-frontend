@@ -4,15 +4,14 @@ import Login from './Components/Login';
 import Quiz from './Components/Quiz';
 import Categories from './Components/Categories';
 import useAuth from './Model/authLogic';
-import { useTriviaQuestions, useQuizCategories } from './Model/dataLogic';
+import { useTriviaQuestions } from './Model/dataLogic';
 import NavBar from './Components/NavBar';
 
 export default function App() {
+
   const { sessionCheck, logout } = useAuth();
-  const [currentCategories, setCurrentCategories] = useState(null);
   const [remainingQuestions, setRemainingQuestions] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('9');
-  const triviaCategories = useQuizCategories();
   const [state, setState] = useState('loading');
   const [score, setScore] = useState(0);
   const [opacity, setOpacity] = useState(1);
@@ -61,15 +60,14 @@ export default function App() {
   useEffect(() => {
     if (status === 500) {
       alert('This API inlcudes rate limiting:/ \n Try refreshing in a moment');
-    } else if (triviaCategories && triviaQuestions.length > 0) {
-      setCurrentCategories(triviaCategories);
+    } else if (triviaQuestions.length > 0) {
       setRemainingQuestions(triviaQuestions);
       setScore(0);
       setSelected(undefined);
       setCorrect(undefined);
       checkSessionStatus();
     }
-  }, [triviaCategories, triviaQuestions, status]);
+  }, [triviaQuestions, status]);
 
   const renderContent = () => {
     switch (state) {
@@ -113,7 +111,6 @@ export default function App() {
         {state === 'quiz' && (
           <Categories
             setSelectedCategory={setSelectedCategory}
-            currentCategories={currentCategories}
           />
         )}
         <div className="flex flex-col items-center justify-center rounded-25px border-b border-l-greylight bg-white p-6">

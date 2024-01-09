@@ -3,7 +3,7 @@ import AnswerCard from '../AnswerCard';
 import { ShuffleArray, decodeHtmlEntities } from '../../Model/utils';
 import { useQuiz } from '../../Model/quizLogic';
 
-export default function Quiz(props) {
+const Quiz = (props) => {
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [answers, setAnswers] = useState([]);
   const { checkAnswer, handleNextQuestion } = useQuiz(props, answers);
@@ -95,3 +95,5 @@ export default function Quiz(props) {
     </>
   );
 }
+
+export default Quiz;

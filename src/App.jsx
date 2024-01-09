@@ -15,6 +15,8 @@ export default function App() {
   const triviaCategories = useQuizCategories();
   const [score, setScore] = useState(0);
   const [opacity, setOpacity] = useState(1);
+  const [selected, setSelected] = useState(undefined);
+  const [correct, setCorrect] = useState(undefined);
   const [userData, setUserData] = useState({
     name: undefined,
     score: undefined,
@@ -63,6 +65,8 @@ export default function App() {
       setCurrentCategories(triviaCategories);
       setRemainingQuestions(triviaQuestions);
       setScore(0);
+      setSelected(undefined)
+      setCorrect(undefined)
       checkSessionStatus();
     }
   }, [triviaCategories, triviaQuestions, status]);
@@ -78,6 +82,10 @@ export default function App() {
             remainingQuestions={remainingQuestions}
             fetchQuestions={fetchQuestions}
             triviaQuestions={triviaQuestions}
+            selected={selected}
+            setSelected={setSelected}
+            correct={correct}
+            setCorrect={setCorrect}
           />
         );
       case 'login':

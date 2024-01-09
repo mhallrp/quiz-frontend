@@ -3,8 +3,8 @@ import './index.css';
 import Login from './Components/Login';
 import Quiz from './Components/Quiz';
 import Categories from './Components/Categories';
-import useAuth from './Model/useAuth';
-import { useTriviaQuestions, useQuizCategories } from './Model/CustomHooks';
+import useAuth from './Model/authLogic';
+import { useTriviaQuestions, useQuizCategories } from './Model/dataLogic';
 import NavBar from './Components/NavBar';
 
 export default function App() {
@@ -13,6 +13,7 @@ export default function App() {
   const [remainingQuestions, setRemainingQuestions] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('9');
   const triviaCategories = useQuizCategories();
+  const [state, setState] = useState('loading');
   const [score, setScore] = useState(0);
   const [opacity, setOpacity] = useState(1);
   const [selected, setSelected] = useState(undefined);
@@ -21,7 +22,6 @@ export default function App() {
     name: undefined,
     score: undefined,
   });
-  const [state, setState] = useState('loading');
 
   const {
     questions: triviaQuestions,
@@ -65,8 +65,8 @@ export default function App() {
       setCurrentCategories(triviaCategories);
       setRemainingQuestions(triviaQuestions);
       setScore(0);
-      setSelected(undefined)
-      setCorrect(undefined)
+      setSelected(undefined);
+      setCorrect(undefined);
       checkSessionStatus();
     }
   }, [triviaCategories, triviaQuestions, status]);

@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import AnswerCard from '../AnswerCard';
 import { ShuffleArray, decodeHtmlEntities } from '../../Model/utils';
+import { useQuiz } from '../../Model/quizLogic';
 
 export default function Quiz(props) {
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [answers, setAnswers] = useState([]);
+  const { checkAnswer, handleNextQuestion } = useQuiz(props, answers);
 
   useEffect(() => {
     if (props.remainingQuestions.length > 0) {
@@ -18,36 +20,6 @@ export default function Quiz(props) {
       setAnswers(shuffledAnswers);
     }
   }, [props.remainingQuestions]);
-
-  const handleNextQuestion = () => {
-    props.setCorrect(undefined);
-    props.setSelected(undefined);
-    if (props.remainingQuestions.length !== 1) {
-      props.setRemainingQuestions((prevQuestions) => prevQuestions.slice(1));
-    } else {
-      const totalQuestions = props.triviaQuestions.length;
-      alert(`Your score is ${props.score}/${totalQuestions}`);
-      resetQuiz();
-    }
-  };
-
-  const resetQuiz = () => {
-    props.fetchQuestions();
-    props.setScore(0);
-  };
-
-  const checkAnswer = () => {
-    if (props.selected != null) {
-      if (
-        answers[props.selected] === props.remainingQuestions[0].correct_answer
-      ) {
-        props.setScore((prevScore) => prevScore + 1);
-      }
-      props.setCorrect(
-        answers.indexOf(props.remainingQuestions[0].correct_answer),
-      );
-    }
-  };
 
   return (
     <>

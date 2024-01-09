@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useAuth from '../../Model/useAuth';
+import useAuth from '../../Model/authLogic';
 import PasswordInput from './PasswordInput';
 
 export default function Register(props) {

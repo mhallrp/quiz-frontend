@@ -1,6 +1,7 @@
 const apiKey = process.env.REACT_APP_API_KEY;
 
 const useAuth = () => {
+  
   const sessionCheck = async () => {
     try {
       const response = await fetch(`https://request.matt-hall.dev/check`, {
